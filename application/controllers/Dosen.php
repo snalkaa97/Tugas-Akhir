@@ -28,6 +28,7 @@ class Dosen extends CI_Controller
         //$this->load->view('templates/auth_header', $judul);
         $jurusan = $data['user']['jurusan'];
         $data['dosen'] = $this->db->get_where('dosen_peserta', ['jurusan' => $jurusan])->result_array();
+
         $data['title'] = 'Dosen';
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar_user');

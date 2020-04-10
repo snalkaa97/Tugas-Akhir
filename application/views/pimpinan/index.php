@@ -22,7 +22,6 @@
                         <tr>
                             <td><?= $i; ?></td>
                             <td><?= $d['nama'] ?></td>
-                            <td><a class="badge badge-success" href="<?= base_url('mahasiswa/kuesioner'); ?>">Isi</a></td>
                         </tr>
                     <?php $i++;
                     endforeach; ?>
