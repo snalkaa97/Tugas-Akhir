@@ -19,8 +19,8 @@ class Auth extends CI_Controller
         //     // jika ada role_id yg lain maka tambahkan disini
         // }
         // //membuat rules form valid
-        $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
-        $this->form_validation->set_rules('password', 'Password', 'trim|required');
+        $this->form_validation->set_rules('id', 'Id', 'required');
+        $this->form_validation->set_rules('role', 'Role', 'required');
 
         if ($this->form_validation->run() == false) {
             $data['title'] = 'Login Page';
@@ -35,32 +35,49 @@ class Auth extends CI_Controller
 
     public function _login()
     {
-        $email = $this->input->post('email');
-        $password = $this->input->post('password');
+        $id = $this->input->post('id');
+        $role = $this->input->post('role');
 
-        $user = $this->db->get_where('user', ['email' => $email])->row_array();
-
-        if ($user['email'] == $email) {
-            if ($user['password'] == $password) {
+        if ($role == "Pimpinan") {
+            $user = $this->db->get_where('nilai_pimpinan', ['nip' => $id])->row_array();
+            //var_dump($user);
+            //die;
+            if ($user) {
                 $data = [
-                    'email' => $user['email'],
-                    'role'  => $user['role']
+                    'nip' => $user['nip'],
+                    'id_dosen' => $user['id_dosen']
                 ];
                 $this->session->set_userdata($data);
-                if ($user['role'] == 'Mahasiswa') {
-                    redirect('mahasiswa');
-                } else {
-                    redirect('pimpinan');
-                }
-            } else {
-                $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
-                     Wrong Password. 
-                   </div>');
+                redirect('pimpinan');
+            }
+        } else if ($role == "Mahasiswa") {
+            $user = $this->db->get_where('nilai_mhs', ['nim' => $id])->row_array();
+            //var_dump($user);
+            //die;
+            if ($user) {
+                $data = [
+                    'nim' => $user['nim'],
+                    'id_dosen' => $user['id_dosen']
+                ];
+                $this->session->set_userdata($data);
+                redirect('mahasiswa');
+            }
+        } else if ($role == "Dosen") {
+            $user = $this->db->get_where('nilai_dosen', ['nip' => $id])->row_array();
+            //var_dump($user);
+            //die;
+            if ($user) {
+                $data = [
+                    'nip' => $user['nip'],
+                    'id_dosen' => $user['id_dosen']
+                ];
+                $this->session->set_userdata($data);
+                redirect('dosen');
             }
         } else {
             $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
-                     Email salah. 
-                   </div>');
+                     NIP/NIM Tidak terdaftar. 
+                 </div>');
         }
     }
     // public function _login()
@@ -123,17 +140,17 @@ class Auth extends CI_Controller
 
         //buat rule form validation
         $this->form_validation->set_rules('nama', 'Nama', 'required|trim'); //set_rules('name/index','alias','required/wajib|trim untuk spasi ga masuk db)
-        $this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email|is_unique[user.email]', [
-            'is_unique' => 'This Email has already exist!'
-        ]); //is_unique[table.field] dia ngecek sudah ada atau belum emailnya di db
-        $this->form_validation->set_rules('password1', 'Password', 'required|trim|min_length[3]|matches[password2]', [
-            'matches' => 'Password dont match!',
-            'min_length' => 'Password too short!'
-        ]); //set_rules('name/index','alias','required/wajib|trim untuk spasi ga masuk db)
-        $this->form_validation->set_rules('password2', 'Password', 'required|trim|min_length[3]|matches[password1]'); //set_rules('name/index','alias','required/wajib|trim untuk spasi ga masuk db)
+        //    // $this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email|is_unique[user.email]', [
+        //         'is_unique' => 'This Email has already exist!'
+        //     ]); //is_unique[table.field] dia ngecek sudah ada atau belum emailnya di db
+        // //$this->form_validation->set_rules('password1', 'Password', 'required|trim|min_length[3]|matches[password2]', [
+        //     'matches' => 'Password dont match!',
+        //     'min_length' => 'Password too short!'
+        // ]); //set_rules('name/index','alias','required/wajib|trim untuk spasi ga masuk db)
+        // $this->form_validation->set_rules('password2', 'Password', 'required|trim|min_length[3]|matches[password1]'); //set_rules('name/index','alias','required/wajib|trim untuk spasi ga masuk db)
         $this->form_validation->set_rules('jurusan', 'Jurusan', 'required');
         $this->form_validation->set_rules('role', 'Role', 'required');
-        $this->form_validation->set_rules('username', 'Username', 'required|trim');
+        //$this->form_validation->set_rules('nim', 'Nim', 'required|trim');
         if ($this->form_validation->run() == false) { //ketika dijalankan / run
             $data['title'] = 'WPU Registration'; //untuk title regist
             $this->load->view('templates/auth_header', $data); //memanggil isi $data
@@ -149,15 +166,42 @@ class Auth extends CI_Controller
             //     'username' => htmlspecialchars($this->input->post('username'), true),
             //     'password' => $this->input->post('password1'), true
             // ];
-            $post = $this->input->post();
-            $this->nama = $post['nama'];
-            $this->email = $post['email'];
-            $this->role = $post['role'];
-            $this->jurusan = $post['jurusan'];
-            $this->username = $post['username'];
-            $this->password = $post['password1'];
+            //$post = $this->input->post();
+            // $this->nim = $post['nim'];
+            // $this->nip = $post['nip'];
+            // $this->nama = $post['nama'];
+            // $this->email = $post['email'];
+            // $this->role = $post['role'];
+            // $this->jurusan = $post['jurusan'];
 
-            $this->db->insert('user', $this);
+            $mahasiswa = [
+                'nim' => $this->input->post('nim', true),
+                'nama' => $this->input->post('nama', true),
+                'jurusan' => $this->input->post('jurusan', true)
+            ];
+            $dosen = [
+                'nip' => $this->input->post('nip', true),
+                'nama' => $this->input->post('nama', true),
+                'jurusan' => $this->input->post('jurusan', true)
+            ];
+            $pimpinan = [
+                'nip' => $this->input->post('nip', true),
+                'nama' => $this->input->post('nama', true),
+                'jurusan' => $this->input->post('jurusan', true)
+            ];
+
+            $role = $this->input->post('role');
+            if ($role == "Pimpinan") {
+                $this->db->insert('nilai_pimpinan', $pimpinan);
+            } else if ($role == "Mahasiswa") {
+                $this->db->insert('nilai_mhs', $mahasiswa);
+            } else {
+                $this->db->insert('nilai_dosen', $dosen);
+            }
+
+
+
+
             $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
             Congratulations! your account has been created.  
           </div>');
@@ -168,8 +212,9 @@ class Auth extends CI_Controller
 
     public function logout()
     {
-        // $this->session->unset_userdata('email'); //menghapus session
-        // $this->session->unset_userdata('role_id');
+        $this->session->unset_userdata('nip'); //menghapus session
+        $this->session->unset_userdata('nim'); //menghapus session
+        $this->session->unset_userdata('id_dosen');
 
         $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
        You have been logged out. 

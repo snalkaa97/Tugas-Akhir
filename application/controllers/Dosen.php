@@ -21,17 +21,31 @@ class Dosen extends CI_Controller
 
     public function index()
     {
-        //$data['users'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['user'] = $this->db->get_where('nilai_dosen', ['nip' => $this->session->userdata('nip')])->row_array();
         //echo $data['users']['name'];
         //echo $this->session->userdata('email');
         //$judul['title'] = "Selamat Datang " . $data['users']['name'];
         //$this->load->view('templates/auth_header', $judul);
+        $jurusan = $data['user']['jurusan'];
+        $data['dosen'] = $this->db->get_where('dosen_peserta', ['jurusan' => $jurusan])->result_array();
         $data['title'] = 'Dosen';
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar_user');
-        $this->load->view('templates/topbar');
-        $this->load->view('dosen/index');
+        $this->load->view('templates/topbar_user');
+        $this->load->view('mahasiswa/index');
         $this->load->view('templates/footer');
         //$this->load->view(('templates/auth_footer'));
+    }
+
+    public function kuesioner()
+    {
+        $data['user'] = $this->db->get_where('nilai_dosen', ['nim' => $this->session->userdata('nim')])->row_array();
+        $data['title'] = 'Dosen - Isi Kuesioner';
+        $this->form_validation->set_rules('name', 'Name', 'required');
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar_user');
+        $this->load->view('templates/topbar_user');
+        $this->load->view('mahasiswa/kuesioner');
+        $this->load->view('templates/footer');
     }
 }

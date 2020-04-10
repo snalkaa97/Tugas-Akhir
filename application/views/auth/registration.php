@@ -16,12 +16,12 @@
                                 <?= form_error('nama', '<small class="text-danger pl-3">', '</small>'); ?>
                             </div>
                             <div class="form-group">
-                                <input type="email" class="form-control" id="email" name="email" placeholder="Email Address" value="<?= set_value('email'); ?>">
-                                <?= form_error('email', '<small class="text-danger pl-3">', '</small>'); ?>
+                                <input type="text" class="form-control" id="nim" name="nim" placeholder="Jika mahasiswa isi nim" value="<?= set_value('nim'); ?>">
+                                <?= form_error('nim', '<small class="text-danger pl-3">', '</small>'); ?>
                             </div>
                             <div class="form-group">
-                                <input type="username" class="form-control" id="username" name="username" placeholder="Username" value="<?= set_value('username'); ?>">
-                                <?= form_error('username', '<small class="text-danger pl-3">', '</small>'); ?>
+                                <input type="text" class="form-control" id="nip" name="nip" placeholder="Jika dosen isi nip" value="<?= set_value('nip'); ?>">
+                                <?= form_error('nip', '<small class="text-danger pl-3">', '</small>'); ?>
                             </div>
                             <div class="form-group row">
                                 <div class="col-sm-6">
@@ -35,12 +35,11 @@
                                         <option value="Arsitektur">Arsitektur</option>
                                         <option value="Teknik Informatika">Teknik Informatika</option>
                                         <option value="D3OAB">D3OAB</option>
-                                    </select> <?= form_error('username', '<small class="text-danger pl-3">', '</small>'); ?>
+                                    </select> <?= form_error('jurusan', '<small class="text-danger pl-3">', '</small>'); ?>
                                 </div>
                                 <div class="form-sm-6">
                                     <select class="form-control" name="role" id="role">
                                         <option value="">Pilih Role</option>
-
                                         <option value="Pimpinan">Pimpinan</option>
                                         <option value="Dosen">Dosen</option>
                                         <option value="Mahasiswa">Mahasiswa</option>
@@ -48,7 +47,7 @@
                                 </div>
                             </div>
 
-                            <div class="form-group row">
+                            <!-- <div class="form-group row">
                                 <div class="col-sm-6 mb-3 mb-sm-0">
                                     <input type="password" class="form-control " id="password1" name="password1" placeholder="Password">
                                     <?= form_error('password1', '<small class="text-danger pl-3">', '</small>'); ?>
@@ -56,7 +55,7 @@
                                 <div class="col-sm-6">
                                     <input type="password" class="form-control " id="password2" name="password2" placeholder="Repeat Password">
                                 </div>
-                            </div>
+                            </div> -->
                             <button type="submit" class="btn btn-primary btn-user btn-block">
                                 Register Account
                             </button>
