@@ -17,7 +17,7 @@
             <?php
             $db = "tugas-akhir";
             $koneksi = mysqli_connect("localhost", "root", "", $db);
-            $sql = "SELECT * from dosen_peserta";
+            $sql = "SELECT * from dosen_peserta  WHERE jurusan ='$user[jurusan]'";
             $query = mysqli_query($koneksi, $sql);
             $nim = $user['nim'];
             $id_dosen = $user['id_dosen'];

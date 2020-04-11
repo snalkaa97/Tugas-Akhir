@@ -81,7 +81,7 @@ class Mahasiswa extends CI_Controller
 
         $rata = ($q1 + $q2 + $q3 + $q4 + $q5) / 5;
 
-        var_dump($rata);
+        //var_dump($rata);
 
         $where = [
             'nim' => $nim,
