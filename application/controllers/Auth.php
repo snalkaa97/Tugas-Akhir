@@ -74,6 +74,17 @@ class Auth extends CI_Controller
                 $this->session->set_userdata($data);
                 redirect('dosen');
             }
+        } else if ($role == "LPPM") {
+            $user = $this->db->get_where('data_lppm', ['nip' => $id])->row_array();
+
+            if ($user) {
+                $data = [
+                    'nip' => $user['nip'],
+                    'id_dosen' => $user['id_dosen']
+                ];
+                $this->session->set_userdata($data);
+                redirect('lppm');
+            }
         } else {
             $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
                      NIP/NIM Tidak terdaftar. 

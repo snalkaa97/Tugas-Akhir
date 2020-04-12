@@ -67,7 +67,7 @@ class Admin extends CI_Controller
             $this->load->view('admin/dataDosen');
             $this->load->view('templates/footer');
         } else {
-
+            $nip = $this->input->post('nip');
             $data = [
                 'nip' => htmlspecialchars($this->input->post('nip'), true),
                 'nama' => htmlspecialchars($this->input->post('nama'), true),
@@ -78,6 +78,41 @@ class Admin extends CI_Controller
             ];
 
             $this->db->insert('dosen_peserta', $data);
+
+
+            $jabatan = $this->input->post('jabatan');
+            $pendidikan = $this->input->post('pendidikan');
+
+            if ($pendidikan == "S1") {
+                $c4 = 1;
+            } else if ($pendidikan == "S2") {
+                $c4 = 3;
+            } else if ($pendidikan == "S3") {
+                $c4 = 5;
+            } else {
+                $c4 = 1;
+            }
+
+            if ($jabatan == "Guru Besar") {
+                $c10 = 5;
+            } else if ($jabatan == "Lektor Kepala") {
+                $c10 = 4;
+            } else if ($jabatan == "Lektor") {
+                $c10 = 3;
+            } else if ($jabatan == "Asisten Ahli") {
+                $c10 = 2;
+            } else if ($jabatan == "Pengajar") {
+                $c10 = 1;
+            } else {
+                $c10 = 1;
+            }
+
+            $nilai = [
+                'c4' => $c4,
+                'c10' => $c10
+            ];
+            $this->db->where('nip', $nip);
+            $this->db->update('dosen_peserta', $nilai);
             $this->session->set_flashdata('message', '<div class="alert alert-primary" role="alert">
                     Dosen berhasil ditambahkan!. 
                   </div>');

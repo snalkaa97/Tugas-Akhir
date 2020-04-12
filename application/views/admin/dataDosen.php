@@ -122,7 +122,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="addDosenLabel">Add New Sub Menu</h5>
+                    <h5 class="modal-title" id="addDosenLabel">Tambah Dosen Peserta</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -159,9 +159,10 @@
                         <div class="form-group">
                             <select name="jabatan" id="jabatan" class="form-control">
                                 <option value="">Pilih Jabatan</option>
-                                <option value="Lektor">Lektor</option>
-                                <option value="Asisten Ahli">Asisten Ahli</option>
                                 <option value="Guru Besar">Guru Besar</option>
+                                <option value="Lektor Kepala">Lektor Kepala</option>
+                                <option value="Asisten Ahli">Asisten Ahli</option>
+                                <option value="Pengajar">Pengajar</option>
                             </select>
                         </div>
                         <div class="form-group">
