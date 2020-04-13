@@ -49,6 +49,7 @@
             <input type="submit" name="hitung" class="btn btn-primary" value="Hitung">
         </form>
     </div>
+
     <?php if (isset($_GET['hitung'])) : ?>
         <div class="row">
             <div class="col-sm-12">
@@ -239,6 +240,10 @@
                     </tbody>
                 </table>
             </div>
+            <div class="alert alert-primary">
+                <h6>Waktu proses perhitungan <?= $waktu ?></h6>
+            </div>
+
         <?php endif; ?>
         </div>
 </div>

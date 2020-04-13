@@ -144,6 +144,7 @@ class Admin extends CI_Controller
     }
     public function normalisasi()
     {
+        $awal = microtime(true);
         $data['title'] = 'Normalisasi';
         $data['nilaiDosen'] = $this->db->get('dosen_peserta')->result_array();
         $data['bobot'] = $this->db->get('tb_kriteria')->result_array();
@@ -156,6 +157,9 @@ class Admin extends CI_Controller
         $this->db->from('dosen_peserta');
         $this->db->order_by('vektor_v', 'desc');
         $data['vektor'] = $this->db->get()->result_array();
+        $akhir = microtime(true);
+        $data['waktu'] = $akhir - $awal;
+
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar');
         $this->load->view('templates/topbar');
@@ -165,7 +169,7 @@ class Admin extends CI_Controller
 
     public function normalisasiSAW()
     {
-
+        $awal = microtime(true);
         $data['title'] = 'Normalisasi';
         $data['dosen'] = $this->db->get('dosen_peserta')->result_array();
         $data['bobot'] = $this->db->get('tb_kriteria')->result_array();
@@ -208,6 +212,9 @@ class Admin extends CI_Controller
         $this->db->from('dosen_peserta, tb_bobot_baru');
         $this->db->order_by('total_nilai_saw', 'desc');
         $data['rank'] = $this->db->get()->result_array();
+
+        $akhir = microtime(true);
+        $data['waktu'] = $akhir - $awal;
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar');
         $this->load->view('templates/topbar');
