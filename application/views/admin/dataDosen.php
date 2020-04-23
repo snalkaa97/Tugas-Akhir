@@ -177,32 +177,33 @@
 
             </div>
         </div>
+    </div>
 
-        <!-- Modal -->
+    <!-- Modal -->
 
 
 
-        <!-- Modal -->
-        <div class="modal fade" id="hapusDosen" tabindex="-1" role="dialog" aria-labelledby="hapusDosenLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="hapusDosenLabel">Delete Menu</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <form action="<?= base_url('menu/delete/' . $m['id']); ?>" method="get">
-                        <div class="modal-body">
-                            Are You Sure?
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                            <button type="submit" class="btn btn-primary">Delete</button>
-                        </div>
-                    </form>
+    <!-- Modal -->
+    <div class="modal fade" id="hapusDosen" tabindex="-1" role="dialog" aria-labelledby="hapusDosenLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="hapusDosenLabel">Hapus Dosen Peserta</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
+                <form action="<?= base_url('admin/hapusDosen/' . $d['id_dosen']); ?>" method="get">
+                    <div class="modal-body">
+                        Are You Sure?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Delete</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
+</div>
 </div>

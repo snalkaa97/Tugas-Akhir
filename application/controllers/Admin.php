@@ -126,6 +126,11 @@ class Admin extends CI_Controller
 
     public function hapusDosen($id)
     {
+        $this->db->delete('dosen_peserta', ['id_dosen' => $id]);
+        $this->session->set_flashdata('message', '<div class="alert alert-warning" role="alert">
+        Dosen berhasil dihapus!. 
+      </div>');
+        redirect('admin/dataDosen');
     }
 
     public function dataKriteria()
@@ -220,5 +225,73 @@ class Admin extends CI_Controller
         $this->load->view('templates/topbar');
         $this->load->view('admin/normalisasiSAW');
         $this->load->view('templates/footer');
+    }
+
+
+    public function dataTendik()
+    {
+        $data['dataTendik'] = $this->db->get('tendik_peserta')->result_array();
+
+        $tendik = $this->input->get('tendik');
+        $data['cariTendik'] = $this->db->get_where('tendik_peserta', ['tendik' => $tendik])->result_array();
+        $data['title'] = 'Data Tendik';
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar');
+        $this->load->view('templates/topbar');
+        $this->load->view('admin/dataTendik');
+        $this->load->view('templates/footer');
+    }
+
+    public function tambahTendik()
+    {
+        $this->form_validation->set_rules('nip', 'NIP', 'required|trim');
+        $this->form_validation->set_rules('nama', 'nama', 'required|trim');
+        $this->form_validation->set_rules('jurusan', 'jurusan', 'required|trim');
+        $this->form_validation->set_rules('tendik', 'Tendik', 'required|trim');
+
+        if ($this->form_validation->run() == false) {
+            $data['title'] = 'Data Tenik';
+            $this->load->view('templates/header', $data);
+            $this->load->view('templates/sidebar');
+            $this->load->view('templates/topbar');
+            $this->load->view('admin/dataTendik');
+            $this->load->view('templates/footer');
+        } else {
+            $nip = $this->input->post('nip');
+            $data = [
+                'nip' => htmlspecialchars($this->input->post('nip'), true),
+                'nama' => htmlspecialchars($this->input->post('nama'), true),
+                'tendik' => $this->input->post('tendik'),
+                'jurusan' => $this->input->post('jurusan')
+            ];
+
+            $this->db->insert('tendik_peserta', $data);
+            //$this->db->update('tendik_peserta', $nilai);
+            $this->session->set_flashdata('message', '<div class="alert alert-primary" role="alert">
+                    Dosen berhasil ditambahkan!. 
+                  </div>');
+            redirect('admin/dataTendik');
+        }
+    }
+
+    public function editTendik($id)
+    {
+    }
+
+    public function hapusTendik($id)
+    {
+
+        $this->db->delete('tendik_peserta', ['id' => $id]);
+        $this->session->set_flashdata('message', '<div class="alert alert-warning" role="alert">
+                    Dosen berhasil dihapus!. 
+                  </div>');
+        redirect('admin/dataTendik');
+    }
+
+    public function normalisasi_tendik_WP()
+    {
+    }
+    public function normalisasi_tendik_SAW()
+    {
     }
 }
