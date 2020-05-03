@@ -170,13 +170,13 @@
                 <table class="table table-hover">
                     <thead>
                         <tr>
-                            <th>NIP</th>
+                            <th>Ranking</th>
                             <th>Nama</th>
                             <?php for ($c = 1; $c <= 10; $c++) : ?>
                                 <th>C<?= $c ?></th>
                             <?php endfor; ?>
                             <th>Total Nilai</th>
-                            <th>Ranking</th>
+
                         </tr>
                     </thead>
                     <tbody>
@@ -219,7 +219,7 @@
                                 $this->db->where('nip', $r['nip']);
                                 $this->db->update('dosen_peserta', ['total_nilai_saw' => $total]);
                                 ?>
-                                <td><?= $r['nip']; ?></td>
+                                <td><?= $ranking; ?></td>
                                 <td><?= $r['nama']; ?></td>
                                 <td><?= round($h1, 4); ?></td>
                                 <td><?= round($h2, 4); ?></td>
@@ -232,7 +232,7 @@
                                 <td><?= round($h9, 4); ?></td>
                                 <td><?= round($h10, 4); ?></td>
                                 <td><?= round($total, 4); ?></td>
-                                <td><?= $ranking; ?></td>
+
                             <?php $ranking++;
                         endforeach;
                             ?>

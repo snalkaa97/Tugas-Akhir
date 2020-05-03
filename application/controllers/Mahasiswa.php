@@ -78,8 +78,23 @@ class Mahasiswa extends CI_Controller
         $q3 = $this->input->post('q3');
         $q4 = $this->input->post('q4');
         $q5 = $this->input->post('q5');
+        $q6 = $this->input->post('q6');
+        $q7 = $this->input->post('q7');
+        $q8 = $this->input->post('q8');
+        $q9 = $this->input->post('q9');
+        $q10 = $this->input->post('q10');
+        $q11 = $this->input->post('q11');
+        $q12 = $this->input->post('q12');
+        $q13 = $this->input->post('q13');
+        $q14 = $this->input->post('q14');
+        $q15 = $this->input->post('q15');
+        $q16 = $this->input->post('q16');
+        $q17 = $this->input->post('q17');
+        $q18 = $this->input->post('q18');
+        $q19 = $this->input->post('q19');
+        $q20 = $this->input->post('q20');
 
-        $rata = ($q1 + $q2 + $q3 + $q4 + $q5) / 5;
+        $rata = ($q1 + $q2 + $q3 + $q4 + $q5 + $q6 + $q7 + $q8 + $q9 + $q10 + $q11 + $q12 + $q13 + $q14 + $q15 + $q16 + $q17 + $q18 + $q19 + $q20) / 5;
 
         //var_dump($rata);
 
@@ -94,6 +109,21 @@ class Mahasiswa extends CI_Controller
             'q3' => $q3,
             'q4' => $q4,
             'q5' => $q5,
+            'q6' => $q6,
+            'q7' => $q7,
+            'q8' => $q8,
+            'q9' => $q9,
+            'q10' => $q10,
+            'q11' => $q11,
+            'q12' => $q12,
+            'q13' => $q13,
+            'q14' => $q14,
+            'q15' => $q15,
+            'q16' => $q16,
+            'q17' => $q17,
+            'q18' => $q18,
+            'q19' => $q19,
+            'q20' => $q20,
             'avg' => $rata
 
         ];
@@ -108,6 +138,21 @@ class Mahasiswa extends CI_Controller
             'q3' => $q3,
             'q4' => $q4,
             'q5' => $q5,
+            'q6' => $q6,
+            'q7' => $q7,
+            'q8' => $q8,
+            'q9' => $q9,
+            'q10' => $q10,
+            'q11' => $q11,
+            'q12' => $q12,
+            'q13' => $q13,
+            'q14' => $q14,
+            'q15' => $q15,
+            'q16' => $q16,
+            'q17' => $q17,
+            'q18' => $q18,
+            'q19' => $q19,
+            'q20' => $q20,
             'avg' => $rata
         ];
         $cek = $this->db->get_where('nilai_mhs', $where)->row_array();
