@@ -163,7 +163,7 @@ class Auth extends CI_Controller
         $this->form_validation->set_rules('role', 'Role', 'required');
         //$this->form_validation->set_rules('nim', 'Nim', 'required|trim');
         if ($this->form_validation->run() == false) { //ketika dijalankan / run
-            $data['title'] = 'Registrasi'; //untuk title regist
+            $data['title'] = 'WPU Registration'; //untuk title regist
             $this->load->view('templates/auth_header', $data); //memanggil isi $data
             $this->load->view('auth/registration');
             $this->load->view('templates/auth_footer');
@@ -214,7 +214,7 @@ class Auth extends CI_Controller
 
 
             $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
-            Congratulations! akun berhasil ditambahkan.  
+            Congratulations! your account has been created.  
           </div>');
             redirect('auth');
         }
@@ -226,8 +226,6 @@ class Auth extends CI_Controller
         $this->session->unset_userdata('nip'); //menghapus session
         $this->session->unset_userdata('nim'); //menghapus session
         $this->session->unset_userdata('id_dosen');
-        $this->session->unset_userdata('tendik');
-        $this->session->unset_userdata('jurusan');
 
         $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
        You have been logged out. 
@@ -245,72 +243,4 @@ class Auth extends CI_Controller
     //         // jika ada role_id yg lain maka tambahkan disini
     //     }
     // }
-
-    public function auth_tendik()
-    {
-        $this->form_validation->set_rules('nip', 'NIP', 'required');
-        //$this->form_validation->set_rules('tendik', 'Tendik', 'required');
-
-        if ($this->form_validation->run() == false) {
-            $data['title'] = 'Login Page Pimpinan Tendik';
-            $this->load->view('templates/auth_header', $data);
-            $this->load->view('auth_tendik/login.php');
-            $this->load->view('templates/auth_footer');
-        } else {
-            //validasi sukses
-            $this->_loginTendik();
-        }
-    }
-
-    public function _loginTendik()
-    {
-        $nip = $this->input->post('nip', true);
-
-        $user = $this->db->get_where('nilai_pimpinan_tendik', ['nip' => $nip])->row_array();
-        if ($user) {
-            $data = [
-                'nip' => $user['nip'],
-                'tendik' => $user['tendik'],
-                'jurusan' => $user['jurusan']
-            ];
-            $this->session->set_userdata($data);
-            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert"> Login Berhasil  
-          </div>');
-            redirect('auth/auth_tendik');
-        } else {
-            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
-            NIP Salah
-          </div>');
-            redirect('auth/auth_tendik');
-        }
-    }
-
-    public function registration_tendik()
-    {
-        $this->form_validation->set_rules('nama', 'Nama', 'required|trim'); //set_rules('name/index','alias','required/wajib|trim untuk spasi ga masuk db)
-        $this->form_validation->set_rules('jurusan', 'Jurusan', 'required');
-        $this->form_validation->set_rules('tendik', 'Tendik', 'required');
-        $this->form_validation->set_rules('nip', 'NIP', 'required');
-        if ($this->form_validation->run() == false) { //ketika dijalankan / run
-            $data['title'] = 'Registrasi'; //untuk title regist
-            $this->load->view('templates/auth_header', $data); //memanggil isi $data
-            $this->load->view('auth_tendik/registration');
-            $this->load->view('templates/auth_footer');
-        } else {
-
-            $data_pimpinan = [
-                'nip' => $this->input->post('nip', true),
-                'nama' => $this->input->post('nama', true),
-                'tendik' => $this->input->post('tendik', true),
-                'jurusan' => $this->input->post('jurusan', true)
-            ];
-
-            $this->db->insert('nilai_pimpinan_tendik', $data_pimpinan);
-
-            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
-            Congratulations! akun berhasil ditambahkan.  
-          </div>');
-            redirect('auth/auth_tendik');
-        }
-    }
 }
