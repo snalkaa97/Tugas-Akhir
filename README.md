@@ -1,2 +1,2 @@
-# Tugas-Akhir
-Perbandingan Metode WP dan SAW
+# Tugas-Akhir/Skripsi
+Perbandingan Metode WP dan SAW Pada Pemilihan Tendik dan Dosen FTUMJ
