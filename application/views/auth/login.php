@@ -38,7 +38,8 @@
                                     <a class="small" href="forgot-password.html">Forgot Password?</a>
                                 </div>
                                 <div class="text-center">
-                                    <a class="small" href="<?= base_url(); ?>auth/registration">Create an Account!</a>
+                                    <a class="small" href="<?= base_url(); ?>auth/registration">Create an Account!</a><br>
+                                    <a class="small" href="<?= base_url(); ?>auth/auth_tendik">Login sebagai pimpinan Tendik</a>
                                 </div>
                             </div>
                         </div>

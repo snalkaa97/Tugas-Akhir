@@ -276,7 +276,7 @@ class Auth extends CI_Controller
             $this->session->set_userdata($data);
             $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert"> Login Berhasil  
           </div>');
-            redirect('auth/auth_tendik');
+            redirect('tendik');
         } else {
             $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
             NIP Salah
@@ -289,7 +289,7 @@ class Auth extends CI_Controller
     {
         $this->form_validation->set_rules('nama', 'Nama', 'required|trim'); //set_rules('name/index','alias','required/wajib|trim untuk spasi ga masuk db)
         $this->form_validation->set_rules('jurusan', 'Jurusan', 'required');
-        $this->form_validation->set_rules('tendik', 'Tendik', 'required');
+        $this->form_validation->set_rules('jabatan', 'Jabatan', 'required');
         $this->form_validation->set_rules('nip', 'NIP', 'required');
         if ($this->form_validation->run() == false) { //ketika dijalankan / run
             $data['title'] = 'Registrasi'; //untuk title regist
@@ -298,10 +298,20 @@ class Auth extends CI_Controller
             $this->load->view('templates/auth_footer');
         } else {
 
+
+            $jabatan = $this->input->post('jabatan');
+            if ($jabatan == "Kepala Program Studi") {
+                $tendik = "Administrasi Prodi";
+            } else if ($jabatan == "Kepala Laboratorium") {
+                $tendik = "Laboratorium";
+            } else {
+                $tendik = "Perpustakaan";
+            }
             $data_pimpinan = [
                 'nip' => $this->input->post('nip', true),
                 'nama' => $this->input->post('nama', true),
-                'tendik' => $this->input->post('tendik', true),
+                'jabatan' => $this->input->post('jabatan', true),
+                'tendik' => $tendik,
                 'jurusan' => $this->input->post('jurusan', true)
             ];
 

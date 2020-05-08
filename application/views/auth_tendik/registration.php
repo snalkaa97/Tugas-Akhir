@@ -31,16 +31,16 @@
                                         <option value="Arsitektur">Arsitektur</option>
                                         <option value="Teknik Informatika">Teknik Informatika</option>
                                         <option value="D3OAB">D3OAB</option>
-                                        <option value="D3OAB">Perpustakaan</option>
+                                        <option value="Perpustakaan">Perpustakaan</option>
                                     </select> <?= form_error('jurusan', '<small class="text-danger pl-3">', '</small>'); ?>
                                 </div>
                                 <div class="form-sm-6">
-                                    <select class="form-control" name="tendik" id="tendik">
-                                        <option value="">Pilih Tendik</option>
+                                    <select class="form-control" name="jabatan" id="jabatan">
+                                        <option value="">Pilih jabatan</option>
                                         <option value="Kepala Program Studi">Kepala Program Studi</option>
                                         <option value="Kepala Laboratorium">Kepala Laboratorium</option>
                                         <option value="Kepala Perpustakaan">Kepala Perpustakaan</option>
-                                    </select> <?= form_error('tendik', '<small class="text-danger pl-3">', '</small>'); ?>
+                                    </select> <?= form_error('jabatan', '<small class="text-danger pl-3">', '</small>'); ?>
                                 </div>
                             </div>
 
