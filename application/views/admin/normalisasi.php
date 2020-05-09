@@ -1,6 +1,30 @@
 <div class="container-fluid">
     <h1 class="h3 mb-4 text-gray-800"><?= $title ?></h1>
-
+    <form action="<?= base_url('admin/normalisasi'); ?>" method="get">
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="form-group">
+                    <select class="form-control" name="jurusan" id="jurusan">
+                        <option value="">Cari berdasarkan jurusan</option>
+                        <option value=" Teknik Sipil">Teknik Sipil</option>
+                        <option value="Teknik Elektro">Teknik Elektro</option>
+                        <option value="Teknik Kimia">Teknik Kimia</option>
+                        <option value="Teknik Mesin">Teknik Mesin</option>
+                        <option value="Teknik Industri">Teknik Industri</option>
+                        <option value="Arsitektur">Arsitektur</option>
+                        <option value="Teknik Informatika">Teknik Informatika</option>
+                        <option value="D3OAB">D3OAB</option>
+                    </select>
+                </div>
+                <div class="form-inline mb-3">
+                    <input type="submit" name="pilih" class="btn btn-primary" value="Pilih">
+                </div>
+            </div>
+        </div>
+    </form>
+    <?php if (isset($_GET['pilih'])) {
+        $jurusan = $_GET['jurusan'];
+    } ?>
     <table class="table table-hover">
         <thead>
             <tr>

@@ -11,13 +11,7 @@ class Auth extends CI_Controller
 
     public function index()
     {
-        // if ($this->session->userdata('role_id') == 1) {
-        //     redirect('admin');
-        // } else if ($this->session->userdata('role_id') == 2) {
-        //     redirect('user');
-        // } else {
-        //     // jika ada role_id yg lain maka tambahkan disini
-        // }
+        $this->goToDefaultPage();
         // //membuat rules form valid
         $this->form_validation->set_rules('id', 'Id', 'required');
         $this->form_validation->set_rules('role', 'Role', 'required');
@@ -45,7 +39,8 @@ class Auth extends CI_Controller
             if ($user) {
                 $data = [
                     'nip' => $user['nip'],
-                    'id_dosen' => $user['id_dosen']
+                    'id_dosen' => $user['id_dosen'],
+                    'role' => $role
                 ];
                 $this->session->set_userdata($data);
                 redirect('pimpinan');
@@ -57,38 +52,44 @@ class Auth extends CI_Controller
             if ($user) {
                 $data = [
                     'nim' => $user['nim'],
-                    'id_dosen' => $user['id_dosen']
+                    'id_dosen' => $user['id_dosen'],
+                    'role' => $role
                 ];
                 $this->session->set_userdata($data);
                 redirect('mahasiswa');
             }
-        } else if ($role == "Dosen") {
+        }
+        if ($role == "Dosen") {
             $user = $this->db->get_where('nilai_dosen', ['nip' => $id])->row_array();
             //var_dump($user);
             //die;
             if ($user) {
                 $data = [
                     'nip' => $user['nip'],
-                    'id_dosen' => $user['id_dosen']
+                    'id_dosen' => $user['id_dosen'],
+                    'role' => $role
                 ];
                 $this->session->set_userdata($data);
                 redirect('dosen');
             }
-        } else if ($role == "LPPM") {
+        }
+        if ($role == "LPPM") {
             $user = $this->db->get_where('data_lppm', ['nip' => $id])->row_array();
 
             if ($user) {
                 $data = [
                     'nip' => $user['nip'],
-                    'id_dosen' => $user['id_dosen']
+                    'id_dosen' => $user['id_dosen'],
+                    'role' => $role
                 ];
                 $this->session->set_userdata($data);
                 redirect('lppm');
             }
         } else {
             $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
-                     NIP/NIM Tidak terdaftar. 
+                     NIP/NIM atau role Salah. 
                  </div>');
+            redirect('auth');
         }
     }
     // public function _login()
@@ -141,14 +142,7 @@ class Auth extends CI_Controller
 
     public function registration()
     {
-        // if ($this->session->userdata('role_id') == 1) {
-        //     redirect('admin');
-        // } else if ($this->session->userdata('role_id') == 2) {
-        //     redirect('user');
-        // } else {
-        //     // jika ada role_id yg lain maka tambahkan disini
-        // }
-
+        $this->goToDefaultPage();
         //buat rule form validation
         $this->form_validation->set_rules('nama', 'Nama', 'required|trim'); //set_rules('name/index','alias','required/wajib|trim untuk spasi ga masuk db)
         //    // $this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email|is_unique[user.email]', [
@@ -228,6 +222,7 @@ class Auth extends CI_Controller
         $this->session->unset_userdata('id_dosen');
         $this->session->unset_userdata('tendik');
         $this->session->unset_userdata('jurusan');
+        $this->session->unset_userdata('role');
 
         $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
        You have been logged out. 
@@ -321,6 +316,21 @@ class Auth extends CI_Controller
             Congratulations! akun berhasil ditambahkan.  
           </div>');
             redirect('auth/auth_tendik');
+        }
+    }
+
+
+    public function goToDefaultPage()
+    {
+        if ($this->session->userdata('role') == "Mahasiswa") {
+            redirect('mahasiswa');
+        } else if ($this->session->userdata('role') == "Pimpinan") {
+            redirect('pimpinan');
+        } else if ($this->session->userdata('role') == "Dosen") {
+            redirect('Dosen');
+        } else if ($this->session->userdata('role') == "LPPM") {
+            redirect('LPPM');
+        } else {
         }
     }
 }

@@ -151,7 +151,8 @@ class Admin extends CI_Controller
     {
         $awal = microtime(true);
         $data['title'] = 'Normalisasi';
-        $data['nilaiDosen'] = $this->db->get('dosen_peserta')->result_array();
+        $jurusan = $this->input->get('jurusan');
+        $data['nilaiDosen'] = $this->db->get_where('dosen_peserta', ['jurusan' => $jurusan])->result_array();
         $data['bobot'] = $this->db->get('tb_kriteria')->result_array();
         //$this->db->select('sum(bobot) as sum');
         //$this->db->from('tb_kriteria');

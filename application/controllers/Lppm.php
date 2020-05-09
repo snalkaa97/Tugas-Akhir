@@ -8,16 +8,17 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class Lppm extends CI_Controller
 {
-    // public function __construct()
-    // {
-    //     parent::__construct();
-    //     //is_logged_in();
-    //     if (!$this->session->userdata('email')) {
-    //         redirect('auth');
-    //     } else if ($this->session->userdata('role_id') == 2) {
-    //         redirect('auth/goToDefaultPage');
-    //     }
-    // }
+    public function __construct()
+    {
+        parent::__construct();
+        //is_logged_in();
+        if (!$this->session->userdata('nim') && !$this->session->userdata('nip')) {
+            redirect('auth');
+        } else if (!$this->session->userdata('role') == "LPPM") {
+            redirect('auth/goToDefaultPage');
+        }
+    }
+
 
     public function index()
     {
