@@ -182,13 +182,21 @@ class Admin extends CI_Controller
 
         //$this->->('');
 
-        for ($c = 1; $c <= 10; $c++) {
+        for ($c = 1; $c <= 3; $c++) {
             $this->db->select_max('c' . $c);
         }
         $this->db->from('dosen_peserta');
         //$query = "SELECT MAX(c1), MAX(c2), MAX(c3), MAX(c4), MAX(c5), MAX(c6), MAX(c7), MAX(c8), MAX(c9), MAX(c10) FROM dosen_peserta";
         //$data['max'] = $this->db->query($query);
         $data['max'] = $this->db->get()->result_array();
+
+
+        for ($c = 4; $c <= 10; $c++) {
+            $this->db->select_min('c' . $c);
+        }
+        $this->db->from('dosen_peserta');
+        $data['min'] = $this->db->get()->result_array();
+
         //$this->db->select('t1.c1');
         //$this->db->select('t1.*, t2.bobot_baru');
         // for ($c = 1; $c <= 10; $c++) {
@@ -291,6 +299,31 @@ class Admin extends CI_Controller
 
     public function normalisasi_tendik_WP()
     {
+        $awal = microtime(true);
+        $data['title'] = 'Normalisasi';
+        $where = [
+            'jurusan' => $this->input->get('jurusan'),
+            'tendik' => $this->input->get('tendik')
+        ];
+        $data['nilaiTendik'] = $this->db->get_where('tendik_peserta', $where)->result_array();
+        $data['bobot'] = $this->db->get('tb_kriteria_tendik')->result_array();
+        //$this->db->select('sum(bobot) as sum');
+        //$this->db->from('tb_kriteria');
+        //$data['sumBobot'] = $this->db->get()->result_array();
+        //$query = "SELECT SUM(bobot) AS sum FROM tb_kriteria";
+        //$data['sumB'] = $this->db->query($query)->row_array();
+        $data['vektor'] = $this->db->get('tendik_peserta')->result_array();
+        $this->db->from('tendik_peserta');
+        $this->db->order_by('vektor_v', 'desc');
+        $data['vektor'] = $this->db->get()->result_array();
+        $akhir = microtime(true);
+        $data['waktu'] = $akhir - $awal;
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar');
+        $this->load->view('templates/topbar');
+        $this->load->view('admin/normalisasiWP_tendik');
+        $this->load->view('templates/footer');
     }
     public function normalisasi_tendik_SAW()
     {

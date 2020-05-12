@@ -14,7 +14,7 @@ class Dosen extends CI_Controller
         //is_logged_in();
         if (!$this->session->userdata('nim') && !$this->session->userdata('nip')) {
             redirect('auth');
-        } else if ($this->session->userdata('role') == "Dosen") {
+        } else if (!$this->session->userdata('role') == "Dosen") {
             redirect('auth/goToDefaultPage');
         }
     }

@@ -105,6 +105,24 @@
                                 <th>C1</th>
                                 <th>C2</th>
                                 <th>C3</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php foreach ($max as $s) : ?>
+                                <tr>
+                                    <td><?= $maxc1 = $s['c1']; ?></td>
+                                    <td><?= $maxc2 = $s['c2']; ?></td>
+                                    <td><?= $maxc3 = $s['c3']; ?></td>
+                                </tr>
+                            <?php endforeach; ?>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-sm-12">
+                    <h1 class="h3 mb-4 text-gray-800">Nilai Min</h1>
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
                                 <th>C4</th>
                                 <th>C5</th>
                                 <th>C6</th>
@@ -115,18 +133,15 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <?php foreach ($max as $s) : ?>
+                            <?php foreach ($min as $s) : ?>
                                 <tr>
-                                    <td><?= $maxc1 = $s['c1']; ?></td>
-                                    <td><?= $maxc2 = $s['c2']; ?></td>
-                                    <td><?= $maxc3 = $s['c3']; ?></td>
-                                    <td><?= $maxc4 = $s['c4']; ?></td>
-                                    <td><?= $maxc5 = $s['c5']; ?></td>
-                                    <td><?= $maxc6 = $s['c6']; ?></td>
-                                    <td><?= $maxc7 = $s['c7']; ?></td>
-                                    <td><?= $maxc8 = $s['c8']; ?></td>
-                                    <td><?= $maxc9 = $s['c9']; ?></td>
-                                    <td><?= $maxc10 = $s['c10']; ?></td>
+                                    <td><?= $minc4 = $s['c4']; ?></td>
+                                    <td><?= $minc5 = $s['c5']; ?></td>
+                                    <td><?= $minc6 = $s['c6']; ?></td>
+                                    <td><?= $minc7 = $s['c7']; ?></td>
+                                    <td><?= $minc8 = $s['c8']; ?></td>
+                                    <td><?= $minc9 = $s['c9']; ?></td>
+                                    <td><?= $minc10 = $s['c10']; ?></td>
                                 </tr>
                             <?php endforeach; ?>
                         </tbody>
@@ -152,13 +167,13 @@
                                 <td><?= $c1 = round($d['c1'] / $maxc1, 4); ?></td>
                                 <td><?= $c2 = round($d['c2'] / $maxc2, 4); ?></td>
                                 <td><?= $c3 = round($d['c3'] / $maxc3, 4); ?></td>
-                                <td><?= $c4 = round($d['c4'] / $maxc4, 4); ?></td>
-                                <td><?= $c5 = round($d['c5'] / $maxc5, 4); ?></td>
-                                <td><?= $c6 = round($d['c6'] / $maxc6, 4); ?></td>
-                                <td><?= $c7 = round($d['c7'] / $maxc7, 4); ?></td>
-                                <td><?= $c8 = round($d['c8'] / $maxc8, 4); ?></td>
-                                <td><?= $c9 = round($d['c9'] / $maxc9, 4); ?></td>
-                                <td><?= $c10 = round($d['c10'] / $maxc10, 4); ?></td>
+                                <td><?= $c4 = round($minc4 / $d['c4'], 4); ?></td>
+                                <td><?= $c5 = round($minc5 / $d['c5'], 4); ?></td>
+                                <td><?= $c6 = round($minc6 / $d['c6'], 4); ?></td>
+                                <td><?= $c7 = round($minc7 / $d['c7'], 4); ?></td>
+                                <td><?= $c8 = round($minc8 / $d['c8'], 4); ?></td>
+                                <td><?= $c9 = round($minc9 / $d['c9'], 4); ?></td>
+                                <td><?= $c10 = round($minc10 / $d['c10'], 4); ?></td>
                             </tr>
                         <?php endforeach; ?>
                     </tbody>
@@ -207,13 +222,13 @@
                                 $h1 = $r['b1'] * ($r['c1'] / $maxc1);
                                 $h2 = $r['b2'] * ($r['c2'] / $maxc2);
                                 $h3 = $r['b3'] * ($r['c3'] / $maxc3);
-                                $h4 = $r['b4'] * ($r['c4'] / $maxc4);
-                                $h5 = $r['b5'] * ($r['c5'] / $maxc5);
-                                $h6 = $r['b6'] * ($r['c6'] / $maxc6);
-                                $h7 = $r['b7'] * ($r['c7'] / $maxc7);
-                                $h8 = $r['b8'] * ($r['c8'] / $maxc8);
-                                $h9 = $r['b9'] * ($r['c9'] / $maxc9);
-                                $h10 = $r['b10'] * ($r['c10'] / $maxc10);
+                                $h4 = $r['b4'] * ($r['c4'] / $minc4);
+                                $h5 = $r['b5'] * ($r['c5'] / $minc5);
+                                $h6 = $r['b6'] * ($r['c6'] / $minc6);
+                                $h7 = $r['b7'] * ($r['c7'] / $minc7);
+                                $h8 = $r['b8'] * ($r['c8'] / $minc8);
+                                $h9 = $r['b9'] * ($r['c9'] / $minc9);
+                                $h10 = $r['b10'] * ($r['c10'] / $minc10);
 
                                 $total = $h1 + $h2 + $h3 + $h5 + $h6 + $h7 + $h8 + $h9 + $h10;
                                 $this->db->where('nip', $r['nip']);
