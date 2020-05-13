@@ -22,9 +22,7 @@
             </div>
         </div>
     </form>
-    <?php if (isset($_GET['pilih'])) {
-        $jurusan = $_GET['jurusan'];
-    } ?>
+
     <table class="table table-hover">
         <thead>
             <tr>
@@ -105,9 +103,18 @@
                                 //var_dump($bobotbaru);
                                 $arrBobotbaru[$i] = $bobotbaru;
                                 //var_dump($arrBobotbaru[$i]);
+
+
                             ?>
                                 <td align="center"><?= round($bobotbaru, 4) ?></td>
-                            <?php $i++;
+
+                            <?php
+                                // $data = [
+                                //     'bobot_baru' => $bobotbaru[$i]
+                                // ];
+                                $this->db->update('tb_kriteria', ['bobot_baru' => $arrBobotbaru[$i]]);
+
+                                $i++;
                             endforeach; ?>
                         </tr>
 

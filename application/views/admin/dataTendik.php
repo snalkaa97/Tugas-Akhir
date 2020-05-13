@@ -62,8 +62,8 @@
                                 <td><?= $t['nama']; ?></td>
                                 <td><?= $t['tendik']; ?></td>
                                 <td><?= $t['jurusan']; ?></td>
-                                <td><a class="badge badge-success" data-toggle="modal" data-target="#editTendik" href="<?= base_url('admin/editTendik/') . $t['id']; ?>">edit</a>
-                                    <a class="badge badge-danger" data-toggle="modal" data-target="#hapusTendik" href="<?= base_url('admin/hapusTendik/') . $t['id']; ?>">delete</a>
+                                <td><a class="badge badge-success" data-toggle="modal" data-target="#editTendik" href="<?= base_url('admin/editTendik/') . $t['id_tendik']; ?>">edit</a>
+                                    <a class="badge badge-danger" data-toggle="modal" data-target="#hapusTendik" href="<?= base_url('admin/hapusTendik/') . $t['id_tendik']; ?>">delete</a>
                                 </td>
                             </tr>
                             <?php $i++; ?>
@@ -95,8 +95,8 @@
                                 <td><?= $ct['nama']; ?></td>
                                 <td><?= $ct['tendik']; ?></td>
                                 <td><?= $ct['jurusan']; ?></td>
-                                <td><a class="badge badge-success" data-toggle="modal" data-target="#editTendik" href="<?= base_url('admin/editTendik/') . $ct['id']; ?>">edit</a>
-                                    <a class="badge badge-danger" data-toggle="modal" data-target="#hapusTendik" href="<?= base_url('admin/hapusTendik/') . $ct['id']; ?>">delete</a>
+                                <td><a class="badge badge-success" data-toggle="modal" data-target="#editTendik" href="<?= base_url('admin/editTendik/') . $ct['id_tendik']; ?>">edit</a>
+                                    <a class="badge badge-danger" data-toggle="modal" data-target="#hapusTendik" href="<?= base_url('admin/hapusTendik/') . $ct['id_tendik']; ?>">delete</a>
                                 </td>
                             </tr>
                             <?php $i++; ?>
@@ -161,7 +161,6 @@
         </div>
 
 
-
         <!-- Modal -->
 
 
@@ -189,6 +188,4 @@
             </div>
         </div>
     </div>
-</div>
-
 </div>

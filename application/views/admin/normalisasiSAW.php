@@ -149,7 +149,7 @@
                 </div>
             </div>
             <div class="col-sm-12">
-                <h3 class="mb-4 text-gray-800">Normalisasi Alternatif dibagi Nilai Max</h3>
+                <h3 class="mb-4 text-gray-800">Normalisasi Alternatif</h3>
                 <table class="table table-hover">
                     <thead>
                         <tr>
