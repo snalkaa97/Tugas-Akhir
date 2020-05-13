@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 09 Bulan Mei 2020 pada 10.04
+-- Waktu pembuatan: 13 Bulan Mei 2020 pada 15.32
 -- Versi server: 10.4.11-MariaDB
 -- Versi PHP: 7.4.3
 
@@ -110,13 +110,12 @@ CREATE TABLE `dosen_peserta` (
 --
 
 INSERT INTO `dosen_peserta` (`id_dosen`, `nip`, `nama`, `jurusan`, `alamat`, `pendidikan`, `jabatan`, `c1`, `c2`, `c3`, `c4`, `c5`, `c6`, `c7`, `c8`, `c9`, `c10`, `vektor_s`, `vektor_v`, `total_nilai_saw`) VALUES
-(10, 'dsn1', 'Dosen 1', 'Teknik Informatika', 'Banda Aceh', 'S2', 'Lektor', 8.9333, 5, 4, 3, 4, 4, 2, 3, 2, 3, 3.8942771882133, 0.15515699846821, 0.66569593370544),
-(11, 'dsn2', 'Dosen 2', 'Teknik Informatika', 'Cadek', 'S1', 'Asisten Ahli', 7.7, 4.4, 4.0667, 1, 3, 3, 4, 3, 2, 2, 3.3370541493155, 0.13295594548349, 0.62264779181355),
-(13, 'dsn5', 'Dosen 5', 'Teknik Informatika', 'Jl Open Source', 'S2', 'Asisten Ahli', 7.2, 4, 3.7, 3, 5, 3, 3, 4, 2, 2, 3.7500027087515, 0.14940876995057, 0.63314482961222),
-(23, '201', 'dosen 6', 'Teknik Informatika', 'Bogor', 'S2', 'Lektor', 7.75, 4.2, 3.8, 2, 2, 2, 2, 2, 3, 3, 3.0908680776974, 0.1231473237314, 0.54235433803369),
-(26, '206', 'dosen 7', 'Teknik Informatika', 'Jakarta', 'S2', 'Lektor', 8.5333, 4.8, 4.5, 2, 5, 3, 5, 5, 5, 3, 4.5220613441681, 0.18016936934377, 0.79990225959655),
-(27, '210', 'Dosen 8', 'Teknik Informatika', 'Jakarta', 'S3', 'Guru Besar', 11.1, 4.4, 4.6, 5, 5, 5, 4, 3, 5, 5, 5.1491771698766, 0.20515511239857, 0.835),
-(28, '205', 'Gilang', 'Teknik Elektro', 'Bekasi', 'S2', 'Pengajar', 1, 5, 1, 3, 1, 1, 1, 1, 1, 1, 1.3555057624601, 0.054006480623985, 0);
+(10, 'dsn1', 'Dosen 1', 'Teknik Informatika', 'Banda Aceh', 'S2', 'Lektor', 8.9333, 5, 4, 3, 4, 4, 2, 3, 2, 3, 3.8913507084888, 0.16408531458686, 1.1487637485311),
+(11, 'dsn2', 'Dosen 2', 'Teknik Informatika', 'Cadek', 'S1', 'Asisten Ahli', 7.7, 4.4, 4.0667, 1, 3, 3, 4, 3, 2, 2, 3.3187632455865, 0.13994120601966, 1.0583825323149),
+(13, 'dsn5', 'Dosen 5', 'Teknik Informatika', 'Jl Open Source', 'S2', 'Asisten Ahli', 7.2, 4, 3.7, 3, 5, 3, 3, 4, 2, 2, 3.6727504686433, 0.15486766965818, 1.1258625146886),
+(23, '201', 'dosen 6', 'Teknik Informatika', 'Bogor', 'S2', 'Lektor', 7.75, 4.2, 3.8, 2, 2, 2, 2, 2, 3, 3, 3.1301981438577, 0.13199004295184, 0.91132103407756),
+(26, '206', 'dosen 7', 'Teknik Informatika', 'Jakarta', 'S2', 'Lektor', 8.5333, 4.8, 4.5, 2, 5, 3, 5, 5, 5, 3, 4.5057891687055, 0.18999414049119, 1.4622887779083),
+(27, '210', 'Dosen 8', 'Teknik Informatika', 'Jakarta', 'S3', 'Guru Besar', 11.1, 4.4, 4.6, 5, 5, 5, 4, 3, 5, 5, 5.1965594719094, 0.21912162629226, 1.5594);
 
 -- --------------------------------------------------------
 
@@ -346,7 +345,7 @@ CREATE TABLE `tb_bobot_baru` (
 --
 
 INSERT INTO `tb_bobot_baru` (`id`, `b1`, `b2`, `b3`, `b4`, `b5`, `b6`, `b7`, `b8`, `b9`, `b10`) VALUES
-(1, 0.15625, 0.125, 0.125, 0.09375, 0.09375, 0.09375, 0.09375, 0.09375, 0.0625, 0.0625);
+(1, 0.15, 0.13, 0.13, 0.08, 0.1, 0.1, 0.08, 0.07, 0.08, 0.08);
 
 -- --------------------------------------------------------
 
@@ -444,25 +443,24 @@ INSERT INTO `tb_hmp_kriteria` (`id_hmp`, `himpunan`, `keterangan`, `nilai`, `nam
 CREATE TABLE `tb_kriteria` (
   `id_kriteria` int(11) NOT NULL,
   `nama_kriteria` varchar(30) NOT NULL,
-  `bobot` int(11) NOT NULL,
-  `bobot_baru` double NOT NULL
+  `bobot` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data untuk tabel `tb_kriteria`
 --
 
-INSERT INTO `tb_kriteria` (`id_kriteria`, `nama_kriteria`, `bobot`, `bobot_baru`) VALUES
-(1, 'Penilaian Mahasiswa ', 5, 0.076923076923077),
-(2, 'Penilaian Dosen Sejawat ', 4, 0.1025641025641),
-(3, 'Penilaian Pimpinan ', 4, 0.076923076923077),
-(4, 'Kualifikasi Pendidikan ', 3, 0.12820512820513),
-(5, 'Penelitian', 3, 0.12820512820513),
-(6, 'Jurnal ', 3, 0.12820512820513),
-(7, 'Pelatihan ', 3, 0.076923076923077),
-(8, 'Seminar ', 3, 0.076923076923077),
-(9, 'Pengabdian Masyarakat ', 2, 0.1025641025641),
-(10, 'Jabatan Akademik ', 2, 0.1025641025641);
+INSERT INTO `tb_kriteria` (`id_kriteria`, `nama_kriteria`, `bobot`) VALUES
+(1, 'Penilaian Mahasiswa ', 15),
+(2, 'Penilaian Dosen Sejawat ', 13),
+(3, 'Penilaian Pimpinan ', 13),
+(4, 'Kualifikasi Pendidikan ', 8),
+(5, 'Penelitian', 10),
+(6, 'Jurnal ', 10),
+(7, 'Pelatihan ', 8),
+(8, 'Seminar ', 7),
+(9, 'Pengabdian Masyarakat ', 8),
+(10, 'Jabatan Akademik ', 8);
 
 -- --------------------------------------------------------
 
