@@ -150,19 +150,21 @@ class Admin extends CI_Controller
     public function normalisasi()
     {
         $awal = microtime(true);
-        $data['title'] = 'Normalisasi';
-        //$jurusan = $this->input->get('jurusan');
-        $data['nilaiDosen'] = $this->db->get_where('dosen_peserta')->result_array();
+        $data['title'] = 'Normalisasi WP';
+        $jurusan = $this->input->get('jurusan');
+        $data['nilaiDosen'] = $this->db->get_where('dosen_peserta', ['jurusan' => $jurusan])->result_array();
         $data['bobot'] = $this->db->get('tb_kriteria')->result_array();
         //$this->db->select('sum(bobot) as sum');
         //$this->db->from('tb_kriteria');
         //$data['sumBobot'] = $this->db->get()->result_array();
         //$query = "SELECT SUM(bobot) AS sum FROM tb_kriteria";
         //$data['sumB'] = $this->db->query($query)->row_array();
-        $data['vektor'] = $this->db->get('dosen_peserta')->result_array();
-        $this->db->from('dosen_peserta');
-        $this->db->order_by('vektor_v', 'desc');
-        $data['vektor'] = $this->db->get()->result_array();
+        $query = "SELECT *FROM dosen_peserta WHERE jurusan = '$jurusan'";
+        $data['vektor'] = $this->db->query($query)->result_array();
+        //var_dump($query);
+        $query2 = "SELECT *FROM dosen_peserta WHERE jurusan = '$jurusan'ORDER BY vektor_s DESC";
+        //$this->db->order_by('vektor_v', 'desc');
+        $data['vektor'] = $this->db->query($query2)->result_array();
         $akhir = microtime(true);
         $data['waktu'] = $akhir - $awal;
 
@@ -176,8 +178,9 @@ class Admin extends CI_Controller
     public function normalisasiSAW()
     {
         $awal = microtime(true);
-        $data['title'] = 'Normalisasi';
-        $data['dosen'] = $this->db->get('dosen_peserta')->result_array();
+        $data['title'] = 'Normalisasi SAW';
+        $jurusan = $this->input->get('jurusan');
+        $data['dosen'] = $this->db->get_where('dosen_peserta', ['jurusan' => $jurusan])->result_array();
         $data['bobot'] = $this->db->get('tb_kriteria')->result_array();
 
         //$this->->('');
@@ -185,6 +188,7 @@ class Admin extends CI_Controller
         for ($c = 1; $c <= 3; $c++) {
             $this->db->select_max('c' . $c);
         }
+        $this->db->where('jurusan', $jurusan);
         $this->db->from('dosen_peserta');
         //$query = "SELECT MAX(c1), MAX(c2), MAX(c3), MAX(c4), MAX(c5), MAX(c6), MAX(c7), MAX(c8), MAX(c9), MAX(c10) FROM dosen_peserta";
         //$data['max'] = $this->db->query($query);
@@ -194,6 +198,7 @@ class Admin extends CI_Controller
         for ($c = 4; $c <= 10; $c++) {
             $this->db->select_min('c' . $c);
         }
+        $this->db->where('jurusan', $jurusan);
         $this->db->from('dosen_peserta');
         $data['min'] = $this->db->get()->result_array();
 
@@ -209,20 +214,16 @@ class Admin extends CI_Controller
         //$this->db->select('dosen_peserta.*, tb_kriteria.*');
         //$this->db->from('dosen_peserta, tb_kriteria');
         //$query = "SELECT dosen_peserta"
-        $data['bbt'] = $this->db->get('tb_kriteria')->row_array();
-        $data['rank'] = $this->db->get('dosen_peserta')->result_array();
+        $data['rank'] = $this->db->get_where('dosen_peserta', ['jurusan' => $jurusan])->result_array();
         //$this->->('');
         //$data['total'];
-        $this->db->select('bobot_baru');
-        $this->db->from('tb_kriteria');
-        $data['bobot1'] = $this->db->get()->result_array();
+        // $this->db->select('bobot_baru');
+        // $this->db->from('tb_kriteria');
+        // $data['bobot1'] = $this->db->get()->result_array();
         //var_dump($data['bobot1'][0]);
         $data['bobot_baru'] = $this->db->get('tb_bobot_baru')->result_array();
-
-        // for ($i = 1; $i <= 10; $i++) {
-        //     $this->db->select();
-        // }
         $this->db->select('dosen_peserta.*, tb_bobot_baru.*');
+        $this->db->where('jurusan', $jurusan);
         $this->db->from('dosen_peserta, tb_bobot_baru');
         $this->db->order_by('total_nilai_saw', 'desc');
         $data['rank'] = $this->db->get()->result_array();
@@ -290,7 +291,7 @@ class Admin extends CI_Controller
     public function hapusTendik($id)
     {
 
-        $this->db->delete('tendik_peserta', ['id' => $id]);
+        $this->db->delete('tendik_peserta', ['id_tendik' => $id]);
         $this->session->set_flashdata('message', '<div class="alert alert-warning" role="alert">
                     Dosen berhasil dihapus!. 
                   </div>');
@@ -300,22 +301,28 @@ class Admin extends CI_Controller
     public function normalisasi_tendik_WP()
     {
         $awal = microtime(true);
-        $data['title'] = 'Normalisasi';
+        $data['title'] = 'Normalisasi WP Tendik';
+
+        $jurusan = $this->input->get('jurusan');
+        $tendik = $this->input->get('tendik');
         $where = [
             'jurusan' => $this->input->get('jurusan'),
             'tendik' => $this->input->get('tendik')
         ];
-        $data['nilaiTendik'] = $this->db->get_where('tendik_peserta', $where)->result_array();
+        $data['nilaitendik'] = $this->db->get_where('tendik_peserta', $where)->result_array();
         $data['bobot'] = $this->db->get('tb_kriteria_tendik')->result_array();
+        $data['hitung'] = $this->db->get('tendik_peserta')->result_array();
         //$this->db->select('sum(bobot) as sum');
         //$this->db->from('tb_kriteria');
         //$data['sumBobot'] = $this->db->get()->result_array();
         //$query = "SELECT SUM(bobot) AS sum FROM tb_kriteria";
         //$data['sumB'] = $this->db->query($query)->row_array();
-        $data['vektor'] = $this->db->get('tendik_peserta')->result_array();
-        $this->db->from('tendik_peserta');
-        $this->db->order_by('vektor_v', 'desc');
-        $data['vektor'] = $this->db->get()->result_array();
+        $query = "SELECT *FROM tendik_peserta WHERE jurusan = '$jurusan' AND tendik = '$tendik'";
+        $data['vektor'] = $this->db->query($query)->result_array();
+        //var_dump($query);
+        $query2 = "SELECT *FROM tendik_peserta WHERE jurusan = '$jurusan' AND tendik = '$tendik' ORDER BY vektor_s DESC";
+        //$this->db->order_by('vektor_v', 'desc');
+        $data['vektor'] = $this->db->query($query2)->result_array();
         $akhir = microtime(true);
         $data['waktu'] = $akhir - $awal;
 
@@ -327,5 +334,70 @@ class Admin extends CI_Controller
     }
     public function normalisasi_tendik_SAW()
     {
+        $awal = microtime(true);
+        $data['title'] = 'Normalisasi SAW Tendik';
+        $jurusan = $this->input->get('jurusan');
+        $tendik = $this->input->get('tendik');
+        $tendik = $this->input->get('tendik');
+        $where = [
+            'jurusan' => $this->input->get('jurusan'),
+            'tendik' => $this->input->get('tendik')
+        ];
+        $data['tendik'] = $this->db->get_where('tendik_peserta', $where)->result_array();
+        $data['bobot'] = $this->db->get('tb_kriteria_tendik')->result_array();
+
+        //$this->->('');
+        $normalisasi = $this->db->get_where('tendik_peserta', $where)->result_array();
+        foreach ($normalisasi as $n) {
+            if ($n['c1'] == 0 && $n['c2'] == 0 && $n['c3'] == 0 && $n['c4'] == 0 && $n['c5'] == 0 && $n['c6'] == 0) {
+            }
+        }
+
+        $this->db->select_min('c1');
+        $this->db->where('jurusan', $jurusan);
+        $this->db->where('tendik', $tendik);
+        $this->db->from('tendik_peserta');
+        $data['min'] = $this->db->get()->result_array();
+        for ($c = 2; $c <= 6; $c++) {
+            $this->db->select_max('c' . $c);
+        }
+        $this->db->where('jurusan', $jurusan);
+        $this->db->where('tendik', $tendik);
+        $this->db->from('tendik_peserta');
+        $data['max'] = $this->db->get()->result_array();
+        //$this->db->select('t1.c1');
+        //$this->db->select('t1.*, t2.bobot_baru');
+        // for ($c = 1; $c <= 10; $c++) {
+        //     $this->db->select('t1.c1' . $c);
+        // }
+        //$this->db->from('tendik_peserta AS t1, tb_kriteria AS t2');
+        // for ($c = 1; $c <= 10; $c++) {
+        //     $this->db->order_by('c' . $c . ' desc');
+        // }
+        //$this->db->select('tendik_peserta.*, tb_kriteria.*');
+        //$this->db->from('tendik_peserta, tb_kriteria');
+        //$query = "SELECT tendik_peserta"
+        $data['rank'] = $this->db->get_where('tendik_peserta', $where)->result_array();
+        //$this->->('');
+        //$data['total'];
+        // $this->db->select('bobot_baru');
+        // $this->db->from('tb_kriteria');
+        // $data['bobot1'] = $this->db->get()->result_array();
+        //var_dump($data['bobot1'][0]);
+        $data['bobot_baru'] = $this->db->get('tb_bobot_baru_tendik')->result_array();
+        $this->db->select('tendik_peserta.*, tb_bobot_baru_tendik.*');
+        $this->db->where('jurusan', $jurusan);
+        $this->db->where('tendik', $tendik);
+        $this->db->from('tendik_peserta, tb_bobot_baru_tendik');
+        $this->db->order_by('nilai_total_saw', 'desc');
+        $data['rank'] = $this->db->get()->result_array();
+
+        $akhir = microtime(true);
+        $data['waktu'] = $akhir - $awal;
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar');
+        $this->load->view('templates/topbar');
+        $this->load->view('admin/normalisasiSAW_tendik');
+        $this->load->view('templates/footer');
     }
 }
