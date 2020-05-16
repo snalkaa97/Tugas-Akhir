@@ -159,14 +159,61 @@
 
             </div>
         </div>
-
-
-        <!-- Modal -->
-
-
-
-        <!-- Modal -->
     </div>
+
+    <?php foreach ($dataTendik as $td) : ?>
+        <div class="modal fade" id="editTendik<?= $td['id_tendik'] ?>" tabindex="-1" role="dialog" aria-labelledby="editTendikLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="editTendikLabel">Edit Tendik Peserta</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <form action="<?= base_url('admin/editTendik/' . $td['id_tendik']); ?>" method="post">
+                        <div class="modal-body">
+                            <input type="hidden" name="id_tendik" value="<?= $td['id_tendik']; ?>">
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="nip" name="nip" placeholder="NIP" value="<?= $td['nip']; ?>" readonly>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="nama" name="nama" placeholder="Nama" value="<?= $td['nama']; ?>">
+                            </div>
+                            <div class="form-group">
+                                <select name="tendik" id="tendik" class="form-control">
+                                    <option value="">Pilih Tendik</option>
+                                    <option value="Administrasi Prodi">Administrasi Prodi</option>
+                                    <option value="Laboratorium">Laboratorium</option>
+                                    <option value="Perpustakaan">Perpustakaan</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <select name="jurusan" id="jurusan" class="form-control">
+                                    <option value="">Pilih Jurusan</option>
+                                    <option value="Teknik Sipil">Teknik Sipil</option>
+                                    <option value="Teknik Elektro">Teknik Elektro</option>
+                                    <option value="Teknik Kimia">Teknik Kimia</option>
+                                    <option value="Teknik Mesin">Teknik Mesin</option>
+                                    <option value="Teknik Industri">Teknik Industri</option>
+                                    <option value="Arsitektur">Arsitektur</option>
+                                    <option value="Teknik Informatika">Teknik Informatika</option>
+                                    <option value="D3OAB">D3OAB</option>
+                                    <option value="Perpustakaan">Perpustakaan</option>
+                                </select>
+                            </div>
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">edit</button>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    <?php endforeach; ?>
 
     <?php foreach ($dataTendik as $td) : ?>
 
@@ -191,6 +238,6 @@
                 </div>
             </div>
         </div>
-
     <?php endforeach; ?>
+</div>
 </div>

@@ -222,9 +222,9 @@
                     </div>
                     <form action="<?= base_url('admin/editDosen/' . $d['id_dosen']); ?>" method="post">
                         <div class="modal-body">
-                            <input type="hidden" name="id_dosen">
+                            <input type="hidden" name="id_dosen" value="<?= $d['id_dosen']; ?>">
                             <div class="form-group">
-                                <input type="text" class="form-control" id="nip" name="nip" placeholder="NIP" value="<?= $d['nip']; ?>">
+                                <input type="text" class="form-control" id="nip" name="nip" placeholder="NIP" value="<?= $d['nip']; ?>" readonly>
                             </div>
                             <div class="form-group">
                                 <input type="text" class="form-control" id="nama" name="nama" value="<?= $d['nama']; ?>" placeholder="Nama">

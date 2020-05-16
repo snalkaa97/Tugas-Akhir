@@ -53,7 +53,7 @@ class Admin extends CI_Controller
     public function tambahDosen()
     {
 
-        $this->form_validation->set_rules('nip', 'NIP', 'required|trim');
+        $this->form_validation->set_rules('nip', 'NIP', 'required|trim|is_unique[dosen_peserta.nip]');
         $this->form_validation->set_rules('nama', 'nama', 'required|trim');
         $this->form_validation->set_rules('jurusan', 'jurusan', 'required|trim');
         $this->form_validation->set_rules('pendidikan', 'pendidikan', 'required|trim');
@@ -62,6 +62,11 @@ class Admin extends CI_Controller
 
         if ($this->form_validation->run() == false) {
             $data['title'] = 'Data Dosen';
+            $data['dosen'] = $this->db->get('dosen_peserta')->result_array();
+
+            $jurusan = $this->input->get('jurusan');
+            $data['cariDosen'] = $this->db->get_where('dosen_peserta', ['jurusan' => $jurusan])->result_array();
+            $data['form_dosen'] = $this->db->get('dosen_peserta')->result_array();
             $this->load->view('templates/header', $data);
             $this->load->view('templates/sidebar');
             $this->load->view('templates/topbar');
@@ -132,6 +137,11 @@ class Admin extends CI_Controller
 
         if ($this->form_validation->run() == false) {
             $data['title'] = 'Data Dosen';
+            $data['dosen'] = $this->db->get('dosen_peserta')->result_array();
+
+            $jurusan = $this->input->get('jurusan');
+            $data['cariDosen'] = $this->db->get_where('dosen_peserta', ['jurusan' => $jurusan])->result_array();
+            $data['form_dosen'] = $this->db->get('dosen_peserta')->result_array();
             $this->load->view('templates/header', $data);
             $this->load->view('templates/sidebar');
             $this->load->view('templates/topbar');
@@ -322,18 +332,22 @@ class Admin extends CI_Controller
 
     public function tambahTendik()
     {
-        $this->form_validation->set_rules('nip', 'NIP', 'required|trim');
+        $this->form_validation->set_rules('nip', 'NIP', 'required|trim|is_unique[tendik_peserta.nip]');
         $this->form_validation->set_rules('nama', 'nama', 'required|trim');
         $this->form_validation->set_rules('jurusan', 'jurusan', 'required|trim');
         $this->form_validation->set_rules('tendik', 'Tendik', 'required|trim');
 
         if ($this->form_validation->run() == false) {
-            $data['title'] = 'Data Tenik';
+            $data['title'] = 'Data Tendik';
+            $data['dataTendik'] = $this->db->get('tendik_peserta')->result_array();
+            $tendik = $this->input->get('tendik');
+            $data['cariTendik'] = $this->db->get_where('tendik_peserta', ['tendik' => $tendik])->result_array();
             $this->load->view('templates/header', $data);
             $this->load->view('templates/sidebar');
             $this->load->view('templates/topbar');
             $this->load->view('admin/dataTendik');
             $this->load->view('templates/footer');
+            //redirect('admin/dataTendik');
         } else {
             $nip = $this->input->post('nip');
             $data = [
@@ -354,6 +368,38 @@ class Admin extends CI_Controller
 
     public function editTendik($id)
     {
+        $this->form_validation->set_rules('nama', 'nama', 'required|trim');
+        $this->form_validation->set_rules('jurusan', 'jurusan', 'required|trim');
+        $this->form_validation->set_rules('tendik', 'Tendik', 'required|trim');
+
+        if ($this->form_validation->run() == false) {
+            $data['title'] = 'Data Tendik';
+            $data['dataTendik'] = $this->db->get('tendik_peserta')->result_array();
+            $tendik = $this->input->get('tendik');
+            $data['cariTendik'] = $this->db->get_where('tendik_peserta', ['tendik' => $tendik])->result_array();
+            $this->load->view('templates/header', $data);
+            $this->load->view('templates/sidebar');
+            $this->load->view('templates/topbar');
+            $this->load->view('admin/dataTendik');
+            $this->load->view('templates/footer');
+            //redirect('admin/dataTendik');
+        } else {
+            $nip = $this->input->post('nip');
+            $data = [
+                'id_tendik' => htmlspecialchars($this->input->post('id_tendik'), true),
+                'nip' => htmlspecialchars($this->input->post('nip'), true),
+                'nama' => htmlspecialchars($this->input->post('nama'), true),
+                'tendik' => $this->input->post('tendik'),
+                'jurusan' => $this->input->post('jurusan')
+            ];
+            $this->db->where('id_tendik', $id);
+            $this->db->update('tendik_peserta', $data);
+            //$this->db->update('tendik_peserta', $nilai);
+            $this->session->set_flashdata('message', '<div class="alert alert-primary" role="alert">
+                    Dosen berhasil diupdate!. 
+                  </div>');
+            redirect('admin/dataTendik');
+        }
     }
 
     public function hapusTendik($id)
