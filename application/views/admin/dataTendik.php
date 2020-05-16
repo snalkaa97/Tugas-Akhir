@@ -62,8 +62,8 @@
                                 <td><?= $t['nama']; ?></td>
                                 <td><?= $t['tendik']; ?></td>
                                 <td><?= $t['jurusan']; ?></td>
-                                <td><a class="badge badge-success" data-toggle="modal" data-target="#editTendik" href="<?= base_url('admin/editTendik/') . $t['id_tendik']; ?>">edit</a>
-                                    <a class="badge badge-danger" data-toggle="modal" data-target="#hapusTendik" href="<?= base_url('admin/hapusTendik/') . $t['id_tendik']; ?>">delete</a>
+                                <td><a class="badge badge-success" data-toggle="modal" data-target="#editTendik<?= $t['id_tendik'] ?>" href="#">edit</a>
+                                    <a class="badge badge-danger" data-toggle="modal" data-target="#hapusTendik<?= $t['id_tendik']; ?>" href="#">delete</a>
                                 </td>
                             </tr>
                             <?php $i++; ?>
@@ -95,8 +95,8 @@
                                 <td><?= $ct['nama']; ?></td>
                                 <td><?= $ct['tendik']; ?></td>
                                 <td><?= $ct['jurusan']; ?></td>
-                                <td><a class="badge badge-success" data-toggle="modal" data-target="#editTendik" href="<?= base_url('admin/editTendik/') . $ct['id_tendik']; ?>">edit</a>
-                                    <a class="badge badge-danger" data-toggle="modal" data-target="#hapusTendik" href="<?= base_url('admin/hapusTendik/') . $ct['id_tendik']; ?>">delete</a>
+                                <td><a class="badge badge-success" data-toggle="modal" data-target="#editTendik<?= $ct['id_tendik'] ?>" href="#">edit</a>
+                                    <a class="badge badge-danger" data-toggle="modal" data-target="#hapusTendik<?= $ct['id_tendik']; ?>" href="#">delete</a>
                                 </td>
                             </tr>
                             <?php $i++; ?>
@@ -167,25 +167,30 @@
 
         <!-- Modal -->
     </div>
-    <div class="modal fade" id="hapusTendik" tabindex="-1" role="dialog" aria-labelledby="hapusTendikLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="hapusTendikLabel">Hapus Tendik Peserta</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+
+    <?php foreach ($dataTendik as $td) : ?>
+
+        <div class="modal fade" id="hapusTendik<?= $td['id_tendik']; ?>" tabindex="-1" role="dialog" aria-labelledby="hapusTendikLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="hapusTendikLabel">Hapus Tendik Peserta</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <form action="<?= base_url('admin/hapusTendik/' . $td['id_tendik']); ?>" method="get">
+                        <div class="modal-body">
+                            Are You Sure?
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                            <button type="submit" class="btn btn-primary">Delete</button>
+                        </div>
+                    </form>
                 </div>
-                <form action="<?= base_url('admin/hapusTendik/' . $t['id']); ?>" method="get">
-                    <div class="modal-body">
-                        Are You Sure?
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                        <button type="submit" class="btn btn-primary">Delete</button>
-                    </div>
-                </form>
             </div>
         </div>
-    </div>
+
+    <?php endforeach; ?>
 </div>

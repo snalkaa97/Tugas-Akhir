@@ -42,6 +42,7 @@ class Admin extends CI_Controller
         $jurusan = $this->input->get('jurusan');
         $data['cariDosen'] = $this->db->get_where('dosen_peserta', ['jurusan' => $jurusan])->result_array();
         $data['title'] = 'Data Dosen';
+        $data['form_dosen'] = $this->db->get('dosen_peserta')->result_array();
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar');
         $this->load->view('templates/topbar');
@@ -122,6 +123,73 @@ class Admin extends CI_Controller
 
     public function editDosen($id)
     {
+        $this->form_validation->set_rules('nip', 'NIP', 'required|trim');
+        $this->form_validation->set_rules('nama', 'nama', 'required|trim');
+        $this->form_validation->set_rules('jurusan', 'jurusan', 'required|trim');
+        $this->form_validation->set_rules('pendidikan', 'pendidikan', 'required|trim');
+        $this->form_validation->set_rules('jabatan', 'jabatan', 'required|trim');
+        $this->form_validation->set_rules('alamat', 'alamat', 'required|trim');
+
+        if ($this->form_validation->run() == false) {
+            $data['title'] = 'Data Dosen';
+            $this->load->view('templates/header', $data);
+            $this->load->view('templates/sidebar');
+            $this->load->view('templates/topbar');
+            $this->load->view('admin/dataDosen');
+            $this->load->view('templates/footer');
+        } else {
+            $nip = $this->input->post('nip');
+
+
+            $jabatan = $this->input->post('jabatan');
+            $pendidikan = $this->input->post('pendidikan');
+
+            if ($pendidikan == "S1") {
+                $c4 = 1;
+            } else if ($pendidikan == "S2") {
+                $c4 = 3;
+            } else if ($pendidikan == "S3") {
+                $c4 = 5;
+            } else {
+                $c4 = 1;
+            }
+
+            if ($jabatan == "Guru Besar") {
+                $c10 = 5;
+            } else if ($jabatan == "Lektor Kepala") {
+                $c10 = 4;
+            } else if ($jabatan == "Lektor") {
+                $c10 = 3;
+            } else if ($jabatan == "Asisten Ahli") {
+                $c10 = 2;
+            } else if ($jabatan == "Pengajar") {
+                $c10 = 1;
+            } else {
+                $c10 = 1;
+            }
+
+            $nilai = [
+                'c4' => $c4,
+                'c10' => $c10
+            ];
+            $data = [
+                'id_dosen' => htmlspecialchars($this->input->post('id_dosen'), true),
+                'nip' => htmlspecialchars($this->input->post('nip'), true),
+                'nama' => htmlspecialchars($this->input->post('nama'), true),
+                'jurusan' => $this->input->post('jurusan'),
+                'pendidikan' => $this->input->post('pendidikan'),
+                'jabatan' => $this->input->post('jabatan'),
+                'alamat' => htmlspecialchars($this->input->post('alamat'), true),
+                'c4' => $c4,
+                'c10' => $c10
+            ];
+            $this->db->where('id_dosen', $id);
+            $this->db->update('dosen_peserta', $data);
+            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
+        Dosen berhasil diupdate!. 
+      </div>');
+            redirect('admin/dataDosen');
+        }
     }
 
     public function hapusDosen($id)

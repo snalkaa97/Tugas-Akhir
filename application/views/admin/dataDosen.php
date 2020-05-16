@@ -68,8 +68,8 @@
                                 <td><?= $d['jurusan']; ?></td>
                                 <td><?= $d['pendidikan']; ?></td>
                                 <td><?= $d['jabatan']; ?></td>
-                                <td><a class="badge badge-success" data-toggle="modal" data-target="#editDosen" href="<?= base_url('admin/editDosen/') . $d['id_dosen']; ?>">edit</a>
-                                    <a class="badge badge-danger" data-toggle="modal" data-target="#hapusDosen" href="<?= base_url('admin/hapusDosen/') . $d['id_dosen']; ?>">delete</a>
+                                <td><a class="badge badge-success" data-toggle="modal" data-target="#editdosen<?= $d['id_dosen'] ?>" href="#">edit</a>
+                                    <a class="badge badge-danger" data-toggle="modal" data-target="#hapusdosen<?= $d['id_dosen']; ?>" href="#">delete</a>
                                 </td>
                             </tr>
                             <?php $i++; ?>
@@ -103,8 +103,8 @@
                                 <td><?= $cd['jurusan']; ?></td>
                                 <td><?= $cd['pendidikan']; ?></td>
                                 <td><?= $cd['jabatan']; ?></td>
-                                <td><a class="badge badge-success" data-toggle="modal" data-target="#editDosen" href="<?= base_url('admin/editDosen/') . $cd['id_dosen']; ?>">edit</a>
-                                    <a class="badge badge-danger" data-toggle="modal" data-target="#hapusDosen" href="<?= base_url('admin/hapusDosen/') . $cd['id_dosen']; ?>">delete</a>
+                                <td><a class="badge badge-success" data-toggle="modal" data-target="#editdosen<?= $cd['id_dosen'] ?>" href="#">edit</a>
+                                    <a class="badge badge-danger" data-toggle="modal" data-target="#hapusdosen<?= $cd['id_dosen']; ?>" href="#">delete</a>
                                 </td>
                             </tr>
                             <?php $i++; ?>
@@ -184,26 +184,93 @@
 
 
     <!-- Modal -->
-    <div class="modal fade" id="hapusDosen" tabindex="-1" role="dialog" aria-labelledby="hapusDosenLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="hapusDosenLabel">Hapus Dosen Peserta</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+
+    <?php foreach ($dosen as $d) : ?>
+        <div class="modal fade" id="hapusdosen<?= $d['id_dosen']; ?>" tabindex="-1" role="dialog" aria-labelledby="hapusDosenLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="hapusDosenLabel">Hapus Dosen Peserta</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <form action="<?= base_url('admin/hapusDosen/' . $d['id_dosen']); ?>" method="get">
+                        <div class="modal-body">
+                            Are You Sure?
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                            <button type="submit" class="btn btn-primary">Delete</button>
+                        </div>
+                    </form>
                 </div>
-                <form action="<?= base_url('admin/hapusDosen/' . $d['id_dosen']); ?>" method="get">
-                    <div class="modal-body">
-                        Are You Sure?
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                        <button type="submit" class="btn btn-primary">Delete</button>
-                    </div>
-                </form>
             </div>
         </div>
-    </div>
+    <?php endforeach; ?>
+
+
+    <?php foreach ($dosen as $d) : ?>
+        <div class="modal fade" id="editdosen<?= $d['id_dosen']; ?>" tabindex="-1" role="dialog" aria-labelledby="editDosenLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="editDosenLabel">Edit Dosen Peserta</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <form action="<?= base_url('admin/editDosen/' . $d['id_dosen']); ?>" method="post">
+                        <div class="modal-body">
+                            <input type="hidden" name="id_dosen">
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="nip" name="nip" placeholder="NIP" value="<?= $d['nip']; ?>">
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="nama" name="nama" value="<?= $d['nama']; ?>" placeholder="Nama">
+                            </div>
+                            <div class="form-group">
+                                <select name="jurusan" id="jurusan" class="form-control">
+                                    <option value="">Pilih Jurusan</option>
+                                    <option value="Teknik Sipil">Teknik Sipil</option>
+                                    <option value="Teknik Elektro">Teknik Elektro</option>
+                                    <option value="Teknik Kimia">Teknik Kimia</option>
+                                    <option value="Teknik Mesin">Teknik Mesin</option>
+                                    <option value="Teknik Industri">Teknik Industri</option>
+                                    <option value="Arsitektur">Arsitektur</option>
+                                    <option value="Teknik Informatika">Teknik Informatika</option>
+                                    <option value="D3OAB">D3OAB</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <select name="pendidikan" id="pendidikan" class="form-control">
+                                    <option value="">Pilih pendidikan</option>
+                                    <option value="S1">S1</option>
+                                    <option value="S2">S2</option>
+                                    <option value="S3">S3</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <select name="jabatan" id="jabatan" class="form-control">
+                                    <option value="">Pilih Jabatan</option>
+                                    <option value="Guru Besar">Guru Besar</option>
+                                    <option value="Lektor Kepala">Lektor Kepala</option>
+                                    <option value="Asisten Ahli">Asisten Ahli</option>
+                                    <option value="Pengajar">Pengajar</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="alamat" name="alamat" value="<?= $d['alamat']; ?>" placeholder="Alamat">
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Edit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    <?php endforeach; ?>
 </div>
 </div>
