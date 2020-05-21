@@ -34,42 +34,42 @@
         </div>
     </form>
 
-    <?php if (isset($_GET['hitung'])) : ?>
-        <table class="table table-hover">
-            <thead>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>No</th>
+                <th>Nama Tendik</th>
+                <th>Jurusan</th>
+                <th>Tendik</th>
+                <th>C1</th>
+                <th>C2</th>
+                <th>C3</th>
+                <th>C4</th>
+                <th>C5</th>
+                <th>C6</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php $i = 1;
+            foreach ($dataTendik as $d) : ?>
                 <tr>
-                    <th>No</th>
-                    <th>Nama Tendik</th>
-                    <th>Jurusan</th>
-                    <th>Tendik</th>
-                    <th>C1</th>
-                    <th>C2</th>
-                    <th>C3</th>
-                    <th>C4</th>
-                    <th>C5</th>
-                    <th>C6</th>
+                    <td><?= $i ?></td>
+                    <td><?= $d['nama']; ?></td>
+                    <td><?= $d['jurusan']; ?></td>
+                    <td><?= $d['tendik']; ?></td>
+                    <td><?= $d['c1']; ?></td>
+                    <td><?= $d['c2']; ?></td>
+                    <td><?= $d['c3']; ?></td>
+                    <td><?= $d['c4']; ?></td>
+                    <td><?= $d['c5']; ?></td>
+                    <td><?= $d['c6']; ?></td>
+                <?php $i++;
+            endforeach; ?>
                 </tr>
-            </thead>
-            <tbody>
-                <?php $i = 1;
-                foreach ($tendik as $d) : ?>
-                    <tr>
-                        <td><?= $i ?></td>
-                        <td><?= $d['nama']; ?></td>
-                        <td><?= $d['jurusan']; ?></td>
-                        <td><?= $d['tendik']; ?></td>
-                        <td><?= $d['c1']; ?></td>
-                        <td><?= $d['c2']; ?></td>
-                        <td><?= $d['c3']; ?></td>
-                        <td><?= $d['c4']; ?></td>
-                        <td><?= $d['c5']; ?></td>
-                        <td><?= $d['c6']; ?></td>
-                    <?php $i++;
-                endforeach; ?>
-                    </tr>
-            </tbody>
-        </table>
+        </tbody>
+    </table>
 
+    <?php if (isset($_GET['hitung'])) : ?>
         <div class="row">
             <div class="col-sm-12">
                 <h1 class="h3 mb-4 text-gray-800">Perbaikan Bobot</h1>

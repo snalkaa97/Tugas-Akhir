@@ -41,71 +41,34 @@
 
                 </div>
             </div>
-            <?php if (!isset($_GET['cari'])) : ?>
-                <table class="table table-hover">
-                    <thead>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">No</th>
+                        <th scope="col">NIP</th>
+                        <th scope="col">Nama</th>
+                        <th scope="col">Tendik</th>
+                        <th scope="col">Jurusan</th>
+                        <th scope="col">Aksi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php $i = 1; ?>
+                    <?php foreach ($dataTendik as $t) : ?>
                         <tr>
-                            <th scope="col">No</th>
-                            <th scope="col">NIP</th>
-                            <th scope="col">Nama</th>
-                            <th scope="col">Tendik</th>
-                            <th scope="col">Jurusan</th>
-                            <th scope="col">Aksi</th>
+                            <th scope="row"><?= $i ?></th>
+                            <td><?= $t['nip']; ?></td>
+                            <td><?= $t['nama']; ?></td>
+                            <td><?= $t['tendik']; ?></td>
+                            <td><?= $t['jurusan']; ?></td>
+                            <td><a class="badge badge-success" data-toggle="modal" data-target="#editTendik<?= $t['id_tendik'] ?>" href="#">edit</a>
+                                <a class="badge badge-danger" data-toggle="modal" data-target="#hapusTendik<?= $t['id_tendik']; ?>" href="#">delete</a>
+                            </td>
                         </tr>
-                    </thead>
-                    <tbody>
-                        <?php $i = 1; ?>
-                        <?php foreach ($dataTendik as $t) : ?>
-                            <tr>
-                                <th scope="row"><?= $i ?></th>
-                                <td><?= $t['nip']; ?></td>
-                                <td><?= $t['nama']; ?></td>
-                                <td><?= $t['tendik']; ?></td>
-                                <td><?= $t['jurusan']; ?></td>
-                                <td><a class="badge badge-success" data-toggle="modal" data-target="#editTendik<?= $t['id_tendik'] ?>" href="#">edit</a>
-                                    <a class="badge badge-danger" data-toggle="modal" data-target="#hapusTendik<?= $t['id_tendik']; ?>" href="#">delete</a>
-                                </td>
-                            </tr>
-                            <?php $i++; ?>
-                        <?php endforeach; ?>
-                    </tbody>
-                </table>
-            <?php endif; ?>
-            <?php if (isset($_GET['cari'])) :
-                $tendik = $_GET['tendik'];
-                $data = $this->db->get_where('tendik_peserta', ['tendik' => $tendik])->row_array(); ?>
-
-                <table class="table table-hover">
-                    <thead>
-                        <tr>
-                            <th scope="col">No</th>
-                            <th scope="col">NIP</th>
-                            <th scope="col">Nama</th>
-                            <th scope="col">Tendik</th>
-                            <th scope="col">Jurusan</th>
-                            <th scope="col">Aksi</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php $i = 1; ?>
-                        <?php foreach ($cariTendik as $ct) : ?>
-                            <tr>
-                                <th scope="row"><?= $i ?></th>
-                                <td><?= $ct['nip']; ?></td>
-                                <td><?= $ct['nama']; ?></td>
-                                <td><?= $ct['tendik']; ?></td>
-                                <td><?= $ct['jurusan']; ?></td>
-                                <td><a class="badge badge-success" data-toggle="modal" data-target="#editTendik<?= $ct['id_tendik'] ?>" href="#">edit</a>
-                                    <a class="badge badge-danger" data-toggle="modal" data-target="#hapusTendik<?= $ct['id_tendik']; ?>" href="#">delete</a>
-                                </td>
-                            </tr>
-                            <?php $i++; ?>
-                        <?php endforeach; ?>
-                    </tbody>
-                </table>
-
-            <?php endif; ?>
-
+                        <?php $i++; ?>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
         </div>
     </div>
 

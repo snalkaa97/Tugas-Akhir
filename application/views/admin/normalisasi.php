@@ -24,51 +24,52 @@
         </div>
     </form>
 
-    <?php if (isset($_GET['hitung'])) : ?>
-        <table class="table table-hover">
-            <thead>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>No</th>
+                <th>Nama Dosen</th>
+                <th>Jurusan</th>
+                <th>Pendidikan</th>
+                <th>Jabatan</th>
+                <th>C1</th>
+                <th>C2</th>
+                <th>C3</th>
+                <th>C4</th>
+                <th>C5</th>
+                <th>C6</th>
+                <th>C7</th>
+                <th>C8</th>
+                <th>C9</th>
+                <th>C10</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php $i = 1;
+            foreach ($nilaiDosen as $nd) : ?>
                 <tr>
-                    <th>No</th>
-                    <th>Nama Dosen</th>
-                    <th>Jurusan</th>
-                    <th>Pendidikan</th>
-                    <th>Jabatan</th>
-                    <th>C1</th>
-                    <th>C2</th>
-                    <th>C3</th>
-                    <th>C4</th>
-                    <th>C5</th>
-                    <th>C6</th>
-                    <th>C7</th>
-                    <th>C8</th>
-                    <th>C9</th>
-                    <th>C10</th>
+                    <td><?= $i ?></td>
+                    <td><?= $nd['nama']; ?></td>
+                    <td><?= $nd['jurusan']; ?></td>
+                    <td><?= $nd['pendidikan']; ?></td>
+                    <td><?= $nd['jabatan']; ?></td>
+                    <td><?= $nd['c1']; ?></td>
+                    <td><?= $nd['c2']; ?></td>
+                    <td><?= $nd['c3']; ?></td>
+                    <td><?= $nd['c4']; ?></td>
+                    <td><?= $nd['c5']; ?></td>
+                    <td><?= $nd['c6']; ?></td>
+                    <td><?= $nd['c7']; ?></td>
+                    <td><?= $nd['c8']; ?></td>
+                    <td><?= $nd['c9']; ?></td>
+                    <td><?= $nd['c10']; ?></td>
+                <?php $i++;
+            endforeach; ?>
                 </tr>
-            </thead>
-            <tbody>
-                <?php $i = 1;
-                foreach ($nilaiDosen as $nd) : ?>
-                    <tr>
-                        <td><?= $i ?></td>
-                        <td><?= $nd['nama']; ?></td>
-                        <td><?= $nd['jurusan']; ?></td>
-                        <td><?= $nd['pendidikan']; ?></td>
-                        <td><?= $nd['jabatan']; ?></td>
-                        <td><?= $nd['c1']; ?></td>
-                        <td><?= $nd['c2']; ?></td>
-                        <td><?= $nd['c3']; ?></td>
-                        <td><?= $nd['c4']; ?></td>
-                        <td><?= $nd['c5']; ?></td>
-                        <td><?= $nd['c6']; ?></td>
-                        <td><?= $nd['c7']; ?></td>
-                        <td><?= $nd['c8']; ?></td>
-                        <td><?= $nd['c9']; ?></td>
-                        <td><?= $nd['c10']; ?></td>
-                    <?php $i++;
-                endforeach; ?>
-                    </tr>
-            </tbody>
-        </table>
+        </tbody>
+    </table>
+
+    <?php if (isset($_GET['hitung'])) : ?>
         <div class="row">
             <div class="col-sm-12">
                 <h1 class="h3 mb-4 text-gray-800">Perbaikan Bobot</h1>

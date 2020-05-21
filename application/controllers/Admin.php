@@ -40,7 +40,11 @@ class Admin extends CI_Controller
         $data['dosen'] = $this->db->get('dosen_peserta')->result_array();
 
         $jurusan = $this->input->get('jurusan');
-        $data['cariDosen'] = $this->db->get_where('dosen_peserta', ['jurusan' => $jurusan])->result_array();
+
+        if ($jurusan) {
+            $data['dosen'] = $this->db->get_where('dosen_peserta', ['jurusan' => $jurusan])->result_array();
+        }
+
         $data['title'] = 'Data Dosen';
         $data['form_dosen'] = $this->db->get('dosen_peserta')->result_array();
         $this->load->view('templates/header', $data);
@@ -230,7 +234,12 @@ class Admin extends CI_Controller
         $awal = microtime(true);
         $data['title'] = 'Normalisasi WP';
         $jurusan = $this->input->get('jurusan');
-        $data['nilaiDosen'] = $this->db->get_where('dosen_peserta', ['jurusan' => $jurusan])->result_array();
+        $data['nilaiDosen'] = $this->db->get('dosen_peserta')->result_array();
+
+        if ($jurusan) {
+
+            $data['nilaiDosen'] = $this->db->get_where('dosen_peserta', ['jurusan' => $jurusan])->result_array();
+        }
         $data['bobot'] = $this->db->get('tb_kriteria')->result_array();
         //$this->db->select('sum(bobot) as sum');
         //$this->db->from('tb_kriteria');
@@ -258,7 +267,12 @@ class Admin extends CI_Controller
         $awal = microtime(true);
         $data['title'] = 'Normalisasi SAW';
         $jurusan = $this->input->get('jurusan');
-        $data['dosen'] = $this->db->get_where('dosen_peserta', ['jurusan' => $jurusan])->result_array();
+
+        $data['dosen'] = $this->db->get('dosen_peserta')->result_array();
+
+        if ($jurusan) {
+            $data['dosen'] = $this->db->get_where('dosen_peserta', ['jurusan' => $jurusan])->result_array();
+        }
         $data['bobot'] = $this->db->get('tb_kriteria')->result_array();
 
         //$this->->('');
@@ -320,8 +334,12 @@ class Admin extends CI_Controller
     {
         $data['dataTendik'] = $this->db->get('tendik_peserta')->result_array();
 
-        $tendik = $this->input->get('tendik');
-        $data['cariTendik'] = $this->db->get_where('tendik_peserta', ['tendik' => $tendik])->result_array();
+        if ($this->input->get('tendik')) {
+            $data['dataTendik'] = $this->db->get_where('tendik_peserta', ['tendik' => $this->input->get('tendik')])->result_array();
+        }
+
+        // $tendik = $this->input->get('tendik');
+        // $data['cariTendik'] = $this->db->get_where('tendik_peserta', ['tendik' => $tendik])->result_array();
         $data['title'] = 'Data Tendik';
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar');
@@ -419,11 +437,16 @@ class Admin extends CI_Controller
 
         $jurusan = $this->input->get('jurusan');
         $tendik = $this->input->get('tendik');
-        $where = [
-            'jurusan' => $this->input->get('jurusan'),
-            'tendik' => $this->input->get('tendik')
-        ];
-        $data['nilaitendik'] = $this->db->get_where('tendik_peserta', $where)->result_array();
+        $data['nilaitendik'] = $this->db->get('tendik_peserta')->result_array();
+        if ($jurusan && $tendik) {
+            $where = [
+                'jurusan' => $this->input->get('jurusan'),
+                'tendik' => $this->input->get('tendik')
+            ];
+            $data['nilaitendik'] = $this->db->get_where('tendik_peserta', $where)->result_array();
+        }
+
+
         $data['bobot'] = $this->db->get('tb_kriteria_tendik')->result_array();
         $data['hitung'] = $this->db->get('tendik_peserta')->result_array();
         //$this->db->select('sum(bobot) as sum');
@@ -452,12 +475,17 @@ class Admin extends CI_Controller
         $data['title'] = 'Normalisasi SAW Tendik';
         $jurusan = $this->input->get('jurusan');
         $tendik = $this->input->get('tendik');
-        $tendik = $this->input->get('tendik');
+
+        $data['dataTendik'] = $this->db->get('tendik_peserta')->result_array();
         $where = [
             'jurusan' => $this->input->get('jurusan'),
             'tendik' => $this->input->get('tendik')
         ];
-        $data['tendik'] = $this->db->get_where('tendik_peserta', $where)->result_array();
+        if ($jurusan && $tendik) {
+
+            $data['dataTendik'] = $this->db->get_where('tendik_peserta', $where)->result_array();
+        }
+
         $data['bobot'] = $this->db->get('tb_kriteria_tendik')->result_array();
 
         //$this->->('');

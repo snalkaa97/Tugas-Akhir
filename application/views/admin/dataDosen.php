@@ -45,74 +45,36 @@
 
                 </div>
             </div>
-            <?php if (!isset($_GET['cari'])) : ?>
-                <table class="table table-hover">
-                    <thead>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">No</th>
+                        <th scope="col">NIP</th>
+                        <th scope="col">Nama</th>
+                        <th scope="col">Jurusan</th>
+                        <th scope="col">Pendidikan</th>
+                        <th scope="col">Jabatan</th>
+                        <th scope="col">Aksi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php $i = 1; ?>
+                    <?php foreach ($dosen as $d) : ?>
                         <tr>
-                            <th scope="col">No</th>
-                            <th scope="col">NIP</th>
-                            <th scope="col">Nama</th>
-                            <th scope="col">Jurusan</th>
-                            <th scope="col">Pendidikan</th>
-                            <th scope="col">Jabatan</th>
-                            <th scope="col">Aksi</th>
+                            <th scope="row"><?= $i ?></th>
+                            <td><?= $d['nip']; ?></td>
+                            <td><?= $d['nama']; ?></td>
+                            <td><?= $d['jurusan']; ?></td>
+                            <td><?= $d['pendidikan']; ?></td>
+                            <td><?= $d['jabatan']; ?></td>
+                            <td><a class="badge badge-success" data-toggle="modal" data-target="#editdosen<?= $d['id_dosen'] ?>" href="#">edit</a>
+                                <a class="badge badge-danger" data-toggle="modal" data-target="#hapusdosen<?= $d['id_dosen']; ?>" href="#">delete</a>
+                            </td>
                         </tr>
-                    </thead>
-                    <tbody>
-                        <?php $i = 1; ?>
-                        <?php foreach ($dosen as $d) : ?>
-                            <tr>
-                                <th scope="row"><?= $i ?></th>
-                                <td><?= $d['nip']; ?></td>
-                                <td><?= $d['nama']; ?></td>
-                                <td><?= $d['jurusan']; ?></td>
-                                <td><?= $d['pendidikan']; ?></td>
-                                <td><?= $d['jabatan']; ?></td>
-                                <td><a class="badge badge-success" data-toggle="modal" data-target="#editdosen<?= $d['id_dosen'] ?>" href="#">edit</a>
-                                    <a class="badge badge-danger" data-toggle="modal" data-target="#hapusdosen<?= $d['id_dosen']; ?>" href="#">delete</a>
-                                </td>
-                            </tr>
-                            <?php $i++; ?>
-                        <?php endforeach; ?>
-                    </tbody>
-                </table>
-            <?php endif; ?>
-            <?php if (isset($_GET['cari'])) :
-                $jurusan = $_GET['jurusan'];
-                $data = $this->db->get_where('dosen_peserta', ['jurusan' => $jurusan])->row_array(); ?>
-
-                <table class="table table-hover">
-                    <thead>
-                        <tr>
-                            <th scope="col">No</th>
-                            <th scope="col">NIP</th>
-                            <th scope="col">Nama</th>
-                            <th scope="col">Jurusan</th>
-                            <th scope="col">Pendidikan</th>
-                            <th scope="col">Jabatan</th>
-                            <th scope="col">Aksi</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php $i = 1; ?>
-                        <?php foreach ($cariDosen as $cd) : ?>
-                            <tr>
-                                <th scope="row"><?= $i ?></th>
-                                <td><?= $cd['nip']; ?></td>
-                                <td><?= $cd['nama']; ?></td>
-                                <td><?= $cd['jurusan']; ?></td>
-                                <td><?= $cd['pendidikan']; ?></td>
-                                <td><?= $cd['jabatan']; ?></td>
-                                <td><a class="badge badge-success" data-toggle="modal" data-target="#editdosen<?= $cd['id_dosen'] ?>" href="#">edit</a>
-                                    <a class="badge badge-danger" data-toggle="modal" data-target="#hapusdosen<?= $cd['id_dosen']; ?>" href="#">delete</a>
-                                </td>
-                            </tr>
-                            <?php $i++; ?>
-                        <?php endforeach; ?>
-                    </tbody>
-                </table>
-
-            <?php endif; ?>
+                        <?php $i++; ?>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
 
         </div>
     </div>
