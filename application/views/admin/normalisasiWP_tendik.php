@@ -33,6 +33,12 @@
             </div>
         </div>
     </form>
+    <?php if (empty($nilaitendik)) : ?>
+
+        <div class="alert alert-danger">
+            Data tidak ditemukan.
+        </div>
+    <?php endif; ?>
     <table class="table table-hover">
         <thead>
             <tr>

@@ -21,19 +21,39 @@
                     <a class="btn btn-primary mb-3" data-toggle="modal" data-target="#addTendik" href="">Tambah Tendik Peserta</a>
                     <a class="btn btn-success mb-4" href="<?= base_url('admin/dataTendik'); ?>">Semua Data Tendik Peserta</a>
                 </div>
-                <div class="col-sm-3">
+                <div class="col-sm-12">
                     <form action="<?= base_url('admin/dataTendik'); ?>" method="get">
-                        <div class="form-group">
-                            <select class="form-control" name="tendik" id="tendik">
-                                <option value="">Cari Berdasarkan Kategori</option>
-                                <option value="Administrasi Prodi">Administrasi Prodi</option>
-                                <option value="Laboratorium">Laboratorium</option>
-                                <option value="Perpustakaan">Perpustakaan</option>
-
-                            </select>
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <div class="form-group">
+                                    <select class="form-control" name="jurusan" id="jurusan" required>
+                                        <option value="">Cari berdasarkan jurusan</option>
+                                        <option value=" Teknik Sipil">Teknik Sipil</option>
+                                        <option value="Teknik Elektro">Teknik Elektro</option>
+                                        <option value="Teknik Kimia">Teknik Kimia</option>
+                                        <option value="Teknik Mesin">Teknik Mesin</option>
+                                        <option value="Teknik Industri">Teknik Industri</option>
+                                        <option value="Arsitektur">Arsitektur</option>
+                                        <option value="Teknik Informatika">Teknik Informatika</option>
+                                        <option value="D3OAB">D3OAB</option>
+                                        <option value="Perpustakaan">Perpustakaan</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="form-group">
+                                    <select class="form-control" name="tendik" id="tendik" required>
+                                        <option value="">Cari berdasarkan Tendik</option>
+                                        <option value="Administrasi Prodi">Administrasi Prodi</option>
+                                        <option value="Laboratorium">Laboratorium</option>
+                                        <option value="Perpustakaan">Perpustakaan</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <input class="btn btn-outline-primary" type="submit" name="pilih" value="Pilih">
+                            </div>
                         </div>
-                        <input type="submit" name="cari" class="btn btn-primary" value="Cari">
-
                     </form>
                 </div>
                 <div class="col-sm-5">
@@ -41,6 +61,11 @@
 
                 </div>
             </div>
+            <?php if (empty($dataTendik)) : ?>
+                <div class="alert alert-danger">
+                    Data tidak ditemukan.
+                </div>
+            <?php endif; ?>
             <table class="table table-hover">
                 <thead>
                     <tr>

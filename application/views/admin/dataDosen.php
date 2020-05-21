@@ -45,6 +45,13 @@
 
                 </div>
             </div>
+            <?php if (empty($dosen)) : ?>
+
+                <div class="alert alert-danger">
+                    Data tidak ditemukan.
+                </div>
+            <?php endif; ?>
+
             <table class="table table-hover">
                 <thead>
                     <tr>

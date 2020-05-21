@@ -335,7 +335,10 @@ class Admin extends CI_Controller
         $data['dataTendik'] = $this->db->get('tendik_peserta')->result_array();
 
         if ($this->input->get('tendik')) {
-            $data['dataTendik'] = $this->db->get_where('tendik_peserta', ['tendik' => $this->input->get('tendik')])->result_array();
+            $this->db->where('jurusan', $this->input->get('jurusan'));
+            $this->db->where('tendik', $this->input->get('tendik'));
+            $this->db->from('tendik_peserta');
+            $data['dataTendik'] = $this->db->get()->result_array();
         }
 
         // $tendik = $this->input->get('tendik');
@@ -428,6 +431,20 @@ class Admin extends CI_Controller
                     Dosen berhasil dihapus!. 
                   </div>');
         redirect('admin/dataTendik');
+    }
+
+    public function dataKriteria_tendik()
+    {
+        $data['title'] = 'Data Kriteria Tendik';
+        $data['kriteria'] = $this->db->get('tb_kriteria_tendik')->result_array();
+        $hmpKriteria = $this->input->get('nama_kriteria');
+        $data['himpunan'] = $this->db->get_where('tb_hmp_kriteria_tendik', ['nama_kriteria' => $hmpKriteria])->result_array();
+        //var_dump($data['himpunan']);
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar');
+        $this->load->view('templates/topbar');
+        $this->load->view('admin/dataKriteria_tendik');
+        $this->load->view('templates/footer');
     }
 
     public function normalisasi_tendik_WP()

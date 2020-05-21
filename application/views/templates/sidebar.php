@@ -39,7 +39,7 @@
     <li class="nav-item">
         <a class="nav-link collapsed" href="<?= base_url('admin/dataKriteria') ?>">
             <i class="fas fa-fw fa-clipboard-list"></i>
-            <span>Kriteria</span>
+            <span>Kriteria Dosen</span>
         </a>
     </li>
 
@@ -75,9 +75,9 @@
 
     <!-- Nav Item - Utilities Collapse Menu -->
     <li class="nav-item">
-        <a class="nav-link collapsed" href="<?= base_url('admin/kriteriaTendik') ?>">
+        <a class="nav-link collapsed" href="<?= base_url('admin/dataKriteria_tendik') ?>">
             <i class="fas fa-fw fa-clipboard-list"></i>
-            <span>Kriteria</span>
+            <span>Kriteria Tendik</span>
         </a>
     </li>
 
