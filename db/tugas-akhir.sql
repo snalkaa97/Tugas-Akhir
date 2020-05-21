@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 13 Bulan Mei 2020 pada 15.32
+-- Waktu pembuatan: 21 Bulan Mei 2020 pada 10.53
 -- Versi server: 10.4.11-MariaDB
 -- Versi PHP: 7.4.3
 
@@ -110,12 +110,13 @@ CREATE TABLE `dosen_peserta` (
 --
 
 INSERT INTO `dosen_peserta` (`id_dosen`, `nip`, `nama`, `jurusan`, `alamat`, `pendidikan`, `jabatan`, `c1`, `c2`, `c3`, `c4`, `c5`, `c6`, `c7`, `c8`, `c9`, `c10`, `vektor_s`, `vektor_v`, `total_nilai_saw`) VALUES
-(10, 'dsn1', 'Dosen 1', 'Teknik Informatika', 'Banda Aceh', 'S2', 'Lektor', 8.9333, 5, 4, 3, 4, 4, 2, 3, 2, 3, 3.8913507084888, 0.16408531458686, 1.1487637485311),
-(11, 'dsn2', 'Dosen 2', 'Teknik Informatika', 'Cadek', 'S1', 'Asisten Ahli', 7.7, 4.4, 4.0667, 1, 3, 3, 4, 3, 2, 2, 3.3187632455865, 0.13994120601966, 1.0583825323149),
-(13, 'dsn5', 'Dosen 5', 'Teknik Informatika', 'Jl Open Source', 'S2', 'Asisten Ahli', 7.2, 4, 3.7, 3, 5, 3, 3, 4, 2, 2, 3.6727504686433, 0.15486766965818, 1.1258625146886),
-(23, '201', 'dosen 6', 'Teknik Informatika', 'Bogor', 'S2', 'Lektor', 7.75, 4.2, 3.8, 2, 2, 2, 2, 2, 3, 3, 3.1301981438577, 0.13199004295184, 0.91132103407756),
-(26, '206', 'dosen 7', 'Teknik Informatika', 'Jakarta', 'S2', 'Lektor', 8.5333, 4.8, 4.5, 2, 5, 3, 5, 5, 5, 3, 4.5057891687055, 0.18999414049119, 1.4622887779083),
-(27, '210', 'Dosen 8', 'Teknik Informatika', 'Jakarta', 'S3', 'Guru Besar', 11.1, 4.4, 4.6, 5, 5, 5, 4, 3, 5, 5, 5.1965594719094, 0.21912162629226, 1.5594);
+(10, '101', 'Rita', 'Teknik Informatika', 'Bogor', 'S2', 'Asisten Ahli', 7.7, 4.4, 4.0667, 3, 3, 3, 4, 3, 2, 2, 3.623647735511, 0.16511871567493, 1.1431491989816),
+(13, 'dsn5', 'Yana', 'Teknik Informatika', 'Sukabumi', 'S2', 'Pengajar', 7.2, 4, 3.7, 3, 5, 3, 3, 4, 2, 1, 3.4746336653751, 0.15832859321429, 1.1301958480219),
+(23, '201', 'Rully', 'Teknik Informatika', 'Bekasi', 'S2', 'Pengajar', 7.75, 4.2, 3.8, 3, 2, 2, 2, 2, 3, 1, 2.9613478897629, 0.13493970604054, 0.87587103407756),
+(26, '206', 'dosen 7', 'Teknik Informatika', 'Jakarta', 'S2', 'Lektor', 8.5333, 4.8, 4.5, 2, 5, 3, 5, 5, 5, 3, 4.5057891687055, 0.20531524445594, 1.5874887779083),
+(27, '210', 'Dosen 8', 'Teknik Informatika', 'Jakarta', 'S3', 'Guru Besar', 11.1, 4.4, 4.6, 5, 5, 5, 4, 3, 5, 5, 5.1965594719094, 0.23679156710553, 1.7641666666667),
+(29, '601', 'Deni', 'Teknik Elektro', 'Bogor', 'S2', 'Pengajar', 1, 1, 1, 3, 1, 1, 1, 1, 1, 1, 1.0918668996139, 0.049753086754386, 0.92),
+(31, '602', 'Idhar', 'Teknik Elektro', 'Jakarta', 'S2', 'Pengajar', 1, 1, 1, 3, 1, 1, 1, 1, 1, 1, 1.0918668996139, 0.049753086754386, 0.92);
 
 -- --------------------------------------------------------
 
@@ -318,7 +319,9 @@ INSERT INTO `nilai_pimpinan_tendik` (`id_pimpinan`, `nip`, `nama`, `jabatan`, `t
 (13, '102', 'Retnani', '', '', 'Teknik Informatika', 0, 5, 5, 5, 3, 5, 5, 5, 5, 5, 4, 4, 5, 5, 4, 4, 5, 2, 5, 5, 5, 4, 4, 4, 4, 4, 4, 4, 5, 4, 4.6666666666667, 4.6, 4.6, 4.25, 4, 4.2),
 (14, '102', 'Retnani', 'Kepala Laboratorium', 'Laboratorium', 'Teknik Informatika', 10, 5, 5, 5, 4, 5, 5, 5, 4, 4, 4, 5, 4, 4, 4, 4, 4, 5, 5, 5, 5, 4, 3, 4, 4, 4, 4, 4, 4, 4, 4.8333333333333, 4.4, 4, 5, 3.75, 4),
 (15, '102', 'Retnani', 'Kepala Laboratorium', 'Laboratorium', 'Teknik Informatika', 11, 5, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 3, 4, 3, 3, 4.1666666666667, 4, 4, 4, 4, 3.4),
-(16, '102', 'Retnani', 'Kepala Laboratorium', 'Laboratorium', 'Teknik Informatika', 12, 4, 4, 5, 4, 5, 5, 5, 5, 5, 5, 5, 4, 4, 4, 4, 4, 4, 5, 5, 5, 4, 4, 4, 4, 4, 5, 4, 5, 5, 4.5, 5, 4, 4.75, 4, 4.6);
+(16, '102', 'Retnani', 'Kepala Laboratorium', 'Laboratorium', 'Teknik Informatika', 12, 4, 4, 5, 4, 5, 5, 5, 5, 5, 5, 5, 4, 4, 4, 4, 4, 4, 5, 5, 5, 4, 4, 4, 4, 4, 5, 4, 5, 5, 4.5, 5, 4, 4.75, 4, 4.6),
+(17, '100', 'Gericko', 'Kepala Laboratorium', 'Laboratorium', ' Teknik Sipil', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(18, '200', 'Fachri', 'Kepala Laboratorium', 'Laboratorium', 'Teknik Elektro', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -362,6 +365,13 @@ CREATE TABLE `tb_bobot_baru_tendik` (
   `b5` double NOT NULL,
   `b6` double NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `tb_bobot_baru_tendik`
+--
+
+INSERT INTO `tb_bobot_baru_tendik` (`id_bobot`, `b1`, `b2`, `b3`, `b4`, `b5`, `b6`) VALUES
+(1, 0.15, 0.2, 0.2, 0.15, 0.15, 0.15);
 
 -- --------------------------------------------------------
 
@@ -437,6 +447,56 @@ INSERT INTO `tb_hmp_kriteria` (`id_hmp`, `himpunan`, `keterangan`, `nilai`, `nam
 -- --------------------------------------------------------
 
 --
+-- Struktur dari tabel `tb_hmp_kriteria_tendik`
+--
+
+CREATE TABLE `tb_hmp_kriteria_tendik` (
+  `id_hmp` int(11) NOT NULL,
+  `himpunan` varchar(70) NOT NULL,
+  `keterangan` varchar(40) NOT NULL,
+  `nilai` int(11) NOT NULL,
+  `nama_kriteria` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `tb_hmp_kriteria_tendik`
+--
+
+INSERT INTO `tb_hmp_kriteria_tendik` (`id_hmp`, `himpunan`, `keterangan`, `nilai`, `nama_kriteria`) VALUES
+(1, '86 - 100', 'sangat baik', 5, 'Kehadiran'),
+(2, '76 - 85', 'baik', 4, 'Kehadiran'),
+(3, '66 - 75', 'cukup', 3, 'Kehadiran'),
+(4, '51 - 65', 'kurang', 2, 'Kehadiran'),
+(5, '0 - 50', 'sangat kurang', 1, 'Kehadiran'),
+(8, '89 - 100', 'sangat baik', 5, 'Tanggung Jawab Pekerjaan'),
+(9, '76 - 85', 'baik', 4, 'Tanggung Jawab Pekerjaan'),
+(10, '66 -75', 'cukup', 3, 'Tanggung Jawab Pekerjaan'),
+(11, '51 - 65', 'kurang', 2, 'Tanggung Jawab Pekerjaan'),
+(12, '0 - 50', 'sangat kurang', 1, 'Tanggung Jawab Pekerjaan'),
+(13, '86 - 100', 'sangat baik', 5, 'Kerjasama'),
+(14, '76 - 85', 'baik', 4, 'Kerjasama'),
+(15, '66 - 75', 'cukup', 3, 'Kerjasama'),
+(16, '51 - 65', 'kurang', 2, 'Kerjasama'),
+(17, '0 - 50', 'sangat kurang', 1, 'Kerjasama'),
+(57, '86 - 100', 'sangat baik', 5, 'Kearsipan'),
+(58, '76 - 85', 'baik', 4, 'Kearsipan'),
+(59, '66 - 75', 'cukup', 3, 'Kearsipan'),
+(60, '51 - 65', 'kurang', 2, 'Kearsipan'),
+(61, '0 - 50', 'sangat kurang', 1, 'Kearsipan'),
+(62, '86 - 100', 'sangat baik', 5, 'Loyalitas'),
+(63, '76 - 85', 'baik', 4, 'Loyalitas'),
+(64, '66 - 75', 'cukup', 3, 'Loyalitas'),
+(65, '51 - 65', 'kurang', 2, 'Loyalitas'),
+(66, '0 - 50', 'sangat kurang', 1, 'Loyalitas'),
+(67, '86 - 100', 'sangat baik', 5, 'Pelayanan'),
+(68, '76 - 85', 'baik', 4, 'Pelayanan'),
+(69, '66 - 75', 'cukup', 3, 'Pelayanan'),
+(70, '51 - 65', 'kurang', 2, 'Pelayanan'),
+(71, '0 - 50', 'sangat kurang', 1, 'Pelayanan');
+
+-- --------------------------------------------------------
+
+--
 -- Struktur dari tabel `tb_kriteria`
 --
 
@@ -470,7 +530,7 @@ INSERT INTO `tb_kriteria` (`id_kriteria`, `nama_kriteria`, `bobot`) VALUES
 
 CREATE TABLE `tb_kriteria_tendik` (
   `id_kriteria` int(20) NOT NULL,
-  `nama` varchar(128) NOT NULL,
+  `nama_kriteria` varchar(128) NOT NULL,
   `bobot` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -478,7 +538,7 @@ CREATE TABLE `tb_kriteria_tendik` (
 -- Dumping data untuk tabel `tb_kriteria_tendik`
 --
 
-INSERT INTO `tb_kriteria_tendik` (`id_kriteria`, `nama`, `bobot`) VALUES
+INSERT INTO `tb_kriteria_tendik` (`id_kriteria`, `nama_kriteria`, `bobot`) VALUES
 (1, 'Kehadiran', 15),
 (2, 'Tanggung Jawab Pekerjaan', 20),
 (3, 'Kerjasama', 20),
@@ -498,12 +558,12 @@ CREATE TABLE `tendik_peserta` (
   `nama` varchar(60) NOT NULL,
   `tendik` varchar(60) NOT NULL,
   `jurusan` varchar(60) NOT NULL,
-  `c1` double NOT NULL,
-  `c2` double NOT NULL,
-  `c3` double NOT NULL,
-  `c4` double NOT NULL,
-  `c5` double NOT NULL,
-  `c6` double NOT NULL,
+  `c1` double NOT NULL DEFAULT 1,
+  `c2` double NOT NULL DEFAULT 1,
+  `c3` double NOT NULL DEFAULT 1,
+  `c4` double NOT NULL DEFAULT 1,
+  `c5` double NOT NULL DEFAULT 1,
+  `c6` double NOT NULL DEFAULT 1,
   `vektor_s` double NOT NULL,
   `vektor_v` double NOT NULL,
   `nilai_total_saw` double NOT NULL
@@ -514,32 +574,11 @@ CREATE TABLE `tendik_peserta` (
 --
 
 INSERT INTO `tendik_peserta` (`id_tendik`, `nip`, `nama`, `tendik`, `jurusan`, `c1`, `c2`, `c3`, `c4`, `c5`, `c6`, `vektor_s`, `vektor_v`, `nilai_total_saw`) VALUES
-(1, '301', 'Sarwono', 'Administrasi Prodi', 'Teknik Informatika', 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(2, '302', 'Agus', 'Administrasi Prodi', 'Teknik Elektro', 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(3, '304', 'Dina', 'Administrasi Prodi', 'Teknik Kimia', 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(5, '305', 'Firman', 'Administrasi Prodi', 'Teknik Mesin', 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(6, '306', 'Surya', 'Administrasi Prodi', 'Teknik Industri', 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(7, '307', 'Akbar', 'Administrasi Prodi', 'Arsitektur', 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(8, '308', 'Bayu', 'Administrasi Prodi', 'Teknik Sipil', 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(9, '308', 'Gusti', 'Administrasi Prodi', 'D3OAB', 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(10, '401', 'Aryuni', 'Laboratorium', 'Teknik Informatika', 4.8333333333333, 4.4, 4, 5, 3.75, 4, 0, 0, 0),
-(11, '402', 'Iffah', 'Laboratorium', 'Teknik Informatika', 4.1666666666667, 4, 4, 4, 4, 3.4, 0, 0, 0),
-(12, '403', 'Zakiyah', 'Laboratorium', 'Teknik Informatika', 4.5, 5, 4, 4.75, 4, 4.6, 0, 0, 0),
-(13, '501', 'Amel', 'Perpustakaan', 'Perpustakaan', 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(14, '502', 'Aul', 'Perpustakaan', 'Perpustakaan', 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(15, '404', 'Agung', 'Laboratorium', 'Teknik Sipil', 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(16, '406', 'Muklas', 'Laboratorium', 'Teknik Sipil', 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(17, '407', 'Gilang', 'Laboratorium', 'Teknik Elektro', 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(18, '409', 'Idhar', 'Laboratorium', 'Teknik Elektro', 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(19, '410', 'Ukhti', 'Laboratorium', 'Teknik Kimia', 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(20, '411', 'Safira', 'Laboratorium', 'Teknik Kimia', 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(21, '412', 'Nensi', 'Laboratorium', 'Teknik Industri', 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(22, '413', 'Lita', 'Laboratorium', 'Teknik Industri', 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(23, '414', 'Aldo', 'Laboratorium', 'Teknik Mesin', 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(24, '415', 'Zainudi', 'Laboratorium', 'Teknik Mesin', 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(25, '416', 'Taslim', 'Laboratorium', 'Arsitektur', 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(26, '417', 'Rivan', 'Laboratorium', 'Arsitektur', 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(27, '418', 'Irfan', 'Laboratorium', 'D3OAB', 0, 0, 0, 0, 0, 0, 0, 0, 0);
+(10, '401', 'Aryuni', 'Laboratorium', 'Teknik Informatika', 4.8333333333333, 4.4, 4, 5, 3.75, 4, 4.2953517582253, 0.29252287540368, 0.82105978260869),
+(11, '402', 'Iffah', 'Laboratorium', 'Teknik Informatika', 4.1666666666667, 4, 4, 4, 4, 3.4, 3.9276442586467, 0.26748118821747, 0.77086956521739),
+(12, '403', 'Zakiyah', 'Laboratorium', 'Teknik Informatika', 4.5, 5, 4, 4.75, 4, 4.6, 4.4608188892193, 0.30379154993086, 0.862),
+(34, '201', 'Gilang Hafid', 'Administrasi Prodi', 'Teknik Elektro', 1, 1, 1, 1, 1, 1, 1, 0.068102193223994, 0.85),
+(35, '202', 'Rafi', 'Administrasi Prodi', 'Teknik Elektro', 1, 1, 1, 1, 1, 1, 1, 0.068102193223994, 0);
 
 --
 -- Indexes for dumped tables
@@ -606,6 +645,12 @@ ALTER TABLE `tb_hmp_kriteria`
   ADD PRIMARY KEY (`id_hmp`);
 
 --
+-- Indeks untuk tabel `tb_hmp_kriteria_tendik`
+--
+ALTER TABLE `tb_hmp_kriteria_tendik`
+  ADD PRIMARY KEY (`id_hmp`);
+
+--
 -- Indeks untuk tabel `tb_kriteria`
 --
 ALTER TABLE `tb_kriteria`
@@ -643,7 +688,7 @@ ALTER TABLE `data_lppm`
 -- AUTO_INCREMENT untuk tabel `dosen_peserta`
 --
 ALTER TABLE `dosen_peserta`
-  MODIFY `id_dosen` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `id_dosen` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT untuk tabel `nilai_dosen`
@@ -667,19 +712,25 @@ ALTER TABLE `nilai_pimpinan`
 -- AUTO_INCREMENT untuk tabel `nilai_pimpinan_tendik`
 --
 ALTER TABLE `nilai_pimpinan_tendik`
-  MODIFY `id_pimpinan` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id_pimpinan` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT untuk tabel `tb_bobot_baru_tendik`
 --
 ALTER TABLE `tb_bobot_baru_tendik`
-  MODIFY `id_bobot` int(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_bobot` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT untuk tabel `tb_hmp_kriteria`
 --
 ALTER TABLE `tb_hmp_kriteria`
   MODIFY `id_hmp` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
+
+--
+-- AUTO_INCREMENT untuk tabel `tb_hmp_kriteria_tendik`
+--
+ALTER TABLE `tb_hmp_kriteria_tendik`
+  MODIFY `id_hmp` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=72;
 
 --
 -- AUTO_INCREMENT untuk tabel `tb_kriteria`
@@ -697,7 +748,7 @@ ALTER TABLE `tb_kriteria_tendik`
 -- AUTO_INCREMENT untuk tabel `tendik_peserta`
 --
 ALTER TABLE `tendik_peserta`
-  MODIFY `id_tendik` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `id_tendik` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
