@@ -216,7 +216,7 @@
                             <?php for ($c = 1; $c <= 10; $c++) : ?>
                                 <th>C<?= $c ?></th>
                             <?php endfor; ?>
-                            <th>Total Nilai</th>
+                            <th>Vi (Total Nilai SAW)</th>
 
                         </tr>
                     </thead>

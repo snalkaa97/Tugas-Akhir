@@ -156,7 +156,7 @@
                             <th>Ranking</th>
                             <th>Nama</th>
                             <th>Vektor_S</th>
-                            <th>Vektor_V</th>
+                            <th>Vektor_V (Total Nilai WP)</th>
                         </tr>
                     </thead>
                     <tbody>

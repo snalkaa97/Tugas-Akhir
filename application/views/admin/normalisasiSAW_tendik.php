@@ -177,7 +177,7 @@
                         </tr>
                     <tbody>
                         <?php $i = 1 ?>;
-                        <?php foreach ($tendik as $d) : ?>
+                        <?php foreach ($dataTendik as $d) : ?>
                             <tr>
                                 <td><?= $i; ?></td>
                                 <td><?= $d['nama']; ?></td>
@@ -205,7 +205,7 @@
                             <?php for ($c = 1; $c <= 6; $c++) : ?>
                                 <th>C<?= $c ?></th>
                             <?php endfor; ?>
-                            <th>Total Nilai</th>
+                            <th>Vi (Total Nilai)</th>
 
                         </tr>
                     </thead>

@@ -123,7 +123,7 @@
                 </table>
             </div>
             <?php
-            $hitung = $this->db->get('dosen_peserta')->result_array();
+            //$hitung = $this->db->get('dosen_peserta')->result_array();
             foreach ($hitung as $h) {
                 $vkt_s = 1;
                 for ($c = 1; $c <= 10; $c++) {
@@ -133,7 +133,7 @@
                     //echo $h[$tb] . " dipangkat " . $arrBobotbaru[$ab] . " = " . $pgkt . "<br>";
                     $vkt_s = $vkt_s * $pgkt;
                 }
-                //echo $vkt_s. "<br>";
+                //echo $vkt_s . "<br>";
                 $this->db->where('nip', $h['nip']);
                 $this->db->update('dosen_peserta', ['vektor_s' => $vkt_s]);
             }
@@ -142,6 +142,7 @@
             foreach ($hitung as $h) {
                 $vks_s_sum = $vks_s_sum + $h['vektor_s']; //jumlah vektor_s
             }
+            //echo $vks_s_sum;
 
             foreach ($vektor as $v) {
                 $vkt_v = $v['vektor_s'] / $vks_s_sum;
@@ -156,7 +157,7 @@
                             <th>Ranking</th>
                             <th>Nama</th>
                             <th>Vektor_S</th>
-                            <th>Vektor_V</th>
+                            <th>Vektor_V (Total Nilai WP)</th>
                         </tr>
                     </thead>
                     <tbody>
