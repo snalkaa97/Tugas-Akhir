@@ -20,14 +20,12 @@
                                         <input type="text" class="form-control" id="nip" name="nip" placeholder="NIP" value="<?= set_value('nip'); ?>">
                                         <?= form_error('nip', '<small class="text-danger pl-3">', '</small>'); ?>
                                     </div>
-                                    <button type="submit" class="btn btn-primary btn-user btn-block">
+                                    <button type="submit" class="btn btn-success btn-user btn-block">
                                         Login
                                     </button>
                                     <hr>
                                 </form>
-                                <div class="text-center">
-                                    <a class="small" href="forgot-password.html">Forgot Password?</a>
-                                </div>
+
                                 <div class="text-center">
                                     <a class="small" href="<?= base_url(); ?>auth/registration_tendik">Create Pimpinan Tendik</a>
                                     <a class="small" href="<?= base_url(); ?>auth">Login</a>

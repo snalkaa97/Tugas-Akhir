@@ -12,7 +12,7 @@
                         <div class="col-lg">
                             <div class="p-5">
                                 <div class="text-center">
-                                    <h1 class="h4 text-gray-900 mb-4">Login Pages</h1>
+                                    <h1 class="h4 text-gray-900 mb-4">Login</h1>
                                 </div>
                                 <?= $this->session->flashdata('message'); ?>
                                 <form class="user" action="<?= base_url('auth') ?>" method="post">
@@ -29,14 +29,12 @@
                                             <option value="LPPM">LPPM</option>
                                         </select> <?= form_error('role', '<small class="text-danger pl-3">', '</small>'); ?>
                                     </div>
-                                    <button type="submit" class="btn btn-primary btn-user btn-block">
+                                    <button type="submit" class="btn btn-success btn-user btn-block">
                                         Login
                                     </button>
                                     <hr>
                                 </form>
-                                <div class="text-center">
-                                    <a class="small" href="forgot-password.html">Forgot Password?</a>
-                                </div>
+
                                 <div class="text-center">
                                     <a class="small" href="<?= base_url(); ?>auth/registration">Create an Account!</a><br>
                                     <a class="small" href="<?= base_url(); ?>auth/auth_tendik">Login sebagai pimpinan Tendik</a>

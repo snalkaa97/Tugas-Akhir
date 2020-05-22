@@ -2,8 +2,8 @@
 
     <!-- Page Heading -->
     <h1 class="h3 mb-4 text-gray-800"><?= $title ?></h1>
-    <div class="alert alert-info">
-        <h3>Dosen</h3>
+    <div class="alert alert-warning">
+        <h4>Dosen</h4>
     </div>
     <form action="<?= base_url('admin/index'); ?>" method="get">
         <div class="row">
@@ -29,7 +29,7 @@
 
         </div>
 
-        <?php if (empty($dosenWP)) : ?>
+        <?php if (empty($dosenWP && $dosenSAW)) : ?>
 
             <div class="alert alert-danger">
                 Data tidak ditemukan.
@@ -94,8 +94,8 @@
             </table>
         </div>
     </div>
-    <div class="alert alert-info mt-3">
-        <h3>Tendik</h3>
+    <div class="alert alert-warning mt-3">
+        <h4>Tendik</h4>
     </div>
     <form action="<?= base_url('admin'); ?>" method="get">
         <div class="row">
