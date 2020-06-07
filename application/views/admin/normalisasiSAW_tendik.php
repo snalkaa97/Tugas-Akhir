@@ -62,7 +62,7 @@
                     <td><?= $d['nama']; ?></td>
                     <td><?= $d['jurusan']; ?></td>
                     <td><?= $d['tendik']; ?></td>
-                    <td><?= $d['c1']; ?></td>
+                    <td><?= $d['c1_saw']; ?></td>
                     <td><?= $d['c2']; ?></td>
                     <td><?= $d['c3']; ?></td>
                     <td><?= $d['c4']; ?></td>
@@ -157,7 +157,7 @@
                         <tbody>
                             <?php foreach ($min as $s) : ?>
                                 <tr>
-                                    <td><?= $minc1 = $s['c1']; ?></td>
+                                    <td><?= $minc1 = $s['c1_saw']; ?></td>
                                 </tr>
                             <?php endforeach; ?>
                         </tbody>
@@ -181,7 +181,7 @@
                             <tr>
                                 <td><?= $i; ?></td>
                                 <td><?= $d['nama']; ?></td>
-                                <td><?= $c1 = round($minc1 / $d['c1'], 4); ?></td>
+                                <td><?= $c1 = round($minc1 / $d['c1_saw'], 4); ?></td>
                                 <td><?= $c2 = round($d['c2'] / $maxc2, 4); ?></td>
                                 <td><?= $c3 = round($d['c3'] / $maxc3, 4); ?></td>
                                 <td><?= $c3 = round($d['c4'] / $maxc4, 4); ?></td>
@@ -234,12 +234,12 @@
                         foreach ($rank as $r) : ?>
                             <tr>
                                 <?php
-                                $h1 = $r['b1'] * ($r['c1'] / $minc1);
-                                $h2 = $r['b2'] * ($r['c2'] / $maxc2);
-                                $h3 = $r['b3'] * ($r['c3'] / $maxc3);
-                                $h4 = $r['b4'] * ($r['c4'] / $maxc4);
-                                $h5 = $r['b5'] * ($r['c5'] / $maxc5);
-                                $h6 = $r['b6'] * ($r['c6'] / $maxc6);
+                                $h1 = $r['b1'] * (round($minc1 / $r['c1_saw'], 4));
+                                $h2 = $r['b2'] * (round($r['c2'] / $maxc2, 4));
+                                $h3 = $r['b3'] * (round($r['c3'] / $maxc3, 4));
+                                $h4 = $r['b4'] * (round($r['c4'] / $maxc4, 4));
+                                $h5 = $r['b5'] * (round($r['c5'] / $maxc5, 4));
+                                $h6 = $r['b6'] * (round($r['c6'] / $maxc6, 4));
 
                                 $total = $h1 + $h2 + $h3 + $h5 + $h6;
                                 $this->db->where('nip', $r['nip']);

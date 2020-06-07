@@ -125,72 +125,102 @@ class Lppm extends CI_Controller
 
                 if ($jml_pn >= 4) {
                     $c5 = 5;
+                    $c5_saw = 1;
                 } else if ($jml_pn == 3) {
                     $c5 = 4;
+                    $c5_saw = 2;
                 } else if ($jml_pn == 2) {
                     $c5 = 3;
+                    $c5_saw = 3;
                 } else if ($jml_pn == 1) {
                     $c5 = 2;
+                    $c5_saw = 4;
                 } else if ($jml_pn == 0) {
                     $c5 = 1;
+                    $c5_saw = 5;
                 } else {
+                    $c5_saw = 5;
                     $c5 = 1;
                 }
 
                 if ($jml_pl >= 4) {
                     $c7 = 5;
+                    $c7_saw = 1;
                 } else if ($jml_pl == 3) {
                     $c7 = 4;
+                    $c7_saw = 2;
                 } else if ($jml_pl == 2) {
                     $c7 = 3;
+                    $c7_saw = 3;
                 } else if ($jml_pl == 1) {
                     $c7 = 2;
+                    $c7_saw = 4;
                 } else if ($jml_pl == 0) {
                     $c7 = 1;
+                    $c7_saw = 5;
                 } else {
                     $c7 = 1;
+                    $c7_saw = 5;
                 }
 
                 if ($jml_sm >= 4) {
                     $c8 = 5;
+                    $c8_saw = 1;
                 } else if ($jml_sm == 3) {
                     $c8 = 4;
+                    $c8_saw = 2;
                 } else if ($jml_sm == 2) {
                     $c8 = 3;
+                    $c8_saw = 3;
                 } else if ($jml_sm == 1) {
                     $c8 = 2;
+                    $c8_saw = 4;
                 } else if ($jml_sm == 0) {
                     $c8 = 1;
+                    $c8_saw = 5;
                 } else {
+                    $c8_saw = 5;
                     $c8 = 1;
                 }
 
                 if ($jml_pg >= 4) {
                     $c9 = 5;
+                    $c9_saw = 1;
                 } else if ($jml_pg == 3) {
                     $c9 = 4;
+                    $c9_saw = 2;
                 } else if ($jml_pg == 2) {
                     $c9 = 3;
+                    $c9_saw = 3;
                 } else if ($jml_pg == 1) {
-                    $c9 = 2;
+                    $c9 = 1;
+                    $c9_saw = 4;
                 } else if ($jml_pg == 0) {
                     $c9 = 1;
+                    $c9_saw = 5;
                 } else {
                     $c9 = 1;
+                    $c9_saw = 5;
                 }
 
                 if ($jml_jia >= 1) {
                     $c6 = 5;
+                    $c6_saw = 1;
                 } else if ($jml_jna >= 3) {
                     $c6 = 4;
+                    $c6_saw = 2;
                 } else if ($jml_jna < 3 && $jml_jna > 0 || $jml_ji >= 1 || $jml_jn >= 3) {
                     $c6 = 3;
+                    $c6_saw = 3;
                 } else if ($jml_jn < 3 && $jml_jn > 0 || $jml_jl >= 3) {
                     $c6 = 2;
+                    $c6_saw = 4;
                 } else if ($jml_jl < 3 && $jml_jl > 0) {
                     $c6 = 1;
+                    $c6_saw = 5;
                 } else {
                     $c6 = 1;
+                    $c6_saw = 5;
                 }
 
                 $nilai = [
@@ -198,7 +228,12 @@ class Lppm extends CI_Controller
                     'c6' => $c6,
                     'c7' => $c7,
                     'c8' => $c8,
-                    'c9' => $c9
+                    'c9' => $c9,
+                    'c5_saw' => $c5_saw,
+                    'c6_saw' => $c6_saw,
+                    'c7_saw' => $c7_saw,
+                    'c8_saw' => $c8_saw,
+                    'c9_saw' => $c9_saw
                 ];
                 $this->db->where('id_dosen', $id_dosen);
                 $this->db->update('dosen_peserta', $nilai);
