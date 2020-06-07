@@ -77,11 +77,11 @@
                 <h5 class="alert alert-info">A. Kehadiran</h5>
                 <h5>Kehadiran min 40 jam/minggu</h5>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="q1" value="1" <?php if ($q1 == 5) echo "checked"; ?>>
+                    <input class="form-check-input" type="radio" name="q1" value="5" <?php if ($q1 == 5) echo "checked"; ?>>
                     <label class="form-check-label">Sangat Baik</label>
                 </div>
                 <div class=" form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="q1" value="2" <?php if ($q1 == 4) echo "checked"; ?>>
+                    <input class="form-check-input" type="radio" name="q1" value="4" <?php if ($q1 == 4) echo "checked"; ?>>
                     <label class="form-check-label">Baik</label>
                 </div>
                 <div class=" form-check form-check-inline">
@@ -89,20 +89,20 @@
                     <label class="form-check-label">Cukup</label>
                 </div>
                 <div class=" form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="q1" value="4" <?php if ($q1 == 2) echo "checked"; ?>>
+                    <input class="form-check-input" type="radio" name="q1" value="2" <?php if ($q1 == 2) echo "checked"; ?>>
                     <label class="form-check-label">Kurang</label>
                 </div>
                 <div class=" form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="q1" value="5" <?php if ($q1 == 1) echo "checked"; ?>>
+                    <input class="form-check-input" type="radio" name="q1" value="1" <?php if ($q1 == 1) echo "checked"; ?>>
                     <label class="form-check-label">Sangat Kurang</label>
                 </div>
                 <h5 class="mt-4">Masuk tepat waktu dan pulang tidak lebih awal</h5>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="q2" value="1" <?php if ($q2 == 5) echo "checked"; ?>>
+                    <input class="form-check-input" type="radio" name="q2" value="5" <?php if ($q2 == 5) echo "checked"; ?>>
                     <label class="form-check-label">Sangat Baik</label>
                 </div>
                 <div class=" form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="q2" value="2" <?php if ($q2 == 4) echo "checked"; ?>>
+                    <input class="form-check-input" type="radio" name="q2" value="4" <?php if ($q2 == 4) echo "checked"; ?>>
                     <label class="form-check-label">Baik</label>
                 </div>
                 <div class=" form-check form-check-inline">
@@ -110,20 +110,20 @@
                     <label class="form-check-label">Cukup</label>
                 </div>
                 <div class=" form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="q2" value="4" <?php if ($q2 == 2) echo "checked"; ?>>
+                    <input class="form-check-input" type="radio" name="q2" value="2" <?php if ($q2 == 2) echo "checked"; ?>>
                     <label class="form-check-label">Kurang</label>
                 </div>
                 <div class=" form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="q2" value="5" <?php if ($q2 == 1) echo "checked"; ?>>
+                    <input class="form-check-input" type="radio" name="q2" value="1" <?php if ($q2 == 1) echo "checked"; ?>>
                     <label class="form-check-label">Sangat Kurang</label>
                 </div>
                 <h5 class="mt-4">Tidak menghilang di jam kerja dalam waktu lama</h5>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="q3" value="1" <?php if ($q3 == 5) echo "checked"; ?>>
+                    <input class="form-check-input" type="radio" name="q3" value="5" <?php if ($q3 == 5) echo "checked"; ?>>
                     <label class="form-check-label">Sangat Baik</label>
                 </div>
                 <div class=" form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="q3" value="2" <?php if ($q3 == 4) echo "checked"; ?>>
+                    <input class="form-check-input" type="radio" name="q3" value="4" <?php if ($q3 == 4) echo "checked"; ?>>
                     <label class="form-check-label">Baik</label>
                 </div>
                 <div class=" form-check form-check-inline">
@@ -131,20 +131,20 @@
                     <label class="form-check-label">Cukup</label>
                 </div>
                 <div class=" form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="q3" value="4" <?php if ($q3 == 2) echo "checked"; ?>>
+                    <input class="form-check-input" type="radio" name="q3" value="2" <?php if ($q3 == 2) echo "checked"; ?>>
                     <label class="form-check-label">Kurang</label>
                 </div>
                 <div class=" form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="q3" value="5" <?php if ($q3 == 1) echo "checked"; ?>>
+                    <input class="form-check-input" type="radio" name="q3" value="1" <?php if ($q3 == 1) echo "checked"; ?>>
                     <label class="form-check-label">Sangat Kurang</label>
                 </div>
                 <h5 class="mt-4">Kehadiran mengikuti senam</h5>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="q4" value="1" <?php if ($q4 == 5) echo "checked"; ?>>
+                    <input class="form-check-input" type="radio" name="q4" value="5" <?php if ($q4 == 5) echo "checked"; ?>>
                     <label class="form-check-label">Sangat Baik</label>
                 </div>
                 <div class=" form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="q4" value="2" <?php if ($q4 == 4) echo "checked"; ?>>
+                    <input class="form-check-input" type="radio" name="q4" value="4" <?php if ($q4 == 4) echo "checked"; ?>>
                     <label class="form-check-label">Baik</label>
                 </div>
                 <div class=" form-check form-check-inline">
@@ -152,20 +152,20 @@
                     <label class="form-check-label">Cukup</label>
                 </div>
                 <div class=" form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="q4" value="4" <?php if ($q4 == 2) echo "checked"; ?>>
+                    <input class="form-check-input" type="radio" name="q4" value="2" <?php if ($q4 == 2) echo "checked"; ?>>
                     <label class="form-check-label">Kurang</label>
                 </div>
                 <div class=" form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="q4" value="5" <?php if ($q4 == 1) echo "checked"; ?>>
+                    <input class="form-check-input" type="radio" name="q4" value="1" <?php if ($q4 == 1) echo "checked"; ?>>
                     <label class="form-check-label">Sangat Kurang</label>
                 </div>
                 <h5 class="mt-4">Kehadiran mengikuti pengajian</h5>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="q5" value="1" <?php if ($q5 == 5) echo "checked"; ?>>
+                    <input class="form-check-input" type="radio" name="q5" value="5" <?php if ($q5 == 5) echo "checked"; ?>>
                     <label class="form-check-label">Sangat Baik</label>
                 </div>
                 <div class=" form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="q5" value="2" <?php if ($q5 == 4) echo "checked"; ?>>
+                    <input class="form-check-input" type="radio" name="q5" value="4" <?php if ($q5 == 4) echo "checked"; ?>>
                     <label class="form-check-label">Baik</label>
                 </div>
                 <div class=" form-check form-check-inline">
@@ -173,20 +173,20 @@
                     <label class="form-check-label">Cukup</label>
                 </div>
                 <div class=" form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="q5" value="4" <?php if ($q5 == 2) echo "checked"; ?>>
+                    <input class="form-check-input" type="radio" name="q5" value="2" <?php if ($q5 == 2) echo "checked"; ?>>
                     <label class="form-check-label">Kurang</label>
                 </div>
                 <div class=" form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="q5" value="5" <?php if ($q5 == 1) echo "checked"; ?>>
+                    <input class="form-check-input" type="radio" name="q5" value="1" <?php if ($q5 == 1) echo "checked"; ?>>
                     <label class="form-check-label">Sangat Kurang</label>
                 </div>
                 <h5 class="mt-4">Kehadiran mengikuti rapat</h5>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="q6" value="1" <?php if ($q6 == 5) echo "checked"; ?>>
+                    <input class="form-check-input" type="radio" name="q6" value="5" <?php if ($q6 == 5) echo "checked"; ?>>
                     <label class="form-check-label">Sangat Baik</label>
                 </div>
                 <div class=" form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="q6" value="2" <?php if ($q6 == 4) echo "checked"; ?>>
+                    <input class="form-check-input" type="radio" name="q6" value="4" <?php if ($q6 == 4) echo "checked"; ?>>
                     <label class="form-check-label">Baik</label>
                 </div>
                 <div class=" form-check form-check-inline">
@@ -194,11 +194,11 @@
                     <label class="form-check-label">Cukup</label>
                 </div>
                 <div class=" form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="q6" value="4" <?php if ($q6 == 2) echo "checked"; ?>>
+                    <input class="form-check-input" type="radio" name="q6" value="2" <?php if ($q6 == 2) echo "checked"; ?>>
                     <label class="form-check-label">Kurang</label>
                 </div>
                 <div class=" form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="q6" value="5" <?php if ($q6 == 1) echo "checked"; ?>>
+                    <input class="form-check-input" type="radio" name="q6" value="1" <?php if ($q6 == 1) echo "checked"; ?>>
                     <label class="form-check-label">Sangat Kurang</label>
                 </div>
 
@@ -731,22 +731,17 @@
 
 
 
+        <div class="row justify-content-center m-5">
+            <input type="submit" name="input" value="Input" class="btn btn-outline-primary">
+        </div>
 
 
-</div>
-<div class="col-lg-6">
-
-</div>
-</div>
-
-<div class="row justify-content-center m-5">
-    <input type="submit" name="input" value="Input" class="btn btn-outline-primary">
-</div>
-
-</form>
+    </form>
 
 </div>
-<!-- /.container-fluid -->
 
-</div>
+
+
+
+
 <!-- End of Main Content -->
