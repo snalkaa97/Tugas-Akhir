@@ -96,7 +96,7 @@ class Mahasiswa extends CI_Controller
         $q19 = $this->input->post('q19');
         $q20 = $this->input->post('q20');
 
-        $rata = ($q1 + $q2 + $q3 + $q4 + $q5 + $q6 + $q7 + $q8 + $q9 + $q10 + $q11 + $q12 + $q13 + $q14 + $q15 + $q16 + $q17 + $q18 + $q19 + $q20) / 5;
+        $rata = ($q1 + $q2 + $q3 + $q4 + $q5 + $q6 + $q7 + $q8 + $q9 + $q10 + $q11 + $q12 + $q13 + $q14 + $q15 + $q16 + $q17 + $q18 + $q19 + $q20) / 20;
 
         //var_dump($rata);
 

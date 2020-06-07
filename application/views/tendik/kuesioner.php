@@ -585,10 +585,6 @@
                     <label class="form-check-label">Cukup</label>
                 </div>
                 <div class=" form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="q23" value="3" <?php if ($q23 == 3) echo "checked"; ?>>
-                    <label class="form-check-label">Cukup</label>
-                </div>
-                <div class=" form-check form-check-inline">
                     <input class="form-check-input" type="radio" name="q23" value="2" <?php if ($q23 == 2) echo "checked"; ?>>
                     <label class="form-check-label">Kurang</label>
                 </div>

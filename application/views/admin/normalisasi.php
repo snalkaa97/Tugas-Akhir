@@ -167,8 +167,8 @@
                             <tr>
                                 <td><?= $rk ?></td>
                                 <td><?= $v['nama']; ?></td>
-                                <td><?= $v['vektor_s']; ?></td>
-                                <td><?= $v['vektor_v']; ?></td>
+                                <td><?= round($v['vektor_s'], 4); ?></td>
+                                <td><?= round($v['vektor_v'], 4); ?></td>
                             </tr>
                         <?php $rk++;
                         endforeach; ?>

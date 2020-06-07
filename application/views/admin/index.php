@@ -58,7 +58,7 @@
                             <td class="text-center"><?= $rk ?></td>
                             <td><?= $v['nama']; ?></td>
                             <td class="text-center"><?= $v['jurusan']; ?></td>
-                            <td class="text-center"><?= $v['vektor_v']; ?></td>
+                            <td class="text-center"><?= round($v['vektor_v'], 4); ?></td>
                         </tr>
                     <?php $rk++;
                     endforeach; ?>
@@ -86,7 +86,7 @@
                             <td class="text-center"><?= $rk ?></td>
                             <td><?= $v['nama']; ?></td>
                             <td class="text-center"><?= $v['jurusan']; ?></td>
-                            <td class="text-center"><?= $v['total_nilai_saw']; ?></td>
+                            <td class="text-center"><?= round($v['total_nilai_saw'], 4); ?></td>
                         </tr>
                     <?php $rk++;
                     endforeach; ?>
@@ -160,7 +160,7 @@
                             <td><?= $v['nama']; ?></td>
                             <td class="text-center"><?= $v['jurusan']; ?></td>
                             <td class="text-center"><?= $v['tendik']; ?></td>
-                            <td class="text-center"><?= $v['vektor_v']; ?></td>
+                            <td class="text-center"><?= round($v['vektor_v'], 4); ?></td>
                         </tr>
                     <?php $rk++;
                     endforeach; ?>
@@ -190,7 +190,7 @@
                             <td><?= $v['nama']; ?></td>
                             <td class="text-center"><?= $v['jurusan']; ?></td>
                             <td class="text-center"><?= $v['tendik']; ?></td>
-                            <td class="text-center"><?= $v['nilai_total_saw']; ?></td>
+                            <td class="text-center"><?= round($v['nilai_total_saw'], 4); ?></td>
                         </tr>
                     <?php $rk++;
                     endforeach; ?>
