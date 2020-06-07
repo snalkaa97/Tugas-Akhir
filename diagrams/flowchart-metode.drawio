@@ -1,0 +1,128 @@
+<mxfile host="" modified="2020-06-07T04:49:22.552Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Code/1.45.0 Chrome/78.0.3904.130 Electron/7.2.4 Safari/537.36" etag="wNxgOwOSI05AMKiCxpsK" version="13.1.3" pages="2">
+    <diagram id="oQlsDqUnoRqt1SnFWlzI" name="WP">
+        <mxGraphModel dx="888" dy="670" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="6" target="7" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="6" value="&lt;font style=&quot;font-size: 14px&quot;&gt;start&lt;/font&gt;" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.start_1;whiteSpace=wrap;" parent="1" vertex="1">
+                    <mxGeometry x="375" y="20" width="100" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="13" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="7" target="12" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="7" value="&lt;font style=&quot;font-size: 13px&quot;&gt;Representasi Masalah&lt;br&gt;Menentukan Alternatif Ai,&lt;br&gt;i = 1,2,3,..n&lt;br&gt;Menentukan Ci&lt;/font&gt;" style="shape=parallelogram;html=1;strokeWidth=2;perimeter=parallelogramPerimeter;whiteSpace=wrap;rounded=1;arcSize=12;size=0.23;" parent="1" vertex="1">
+                    <mxGeometry x="309" y="120" width="232" height="120" as="geometry"/>
+                </mxCell>
+                <mxCell id="16" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="10" target="15">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="10" value="&lt;span style=&quot;font-size: 13px&quot;&gt;Menentukan rating kecocokan&lt;br&gt;setiap alternatif pada setiap&amp;nbsp;&lt;br&gt;kriteria yaitu nilai 1-5&lt;br&gt;(sangat baik - sangat kurang)&lt;br&gt;&lt;/span&gt;" style="shape=parallelogram;html=1;strokeWidth=2;perimeter=parallelogramPerimeter;whiteSpace=wrap;rounded=1;arcSize=12;size=0.23;" parent="1" vertex="1">
+                    <mxGeometry x="290" y="410" width="271" height="150" as="geometry"/>
+                </mxCell>
+                <mxCell id="14" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="12" target="10" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="12" value="&lt;font style=&quot;font-size: 13px&quot;&gt;Menentukan Nilai Bobot&lt;br&gt;(W) setiap kriteria&lt;br&gt;&lt;/font&gt;" style="shape=parallelogram;html=1;strokeWidth=2;perimeter=parallelogramPerimeter;whiteSpace=wrap;rounded=1;arcSize=12;size=0.23;" parent="1" vertex="1">
+                    <mxGeometry x="320" y="280" width="211" height="90" as="geometry"/>
+                </mxCell>
+                <mxCell id="21" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="15" target="20">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="15" value="&lt;font style=&quot;font-size: 13px&quot;&gt;Memperbaiki Nilai bobot agar total&amp;nbsp;&lt;span style=&quot;text-align: justify&quot;&gt;&lt;span lang=&quot;EN-US&quot; style=&quot;line-height: 150% ; font-family: &amp;#34;times new roman&amp;#34; , serif&quot;&gt;&lt;font style=&quot;font-size: 13px&quot;&gt;&lt;b&gt;∑&lt;/b&gt;wj = 1, dengan&lt;br&gt;&lt;/font&gt;&lt;/span&gt;&lt;/span&gt;cara wj = wj /&amp;nbsp;&lt;span style=&quot;text-align: justify&quot;&gt;&lt;span lang=&quot;EN-US&quot; style=&quot;line-height: 150% ; font-family: &amp;#34;times new roman&amp;#34; , serif&quot;&gt;&lt;font style=&quot;font-size: 13px&quot;&gt;&lt;b&gt;∑&lt;/b&gt;wj&lt;/font&gt;&lt;/span&gt;&lt;/span&gt;&lt;/font&gt;&lt;p class=&quot;MsoNormal&quot; style=&quot;text-align: justify ; line-height: 150%&quot;&gt;&lt;b&gt;&lt;span lang=&quot;EN-US&quot; style=&quot;font-size: 12.0pt ; line-height: 150% ; font-family: &amp;#34;times new roman&amp;#34; , serif&quot;&gt;&lt;/span&gt;&lt;/b&gt;&lt;/p&gt;" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" vertex="1" parent="1">
+                    <mxGeometry x="270" y="600" width="310" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="23" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="20" target="22">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="20" value="&lt;font style=&quot;font-size: 13px&quot;&gt;Proses Normalisasi (vektor S) dimana rating setiap atribut&lt;br&gt;harus dipangkatkan dulu dengan bobot atribut yang bersangkutan lalu kemudian dihubungkan dengan perkalian&lt;/font&gt;&lt;br&gt;&lt;p class=&quot;MsoNormal&quot; style=&quot;text-align: justify ; line-height: 150%&quot;&gt;&lt;b&gt;&lt;span lang=&quot;EN-US&quot; style=&quot;font-size: 12.0pt ; line-height: 150% ; font-family: &amp;#34;times new roman&amp;#34; , serif&quot;&gt;&lt;/span&gt;&lt;/b&gt;&lt;/p&gt;" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" vertex="1" parent="1">
+                    <mxGeometry x="208" y="690" width="434" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="26" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="22" target="25">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="22" value="&lt;span style=&quot;font-size: 13px&quot;&gt;Hasil vektor V didapat hasil proses normalisasi setiap alternatif dibagi dengan penjumlahan hasil proses normalisasi secara keseluruhan&lt;/span&gt;&lt;br&gt;&lt;p class=&quot;MsoNormal&quot; style=&quot;text-align: justify ; line-height: 150%&quot;&gt;&lt;b&gt;&lt;span lang=&quot;EN-US&quot; style=&quot;font-size: 12.0pt ; line-height: 150% ; font-family: &amp;#34;times new roman&amp;#34; , serif&quot;&gt;&lt;/span&gt;&lt;/b&gt;&lt;/p&gt;" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" vertex="1" parent="1">
+                    <mxGeometry x="208" y="800" width="434" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="28" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="25" target="27">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="25" value="&lt;font style=&quot;font-size: 13px&quot;&gt;Hasil Perangkingan dengan Metode WP&lt;/font&gt;" style="shape=parallelogram;html=1;strokeWidth=2;perimeter=parallelogramPerimeter;whiteSpace=wrap;rounded=1;arcSize=12;size=0.23;" vertex="1" parent="1">
+                    <mxGeometry x="251" y="910" width="348" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="27" value="&lt;font style=&quot;font-size: 14px&quot;&gt;start&lt;/font&gt;" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.start_1;whiteSpace=wrap;" vertex="1" parent="1">
+                    <mxGeometry x="375" y="1010" width="100" height="60" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+    <diagram id="ZIlg1eUpwUPV2wBPLPiq" name="SAW">
+        <mxGraphModel dx="888" dy="670" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+            <root>
+                <mxCell id="FIEZt6eCMPMVPYwZEZcH-0"/>
+                <mxCell id="FIEZt6eCMPMVPYwZEZcH-1" parent="FIEZt6eCMPMVPYwZEZcH-0"/>
+                <mxCell id="2bu8LRcdmDyVJQ7SODG0-0" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="FIEZt6eCMPMVPYwZEZcH-1" source="2bu8LRcdmDyVJQ7SODG0-1" target="2bu8LRcdmDyVJQ7SODG0-3">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="2bu8LRcdmDyVJQ7SODG0-1" value="&lt;font style=&quot;font-size: 14px&quot;&gt;start&lt;/font&gt;" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.start_1;whiteSpace=wrap;" vertex="1" parent="FIEZt6eCMPMVPYwZEZcH-1">
+                    <mxGeometry x="375" y="20" width="100" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="2bu8LRcdmDyVJQ7SODG0-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="FIEZt6eCMPMVPYwZEZcH-1" source="2bu8LRcdmDyVJQ7SODG0-3" target="2bu8LRcdmDyVJQ7SODG0-7">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="2bu8LRcdmDyVJQ7SODG0-3" value="&lt;font style=&quot;font-size: 13px&quot;&gt;Representasi Masalah&lt;br&gt;Menentukan Alternatif Ai,&lt;br&gt;i = 1,2,3,..n&lt;br&gt;Menentukan Ci&lt;/font&gt;" style="shape=parallelogram;html=1;strokeWidth=2;perimeter=parallelogramPerimeter;whiteSpace=wrap;rounded=1;arcSize=12;size=0.23;" vertex="1" parent="FIEZt6eCMPMVPYwZEZcH-1">
+                    <mxGeometry x="309" y="120" width="232" height="120" as="geometry"/>
+                </mxCell>
+                <mxCell id="2bu8LRcdmDyVJQ7SODG0-4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="FIEZt6eCMPMVPYwZEZcH-1" source="2bu8LRcdmDyVJQ7SODG0-5" target="2bu8LRcdmDyVJQ7SODG0-9">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="2bu8LRcdmDyVJQ7SODG0-5" value="&lt;span style=&quot;font-size: 13px&quot;&gt;Menentukan rating kecocokan&lt;br&gt;setiap alternatif pada setiap&amp;nbsp;&lt;br&gt;kriteria yaitu nilai 1-5&lt;br&gt;(sangat baik - sangat kurang)&lt;br&gt;&lt;/span&gt;" style="shape=parallelogram;html=1;strokeWidth=2;perimeter=parallelogramPerimeter;whiteSpace=wrap;rounded=1;arcSize=12;size=0.23;" vertex="1" parent="FIEZt6eCMPMVPYwZEZcH-1">
+                    <mxGeometry x="290" y="410" width="271" height="150" as="geometry"/>
+                </mxCell>
+                <mxCell id="2bu8LRcdmDyVJQ7SODG0-6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="FIEZt6eCMPMVPYwZEZcH-1" source="2bu8LRcdmDyVJQ7SODG0-7" target="2bu8LRcdmDyVJQ7SODG0-5">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="2bu8LRcdmDyVJQ7SODG0-7" value="&lt;font style=&quot;font-size: 13px&quot;&gt;Menentukan Nilai Bobot&lt;br&gt;(W) setiap kriteria&lt;br&gt;&lt;/font&gt;" style="shape=parallelogram;html=1;strokeWidth=2;perimeter=parallelogramPerimeter;whiteSpace=wrap;rounded=1;arcSize=12;size=0.23;" vertex="1" parent="FIEZt6eCMPMVPYwZEZcH-1">
+                    <mxGeometry x="320" y="280" width="211" height="90" as="geometry"/>
+                </mxCell>
+                <mxCell id="2bu8LRcdmDyVJQ7SODG0-8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="FIEZt6eCMPMVPYwZEZcH-1" source="2bu8LRcdmDyVJQ7SODG0-9" target="2bu8LRcdmDyVJQ7SODG0-11">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="2bu8LRcdmDyVJQ7SODG0-9" value="&lt;font style=&quot;font-size: 13px&quot;&gt;Memperbaiki Nilai bobot agar total&amp;nbsp;&lt;span style=&quot;text-align: justify&quot;&gt;&lt;span lang=&quot;EN-US&quot; style=&quot;line-height: 150% ; font-family: &amp;#34;times new roman&amp;#34; , serif&quot;&gt;&lt;font style=&quot;font-size: 13px&quot;&gt;&lt;b&gt;∑&lt;/b&gt;wj = 1, dengan&lt;br&gt;&lt;/font&gt;&lt;/span&gt;&lt;/span&gt;cara wj = wj /&amp;nbsp;&lt;span style=&quot;text-align: justify&quot;&gt;&lt;span lang=&quot;EN-US&quot; style=&quot;line-height: 150% ; font-family: &amp;#34;times new roman&amp;#34; , serif&quot;&gt;&lt;font style=&quot;font-size: 13px&quot;&gt;&lt;b&gt;∑&lt;/b&gt;wj&lt;/font&gt;&lt;/span&gt;&lt;/span&gt;&lt;/font&gt;&lt;p class=&quot;MsoNormal&quot; style=&quot;text-align: justify ; line-height: 150%&quot;&gt;&lt;b&gt;&lt;span lang=&quot;EN-US&quot; style=&quot;font-size: 12.0pt ; line-height: 150% ; font-family: &amp;#34;times new roman&amp;#34; , serif&quot;&gt;&lt;/span&gt;&lt;/b&gt;&lt;/p&gt;" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" vertex="1" parent="FIEZt6eCMPMVPYwZEZcH-1">
+                    <mxGeometry x="270" y="600" width="310" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="2bu8LRcdmDyVJQ7SODG0-10" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="FIEZt6eCMPMVPYwZEZcH-1" source="2bu8LRcdmDyVJQ7SODG0-11" target="2bu8LRcdmDyVJQ7SODG0-13">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="2bu8LRcdmDyVJQ7SODG0-11" value="&lt;span style=&quot;font-size: 13px&quot;&gt;Menentukan Nilai max dan min setiap rating kecocokan pada setiap kriteria&amp;nbsp;&lt;/span&gt;&lt;br&gt;&lt;p class=&quot;MsoNormal&quot; style=&quot;text-align: justify ; line-height: 150%&quot;&gt;&lt;b&gt;&lt;span lang=&quot;EN-US&quot; style=&quot;font-size: 12.0pt ; line-height: 150% ; font-family: &amp;#34;times new roman&amp;#34; , serif&quot;&gt;&lt;/span&gt;&lt;/b&gt;&lt;/p&gt;" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" vertex="1" parent="FIEZt6eCMPMVPYwZEZcH-1">
+                    <mxGeometry x="208" y="690" width="434" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="2bu8LRcdmDyVJQ7SODG0-12" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="FIEZt6eCMPMVPYwZEZcH-1" source="2bu8LRcdmDyVJQ7SODG0-13">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="425" y="910" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="2bu8LRcdmDyVJQ7SODG0-13" value="&lt;span style=&quot;font-size: 13px&quot;&gt;Proses normalisasi Matriks, apabila terdapat nilai max = Xij / max Xij. dan jika min = min Xij / Xij&amp;nbsp;&lt;/span&gt;&lt;br&gt;&lt;p class=&quot;MsoNormal&quot; style=&quot;text-align: justify ; line-height: 150%&quot;&gt;&lt;b&gt;&lt;span lang=&quot;EN-US&quot; style=&quot;font-size: 12.0pt ; line-height: 150% ; font-family: &amp;#34;times new roman&amp;#34; , serif&quot;&gt;&lt;/span&gt;&lt;/b&gt;&lt;/p&gt;" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" vertex="1" parent="FIEZt6eCMPMVPYwZEZcH-1">
+                    <mxGeometry x="208" y="800" width="434" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="2bu8LRcdmDyVJQ7SODG0-16" value="&lt;font style=&quot;font-size: 14px&quot;&gt;start&lt;/font&gt;" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.start_1;whiteSpace=wrap;" vertex="1" parent="FIEZt6eCMPMVPYwZEZcH-1">
+                    <mxGeometry x="375" y="1120" width="100" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="VgVm0K7PTMV_Amyo8I8w-3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="FIEZt6eCMPMVPYwZEZcH-1" source="2bu8LRcdmDyVJQ7SODG0-17" target="VgVm0K7PTMV_Amyo8I8w-0">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="2bu8LRcdmDyVJQ7SODG0-17" value="&lt;span style=&quot;font-size: 13px&quot;&gt;Proses Perangkingan Vi dengan setiap bobot dikalikan setiap rating kecocokan lalu dijumlahkan&lt;/span&gt;&lt;br&gt;&lt;p class=&quot;MsoNormal&quot; style=&quot;text-align: justify ; line-height: 150%&quot;&gt;&lt;b&gt;&lt;span lang=&quot;EN-US&quot; style=&quot;font-size: 12.0pt ; line-height: 150% ; font-family: &amp;#34;times new roman&amp;#34; , serif&quot;&gt;&lt;/span&gt;&lt;/b&gt;&lt;/p&gt;" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" vertex="1" parent="FIEZt6eCMPMVPYwZEZcH-1">
+                    <mxGeometry x="208" y="910" width="434" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="VgVm0K7PTMV_Amyo8I8w-4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="FIEZt6eCMPMVPYwZEZcH-1" source="VgVm0K7PTMV_Amyo8I8w-0" target="2bu8LRcdmDyVJQ7SODG0-16">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="VgVm0K7PTMV_Amyo8I8w-0" value="&lt;font style=&quot;font-size: 13px&quot;&gt;Hasil Perangkingan dengan Metode SAW&lt;/font&gt;" style="shape=parallelogram;html=1;strokeWidth=2;perimeter=parallelogramPerimeter;whiteSpace=wrap;rounded=1;arcSize=12;size=0.23;" vertex="1" parent="FIEZt6eCMPMVPYwZEZcH-1">
+                    <mxGeometry x="251" y="1020" width="348" height="60" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>
