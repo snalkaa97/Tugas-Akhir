@@ -65,44 +65,46 @@ class Tendik extends CI_Controller
         $tendik = $data['user']['tendik'];
 
         $q1 = $this->input->post('q1');
-        if ($q1 = 5) {
+        if ($q1 == 5) {
             $q1_saw = 1;
-        } else if ($q1 = 4) {
+        } else if ($q1 == 4) {
             $q1_saw = 2;
-        } else if ($q1 = 3) {
+        } else if ($q1 == 3) {
             $q1_saw = 3;
-        } else if ($q1 = 2) {
+        } else if ($q1 == 2) {
             $q1_saw = 4;
-        } else if ($q1 = 1) {
+        } else if ($q1 == 1) {
             $q1_saw = 5;
         } else {
             $q1_saw = 5;
         }
-        //var_dump($q1);
+
+
         $q2 = $this->input->post('q2');
-        if ($q2 = 5) {
+        if ($q2 == 5) {
             $q2_saw = 1;
-        } else if ($q2 = 4) {
+        } else if ($q2 == 4) {
             $q2_saw = 2;
-        } else if ($q2 = 3) {
+        } else if ($q2 == 3) {
             $q2_saw = 3;
-        } else if ($q2 = 2) {
+        } else if ($q2 == 2) {
             $q2_saw = 4;
-        } else if ($q2 = 1) {
+        } else if ($q2 == 1) {
             $q2_saw = 5;
         } else {
             $q2_saw = 5;
         }
+
         $q3 = $this->input->post('q3');
-        if ($q3 = 5) {
+        if ($q3 == 5) {
             $q3_saw = 1;
-        } else if ($q3 = 4) {
+        } else if ($q3 == 4) {
             $q3_saw = 2;
-        } else if ($q3 = 3) {
+        } else if ($q3 == 3) {
             $q3_saw = 3;
-        } else if ($q3 = 2) {
+        } else if ($q3 == 2) {
             $q3_saw = 4;
-        } else if ($q3 = 1) {
+        } else if ($q3 == 1) {
             $q3_saw = 5;
         } else {
             $q3_saw = 5;
@@ -112,25 +114,25 @@ class Tendik extends CI_Controller
             $q4_saw = 1;
         } else if ($q4 = 4) {
             $q4_saw = 2;
-        } else if ($q4 = 3) {
+        } else if ($q4 == 3) {
             $q4_saw = 3;
-        } else if ($q4 = 2) {
+        } else if ($q4 == 2) {
             $q4_saw = 4;
-        } else if ($q4 = 1) {
+        } else if ($q4 == 1) {
             $q4_saw = 5;
         } else {
             $q4_saw = 5;
         }
         $q5 = $this->input->post('q5');
-        if ($q5 = 5) {
+        if ($q5 == 5) {
             $q5_saw = 1;
-        } else if ($q5 = 4) {
+        } else if ($q5 == 4) {
             $q5_saw = 2;
-        } else if ($q5 = 3) {
+        } else if ($q5 == 3) {
             $q5_saw = 3;
-        } else if ($q5 = 2) {
+        } else if ($q5 == 2) {
             $q5_saw = 4;
-        } else if ($q5 = 1) {
+        } else if ($q5 == 1) {
             $q5_saw = 5;
         } else {
             $q5_saw = 5;
@@ -181,16 +183,18 @@ class Tendik extends CI_Controller
 
 
         //Kehadiran
-        var_dump($q1);
-        var_dump($q1_saw);
+
+
+
+
 
         $rata_kehadiran_saw = ($q1_saw + $q2_saw + $q3_saw + $q4_saw + $q5_saw + $q6_saw) / 6;
         $rata_kehadiran = ($q1 + $q2 + $q3 + $q4 + $q5 + $q6) / 6;
+        //var_dump($rata_kehadiran);
+        //var_dump($rata_kehadiran_saw);
+
         //Tanggung jawab
 
-        var_dump($rata_kehadiran_saw);
-        var_dump($rata_kehadiran);
-        die;
         $rata_tanggungjawab = ($q7 + $q8 + $q9 + $q10 + $q11) / 5;
         //kerjasama
         $rata_kerjasama = ($q12 + $q13 + $q14 + $q15 + $q16) / 5;
@@ -313,12 +317,12 @@ class Tendik extends CI_Controller
 
         $tendik_peserta = [
             'c1' => $rata_kehadiran,
-            'c1_saw' => $rata_kehadiran_saw,
             'c2' => $rata_tanggungjawab,
             'c3' => $rata_kerjasama,
             'c4' => $rata_loyalitas,
             'c5' => $rata_kearsipan,
-            'c6' => $rata_pelayanan
+            'c6' => $rata_pelayanan,
+            'c1_saw' => $rata_kehadiran_saw
         ];
         $this->db->where('id_tendik', $id_tendik);
         $this->db->update('tendik_peserta', $tendik_peserta);

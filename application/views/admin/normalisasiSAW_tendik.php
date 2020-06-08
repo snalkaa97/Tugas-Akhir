@@ -62,7 +62,7 @@
                     <td><?= $d['nama']; ?></td>
                     <td><?= $d['jurusan']; ?></td>
                     <td><?= $d['tendik']; ?></td>
-                    <td><?= $d['c1_saw']; ?></td>
+                    <td><?= round($d['c1_saw'], 4); ?></td>
                     <td><?= $d['c2']; ?></td>
                     <td><?= $d['c3']; ?></td>
                     <td><?= $d['c4']; ?></td>
