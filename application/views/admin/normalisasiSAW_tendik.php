@@ -105,10 +105,15 @@
                                 $bobotbaru = $b['bobot'] / $jml;
                                 //var_dump($bobotbaru);
                                 $arrBobotbaru[$i] = $bobotbaru;
-                                //var_dump($arrBobotbaru[$i]);
+                                //echo $bobotbaru;
+                                //die;
                             ?>
                                 <td align="center"><?= round($bobotbaru, 4) ?></td>
                             <?php
+
+
+                                //echo $b['bobot_baru'];
+                                //die;
                                 $data = [
                                     'b' . $j => $arrBobotbaru[$i]
                                 ];

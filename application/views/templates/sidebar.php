@@ -22,6 +22,25 @@
     <!-- Divider -->
     <hr class="sidebar-divider">
 
+    <div class="sidebar-heading">
+        User
+    </div>
+
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#user" aria-expanded="true" aria-controls="user">
+            <i class="fas fa-fw fa-user"></i>
+            <span>User</span>
+        </a>
+        <div id="user" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <a class="collapse-item" href="<?= base_url('admin/mahasiswa') ?>">Mahasiswa</a>
+                <a class="collapse-item" href="<?= base_url('admin/dosen') ?>">Dosen</a>
+                <a class="collapse-item" href="<?= base_url('admin/pimpinan') ?>">Pimpinan</a>
+            </div>
+        </div>
+
+    </li>
+
     <!-- Heading -->
     <div class="sidebar-heading">
         Dosen

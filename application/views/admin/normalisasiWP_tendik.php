@@ -95,6 +95,7 @@
                         <tr>
                             <td>Bobot Baru</td>
                             <?php $i = 0;
+                            $j = 0;
                             $jml = 0; //penjumlahan bobot
                             foreach ($bobot as $b) {
                                 $jml = $jml + $b['bobot'];
@@ -111,9 +112,7 @@
                                 <td align="center"><?= round($bobotbaru, 4) ?></td>
 
                             <?php
-                                // $data = [
-                                //     'bobot_baru' => $bobotbaru[$i]
-                                // ];
+
 
                                 $i++;
                             endforeach; ?>
@@ -126,6 +125,7 @@
 
             foreach ($hitung as $h) {
                 $vkt_s = 1;
+                $j = 0;
                 for ($c = 1; $c <= 6; $c++) {
                     $tb = "c" . $c;
                     $ab = $c - 1;
@@ -133,8 +133,10 @@
                     //echo $h[$tb] . " dipangkat " . $arrBobotbaru[$ab] . " = " . $pgkt . "<br>";
                     $vkt_s = $vkt_s * $pgkt;
                 }
+                //$this->db->update('tb_kriteria_tendik', ['bobot_baru' => $arrBobotbaru[$j]]);
                 $this->db->where('nip', $h['nip']);
                 $this->db->update('tendik_peserta', ['vektor_s' => $vkt_s]);
+                $j++;
             }
 
             $vks_s_sum = 0;
@@ -143,7 +145,7 @@
 
             }
 
-            foreach ($vektor as $v) {
+            foreach ($vektor_s as $v) {
                 $vkt_v = $v['vektor_s'] / $vks_s_sum;
                 $this->db->where('nip', $v['nip']);
                 $this->db->update('tendik_peserta', ['vektor_v' => $vkt_v]);

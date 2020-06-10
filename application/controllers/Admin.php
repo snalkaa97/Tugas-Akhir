@@ -19,6 +19,12 @@ class Admin extends CI_Controller
     //     }
     // }
 
+    public function __construct()
+    {
+        parent::__construct();
+        $this->load->library('form_validation');
+    }
+
     public function index()
     {
         //$data['users'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
@@ -88,6 +94,8 @@ class Admin extends CI_Controller
         //$this->load->view(('templates/auth_footer'));
     }
 
+
+
     public function dataDosen()
     {
         $data['dosen'] = $this->db->get('dosen_peserta')->result_array();
@@ -140,6 +148,12 @@ class Admin extends CI_Controller
                 'alamat' => htmlspecialchars($this->input->post('alamat'), true)
             ];
 
+            $user_dosen = [
+                'nip' => htmlspecialchars($this->input->post('nip'), true),
+                'nama' => htmlspecialchars($this->input->post('nama'), true),
+                'jurusan' => $this->input->post('jurusan')
+            ];
+            $this->db->insert('nilai_dosen', $user_dosen);
             $this->db->insert('dosen_peserta', $data);
 
 
@@ -263,6 +277,13 @@ class Admin extends CI_Controller
                 'c4_saw' => $c4_saw,
                 'c10_saw' => $c10_saw
             ];
+
+            $user_dosen = [
+                'nip' => htmlspecialchars($this->input->post('nip'), true),
+                'nama' => htmlspecialchars($this->input->post('nama'), true),
+                'jurusan' => $this->input->post('jurusan')
+            ];
+
             $data = [
                 'id_dosen' => htmlspecialchars($this->input->post('id_dosen'), true),
                 'nip' => htmlspecialchars($this->input->post('nip'), true),
@@ -276,8 +297,13 @@ class Admin extends CI_Controller
                 'c4_saw' => $c4_saw,
                 'c10_saw' => $c10_saw
             ];
+            $this->db->where('nip', $this->input->post('nip'));
+            $this->db->update('nilai_dosen', $user_dosen);
             $this->db->where('id_dosen', $id);
             $this->db->update('dosen_peserta', $data);
+
+
+
             $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
         Dosen berhasil diupdate!. 
       </div>');
@@ -288,6 +314,7 @@ class Admin extends CI_Controller
     public function hapusDosen($id)
     {
         $this->db->delete('dosen_peserta', ['id_dosen' => $id]);
+        $this->db->delete('nilai_dosen', ['id_dosen' => $id]);
         $this->session->set_flashdata('message', '<div class="alert alert-warning" role="alert">
         Dosen berhasil dihapus!. 
       </div>');
@@ -311,7 +338,7 @@ class Admin extends CI_Controller
     public function normalisasi()
     {
         $awal = microtime(true);
-        $data['title'] = 'Normalisasi WP Dosen';
+        $data['title'] = 'Tabel Keputusan WP Dosen';
         $jurusan = $this->input->get('jurusan');
         $data['nilaiDosen'] = $this->db->get('dosen_peserta')->result_array();
 
@@ -349,7 +376,7 @@ class Admin extends CI_Controller
     public function normalisasiSAW()
     {
         $awal = microtime(true);
-        $data['title'] = 'Normalisasi SAW Dosen';
+        $data['title'] = 'Tabel Keputusan SAW Dosen';
         $jurusan = $this->input->get('jurusan');
 
         $data['dosen'] = $this->db->get('dosen_peserta')->result_array();
@@ -534,7 +561,7 @@ class Admin extends CI_Controller
     public function normalisasi_tendik_WP()
     {
         $awal = microtime(true);
-        $data['title'] = 'Normalisasi WP Tendik';
+        $data['title'] = 'Tabel Keputusan WP Tendik';
 
         $jurusan = $this->input->get('jurusan');
         $tendik = $this->input->get('tendik');
@@ -558,7 +585,7 @@ class Admin extends CI_Controller
         //$query = "SELECT SUM(bobot) AS sum FROM tb_kriteria";
         //$data['sumB'] = $this->db->query($query)->row_array();
         $query = "SELECT *FROM tendik_peserta WHERE jurusan = '$jurusan' AND tendik = '$tendik'";
-        $data['vektor'] = $this->db->query($query)->result_array();
+        $data['vektor_s'] = $this->db->query($query)->result_array();
         //var_dump($query);
         $query2 = "SELECT *FROM tendik_peserta WHERE jurusan = '$jurusan' AND tendik = '$tendik' ORDER BY vektor_v DESC";
         //$this->db->order_by('vektor_v', 'desc');
@@ -575,7 +602,7 @@ class Admin extends CI_Controller
     public function normalisasi_tendik_SAW()
     {
         $awal = microtime(true);
-        $data['title'] = 'Normalisasi SAW Tendik';
+        $data['title'] = 'Tabel Keputusan SAW Tendik';
         $jurusan = $this->input->get('jurusan');
         $tendik = $this->input->get('tendik');
 
@@ -644,5 +671,269 @@ class Admin extends CI_Controller
         $this->load->view('templates/topbar');
         $this->load->view('admin/normalisasiSAW_tendik');
         $this->load->view('templates/footer');
+    }
+
+    public function mahasiswa()
+    {
+
+
+        //$jurusan = $this->input->get('jurusan');
+
+        $data['title'] = 'Mahasiswa';
+        $this->db->distinct();
+        $this->db->select('nim, nama, jurusan,id_mhs');
+        $this->db->from('nilai_mhs');
+        $data['mahasiswa'] = $this->db->get()->result_array();
+
+
+        $jurusan = $this->input->get('jurusan');
+
+        if ($jurusan) {
+            $data['mahasiswa'] = $this->db->get_where('nilai_mhs', ['jurusan' => $jurusan])->result_array();
+        }
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar');
+        $this->load->view('templates/topbar');
+        $this->load->view('user/mahasiswa');
+        $this->load->view('templates/footer');
+    }
+
+    public function tambahmahasiswa()
+    {
+
+        $this->form_validation->set_rules('jurusan', 'Jurusan', 'required');
+        $this->form_validation->set_rules('nama', 'Nama', 'required');
+        $this->form_validation->set_rules('nim', 'NIM', 'required');
+        if ($this->form_validation->run() == false) { //ketika dijalankan / run
+            $data['title'] = 'Mahasiswa';
+            $data['mahasiswa'] = $this->db->get('nilai_mhs')->result_array();
+            $this->load->view('templates/header', $data);
+            $this->load->view('templates/sidebar');
+            $this->load->view('templates/topbar');
+            $this->load->view('user/mahasiswa');
+            $this->load->view('templates/footer');
+        } else {
+
+            $mahasiswa = [
+                'nim' => $this->input->post('nim', true),
+                'nama' => $this->input->post('nama', true),
+                'jurusan' => $this->input->post('jurusan', true)
+            ];
+
+            $this->db->insert('nilai_mhs', $mahasiswa);
+            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
+            Congratulations! user mahasiswa berhasil ditambahkan.  
+          </div>');
+            redirect('admin/mahasiswa');
+        }
+    }
+
+    public function editmahasiswa($id)
+    {
+        $this->form_validation->set_rules('jurusan', 'Jurusan', 'required');
+        $this->form_validation->set_rules('nama', 'Nama', 'required');
+        $this->form_validation->set_rules('nim', 'NIM', 'required');
+
+        if ($this->form_validation->run() == FALSE) {
+            # code...
+            $data['title'] = 'Mahasiswa';
+            $data['mahasiswa'] = $this->db->get('nilai_mhs')->result_array();
+            $this->load->view('templates/header', $data);
+            $this->load->view('templates/sidebar');
+            $this->load->view('templates/topbar');
+            $this->load->view('user/mahasiswa');
+            $this->load->view('templates/footer');
+        } else {
+            # code...
+            $nim = $this->input->post('nim');
+            $nama = $this->input->post('nama');
+            $jurusan = $this->input->post('jurusan');
+
+            $data = [
+                'id_mhs' => $this->input->post('id_mhs'),
+                'nim' => $nim,
+                'nama' => $nama,
+                'jurusan' => $jurusan
+            ];
+
+            $this->db->where('id_mhs', $id);
+            $this->db->update('nilai_mhs', $data);
+            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
+            Congratulations! user mahasiswa berhasil diedit.  
+          </div>');
+            redirect('admin/mahasiswa');
+        }
+    }
+
+    public function hapusmahasiswa($id)
+    {
+        $data['mahasiswa'] = $this->db->get_where('nilai_mhs', ['id_mhs' => $id])->row_array();
+        $nim = $data['mahasiswa']['nim'];
+        $this->db->delete('nilai_mhs', ['nim' => $nim]);
+        $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
+        data berhasil dihapus.  
+      </div>');
+        redirect('admin/mahasiswa');
+    }
+
+    public function dosen()
+    {
+        $data['title'] = 'Dosen';
+        $data['dosen'] = $this->db->get('dosen_peserta')->result_array();
+
+        $jurusan = $this->input->get('jurusan');
+
+        if ($jurusan) {
+            $data['dosen'] = $this->db->get_where('dosen_peserta', ['jurusan' => $jurusan])->result_array();
+        }
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar');
+        $this->load->view('templates/topbar');
+        $this->load->view('user/dosen');
+        $this->load->view('templates/footer');
+    }
+
+
+
+    public function pimpinan()
+    {
+        $data['title'] = 'Pimpinan';
+        $this->db->select('nilai_pimpinan_tendik.*');
+        $this->db->from('nilai_pimpinan_tendik');
+        $data['pimpinan'] = $this->db->get()->result_array();
+
+        $jurusan = $this->input->get('jurusan');
+        $tendik = $this->input->get('tendik');
+
+        if ($jurusan) {
+            $data['pimpinan'] = $this->db->get_where('nilai_pimpinan_tendik', ['jurusan' => $jurusan])->result_array();
+        }
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar');
+        $this->load->view('templates/topbar');
+        $this->load->view('user/pimpinan');
+        $this->load->view('templates/footer');
+    }
+
+    public function tambahpimpinan()
+    {
+        $this->form_validation->set_rules('jurusan', 'Jurusan', 'required');
+        $this->form_validation->set_rules('nama', 'Nama', 'required');
+        $this->form_validation->set_rules('nip', 'NIP', 'required');
+        $this->form_validation->set_rules('jabatan', 'Jabatan', 'required');
+
+
+        if ($this->form_validation->run() == FALSE) {
+            # code...
+            $data['title'] = 'Pimpinan';
+            $data['pimpinan'] = $this->db->get('nilai_pimpinan_tendik')->result_array();
+            $this->load->view('templates/header', $data);
+            $this->load->view('templates/sidebar');
+            $this->load->view('templates/topbar');
+            $this->load->view('user/mahasiswa');
+            $this->load->view('templates/footer');
+        } else {
+            # code...
+            $nip = $this->input->post('nip');
+            $nama = $this->input->post('nama');
+            $jurusan = $this->input->post('jurusan');
+            $jabatan = $this->input->post('jabatan');
+
+            $data = [
+                'nip' => $nip,
+                'nama' => $nama,
+                'jurusan' => $jurusan,
+                'jabatan' => $jabatan
+            ];
+            $data2 = [
+                'nip' => $nip,
+                'nama' => $nama,
+                'jurusan' => $jurusan
+            ];
+
+            if ($jabatan == "Kepala Program Studi" && $jurusan != "Perpustakaan") {
+                $this->db->insert('nilai_pimpinan_tendik', $data);
+                $this->db->insert('nilai_pimpinan', $data2);
+            }
+            $this->db->insert('nilai_pimpinan_tendik', $data);
+            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
+            Congratulations! data berhasil ditambahkan  
+          </div>');
+            redirect('admin/pimpinan');
+        }
+    }
+
+    public function editpimpinan($id)
+    {
+        $this->form_validation->set_rules('jurusan', 'Jurusan', 'required');
+        $this->form_validation->set_rules('nama', 'Nama', 'required');
+        $this->form_validation->set_rules('nip', 'NIP', 'required');
+        $this->form_validation->set_rules('jabatan', 'Jabatan', 'required');
+
+
+        if ($this->form_validation->run() == FALSE) {
+            # code...
+            $data['title'] = 'Pimpinan';
+            $data['pimpinan'] = $this->db->get('nilai_pimpinan_tendik')->result_array();
+            $this->load->view('templates/header', $data);
+            $this->load->view('templates/sidebar');
+            $this->load->view('templates/topbar');
+            $this->load->view('user/mahasiswa');
+            $this->load->view('templates/footer');
+        } else {
+            # code...
+            $nip = $this->input->post('nip');
+            $nama = $this->input->post('nama');
+            $jurusan = $this->input->post('jurusan');
+            $jabatan = $this->input->post('jabatan');
+
+            $data = [
+                'nip' => $nip,
+                'nama' => $nama,
+                'jurusan' => $jurusan,
+                'jabatan' => $jabatan
+            ];
+            $data2 = [
+                'nip' => $nip,
+                'nama' => $nama,
+                'jurusan' => $jurusan
+            ];
+            $data3 = $this->db->get_where('nilai_pimpinan_tendik', ['id_pimpinan' => $id])->row_array();
+            $nip = $data3['nip'];
+            var_dump($nip);
+
+            $data4 = $this->db->get_where('nilai_pimpinan', ['id_pimpinan' => $id])->row_array();
+            if ($data4 && $data3) {
+                $this->db->where('nip', $nip);
+                $this->db->update('nilai_pimpinan_tendik', $data);
+                $this->db->where('nip', $nip);
+                $this->db->update('nilai_pimpinan', $data2);
+            } else if ($jabatan == "Kepala Program Studi" && $jurusan != "Perpustakaan") {
+                $this->db->where('nip', $nip);
+                $this->db->insert('nilai_pimpinan', $data2);
+            } else {
+                $this->db->where('nip', $nip);
+                $this->db->update('nilai_pimpinan_tendik', $data);
+            }
+
+            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
+            Congratulations! data berhasil diedit.  
+          </div>');
+            redirect('admin/pimpinan');
+        }
+    }
+
+    public function hapuspimpinan($id)
+    {
+        $data['pimpinan'] = $this->db->get_where('nilai_pimpinan_tendik', ['id_pimpinan' => $id])->row_array();
+        $nip = $data['pimpinan']['nip'];
+
+        $this->db->delete('nilai_pimpinan_tendik', ['nip' => $nip]);
+        $this->db->delete('nilai_pimpinan', ['nip' => $nip]);
+        $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
+        data berhasil dihapus.  
+      </div>');
+        redirect('admin/pimpinan');
     }
 }
