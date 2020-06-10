@@ -257,7 +257,8 @@ class Lppm extends CI_Controller
                 </div>');
             redirect('lppm/data_jurnal/' . $id_dosen);
         }
-
+        $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert"> Penilaian berhasil ditambahkan  
+          </div>');
         redirect('lppm');
     }
 }

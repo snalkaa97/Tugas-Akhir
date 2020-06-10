@@ -43,6 +43,8 @@ class Auth extends CI_Controller
                     'role' => $role
                 ];
                 $this->session->set_userdata($data);
+                $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert"> Login Berhasil  
+          </div>');
                 redirect('pimpinan');
             }
         } else if ($role == "Mahasiswa") {
@@ -56,6 +58,8 @@ class Auth extends CI_Controller
                     'role' => $role
                 ];
                 $this->session->set_userdata($data);
+                $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert"> Login Berhasil  
+          </div>');
                 redirect('mahasiswa');
             }
         }
@@ -70,6 +74,8 @@ class Auth extends CI_Controller
                     'role' => $role
                 ];
                 $this->session->set_userdata($data);
+                $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert"> Login Berhasil  
+          </div>');
                 redirect('dosen');
             }
         }
@@ -83,6 +89,8 @@ class Auth extends CI_Controller
                     'role' => $role
                 ];
                 $this->session->set_userdata($data);
+                $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert"> Login Berhasil  
+          </div>');
                 redirect('lppm');
             }
         } else {

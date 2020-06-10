@@ -297,9 +297,19 @@ class Admin extends CI_Controller
                 'c4_saw' => $c4_saw,
                 'c10_saw' => $c10_saw
             ];
-            $this->db->where('nip', $this->input->post('nip'));
+
+            $data1 = $this->db->get_where('dosen_peserta', ['id_dosen' => $id])->row_array();
+            $nip = $data1['nip'];
+            $data2 = $this->db->get_where('nilai_dosen', ['nip' => $nip])->row_array();
+
+            if ($data2 == NULL) {
+                $this->db->where('nip', $nip);
+                $this->db->insert('nilai_dosen', $user_dosen);
+            }
+
+            $this->db->where('nip', $nip);
             $this->db->update('nilai_dosen', $user_dosen);
-            $this->db->where('id_dosen', $id);
+            $this->db->where('nip', $nip);
             $this->db->update('dosen_peserta', $data);
 
 
@@ -901,17 +911,21 @@ class Admin extends CI_Controller
             ];
             $data3 = $this->db->get_where('nilai_pimpinan_tendik', ['id_pimpinan' => $id])->row_array();
             $nip = $data3['nip'];
+
             var_dump($nip);
 
-            $data4 = $this->db->get_where('nilai_pimpinan', ['id_pimpinan' => $id])->row_array();
+            $data4 = $this->db->get_where('nilai_pimpinan', ['nip' => $nip])->row_array();
+            $nip2 = $data4['nip'];
             if ($data4 && $data3) {
                 $this->db->where('nip', $nip);
                 $this->db->update('nilai_pimpinan_tendik', $data);
-                $this->db->where('nip', $nip);
+                $this->db->where('nip', $nip2);
                 $this->db->update('nilai_pimpinan', $data2);
             } else if ($jabatan == "Kepala Program Studi" && $jurusan != "Perpustakaan") {
-                $this->db->where('nip', $nip);
+                $this->db->where('nip', $nip2);
                 $this->db->insert('nilai_pimpinan', $data2);
+                $this->db->where('nip', $nip);
+                $this->db->update('nilai_pimpinan_tendik', $data);
             } else {
                 $this->db->where('nip', $nip);
                 $this->db->update('nilai_pimpinan_tendik', $data);

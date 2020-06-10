@@ -132,6 +132,8 @@ class Dosen extends CI_Controller
         ];
         $this->db->where('id_dosen', $id_dosen);
         $this->db->update('dosen_peserta', $dosen_peserta);
+        $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert"> Penilaian berhasil ditambahkan  
+          </div>');
         redirect('dosen');
     }
 }
