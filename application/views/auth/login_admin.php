@@ -12,13 +12,16 @@
                         <div class="col-lg">
                             <div class="p-5">
                                 <div class="text-center">
-                                    <h1 class="h4 text-gray-900 mb-4">Login Pimpinan Tendik</h1>
+                                    <h1 class="h4 text-gray-900 mb-4">Login</h1>
                                 </div>
                                 <?= $this->session->flashdata('message'); ?>
-                                <form class="user" action="<?= base_url('auth/auth_tendik') ?>" method="post">
+                                <form class="user" action="<?= base_url('auth/auth_admin') ?>" method="post">
                                     <div class="form-group">
-                                        <input type="text" class="form-control" id="nip" name="nip" placeholder="NIP" value="<?= set_value('nip'); ?>">
-                                        <?= form_error('nip', '<small class="text-danger pl-3">', '</small>'); ?>
+                                        <input type="text" class="form-control" id="username" name="username" placeholder="Username" value="<?= set_value('username'); ?>">
+                                        <?= form_error('username', '<small class="text-danger pl-3">', '</small>'); ?>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="password" class="form-control" id="password" name="password" placeholder="Password" value="<?= set_value('password'); ?>">
                                     </div>
                                     <button type="submit" class="btn btn-success btn-user btn-block">
                                         Login
@@ -27,7 +30,6 @@
                                 </form>
 
                                 <div class="text-center">
-                                    <a class="small" href="<?= base_url(); ?>auth">Login Sebagai Mahasiswa, Dosen dan Pimpinan</a>
                                 </div>
                             </div>
                         </div>

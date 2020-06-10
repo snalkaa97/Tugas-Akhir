@@ -36,8 +36,8 @@
                                 </form>
 
                                 <div class="text-center">
-                                    <a class="small" href="<?= base_url(); ?>auth/registration">Create an Account!</a><br>
-                                    <a class="small" href="<?= base_url(); ?>auth/auth_tendik">Login sebagai pimpinan Tendik</a>
+                                    <a class="small" href="<?= base_url(); ?>auth/auth_tendik">Login sebagai pimpinan Tendik</a><br>
+                                    <a class="small" href="<?= base_url(); ?>auth/auth_admin">Login sebagai Admin</a>
                                 </div>
                             </div>
                         </div>

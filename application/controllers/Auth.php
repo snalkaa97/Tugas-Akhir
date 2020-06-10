@@ -26,6 +26,44 @@ class Auth extends CI_Controller
             $this->_login();
         }
     }
+    public function auth_admin()
+    {
+        $this->goToDefaultPage();
+        // //membuat rules form valid
+        $this->form_validation->set_rules('username', 'Username', 'required');
+        $this->form_validation->set_rules('password', 'Password', 'required');
+
+        if ($this->form_validation->run() == false) {
+            $data['title'] = 'Login Page Admin';
+            $this->load->view('templates/auth_header', $data);
+            $this->load->view('auth/login_admin.php');
+            $this->load->view('templates/auth_footer');
+        } else {
+            //validasi sukses
+            $this->_loginAdmin();
+        }
+    }
+    public function _loginAdmin()
+    {
+        $username = $this->input->post('username');
+        $password = $this->input->post('password');
+
+        $admin = $this->db->get_where('admin', ['user_admin' => $username])->row_array();
+        if ($admin) {
+            if ($password == $admin['password_admin']) {
+                $data = [
+                    'username' => $username
+                ];
+                $this->session->set_userdata($data);
+                $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert"> Login Berhasil  
+          </div>');
+                redirect('admin');
+            }
+        }
+        $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">username atau password salah  
+          </div>');
+        redirect('auth/auth_admin');
+    }
 
     public function _login()
     {
@@ -231,6 +269,7 @@ class Auth extends CI_Controller
         $this->session->unset_userdata('tendik');
         $this->session->unset_userdata('jurusan');
         $this->session->unset_userdata('role');
+        $this->session->unset_userdata('username');
 
         $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
        You have been logged out. 
@@ -330,6 +369,10 @@ class Auth extends CI_Controller
 
     public function goToDefaultPage()
     {
+        if ($this->session->userdata('username') == "admin") {
+            redirect('admin');
+        }
+
         if ($this->session->userdata('role') == "Mahasiswa") {
             redirect('mahasiswa');
         } else if ($this->session->userdata('role') == "Pimpinan") {
