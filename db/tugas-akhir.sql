@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 21 Bulan Mei 2020 pada 10.53
+-- Waktu pembuatan: 25 Jun 2020 pada 16.04
 -- Versi server: 10.4.11-MariaDB
 -- Versi PHP: 7.4.3
 
@@ -74,7 +74,11 @@ INSERT INTO `data_lppm` (`id_data`, `nip`, `nama`, `id_dosen`, `jml_pn`, `jml_ji
 (10, '301', 'Budi', 13, 5, 0, 0, 2, 0, 1, 2, 3, 1),
 (11, '301', 'Budi', 23, 2, 1, 0, 2, 1, 4, 2, 1, 2),
 (12, '301', 'Budi', 26, 5, 0, 3, 0, 5, 0, 5, 5, 5),
-(13, '301', 'Budi', 27, 5, 1, 0, 0, 0, 0, 3, 2, 4);
+(13, '301', 'Budi', 27, 5, 1, 0, 0, 0, 0, 3, 2, 4),
+(14, '301', 'Budi', 29, 10, 0, 1, 2, 3, 5, 3, 3, 2),
+(15, '301', 'Budi', 31, 7, 1, 2, 1, 4, 4, 2, 3, 3),
+(16, '301', 'Budi', 33, 9, 0, 2, 1, 3, 5, 5, 7, 5),
+(17, '301', 'Budi', 34, 6, 0, 4, 2, 5, 7, 7, 10, 9);
 
 -- --------------------------------------------------------
 
@@ -100,6 +104,13 @@ CREATE TABLE `dosen_peserta` (
   `c8` double NOT NULL DEFAULT 1,
   `c9` double NOT NULL DEFAULT 1,
   `c10` double NOT NULL DEFAULT 1,
+  `c4_saw` double NOT NULL DEFAULT 1,
+  `c5_saw` double NOT NULL DEFAULT 1,
+  `c6_saw` double NOT NULL DEFAULT 1,
+  `c7_saw` double DEFAULT 1,
+  `c8_saw` double NOT NULL DEFAULT 1,
+  `c9_saw` double NOT NULL DEFAULT 1,
+  `c10_saw` double NOT NULL DEFAULT 1,
   `vektor_s` double NOT NULL,
   `vektor_v` double NOT NULL,
   `total_nilai_saw` double NOT NULL
@@ -109,14 +120,27 @@ CREATE TABLE `dosen_peserta` (
 -- Dumping data untuk tabel `dosen_peserta`
 --
 
-INSERT INTO `dosen_peserta` (`id_dosen`, `nip`, `nama`, `jurusan`, `alamat`, `pendidikan`, `jabatan`, `c1`, `c2`, `c3`, `c4`, `c5`, `c6`, `c7`, `c8`, `c9`, `c10`, `vektor_s`, `vektor_v`, `total_nilai_saw`) VALUES
-(10, '101', 'Rita', 'Teknik Informatika', 'Bogor', 'S2', 'Asisten Ahli', 7.7, 4.4, 4.0667, 3, 3, 3, 4, 3, 2, 2, 3.623647735511, 0.16511871567493, 1.1431491989816),
-(13, 'dsn5', 'Yana', 'Teknik Informatika', 'Sukabumi', 'S2', 'Pengajar', 7.2, 4, 3.7, 3, 5, 3, 3, 4, 2, 1, 3.4746336653751, 0.15832859321429, 1.1301958480219),
-(23, '201', 'Rully', 'Teknik Informatika', 'Bekasi', 'S2', 'Pengajar', 7.75, 4.2, 3.8, 3, 2, 2, 2, 2, 3, 1, 2.9613478897629, 0.13493970604054, 0.87587103407756),
-(26, '206', 'dosen 7', 'Teknik Informatika', 'Jakarta', 'S2', 'Lektor', 8.5333, 4.8, 4.5, 2, 5, 3, 5, 5, 5, 3, 4.5057891687055, 0.20531524445594, 1.5874887779083),
-(27, '210', 'Dosen 8', 'Teknik Informatika', 'Jakarta', 'S3', 'Guru Besar', 11.1, 4.4, 4.6, 5, 5, 5, 4, 3, 5, 5, 5.1965594719094, 0.23679156710553, 1.7641666666667),
-(29, '601', 'Deni', 'Teknik Elektro', 'Bogor', 'S2', 'Pengajar', 1, 1, 1, 3, 1, 1, 1, 1, 1, 1, 1.0918668996139, 0.049753086754386, 0.92),
-(31, '602', 'Idhar', 'Teknik Elektro', 'Jakarta', 'S2', 'Pengajar', 1, 1, 1, 3, 1, 1, 1, 1, 1, 1, 1.0918668996139, 0.049753086754386, 0.92);
+INSERT INTO `dosen_peserta` (`id_dosen`, `nip`, `nama`, `jurusan`, `alamat`, `pendidikan`, `jabatan`, `c1`, `c2`, `c3`, `c4`, `c5`, `c6`, `c7`, `c8`, `c9`, `c10`, `c4_saw`, `c5_saw`, `c6_saw`, `c7_saw`, `c8_saw`, `c9_saw`, `c10_saw`, `vektor_s`, `vektor_v`, `total_nilai_saw`) VALUES
+(10, '101', 'Rita', 'Teknik Informatika', 'Bogor', 'S2', 'Asisten Ahli', 13.9333, 4.4, 4.0667, 3, 3, 3, 4, 3, 2, 2, 1, 1, 1, 1, 1, 1, 1, 3.9607776398183, 0.19718489361653, 0.6853),
+(13, 'dsn5', 'Yana', 'Teknik Informatika', 'Sukabumi', 'S2', 'Pengajar', 10.95, 4, 3.7, 3, 5, 3, 3, 4, 2, 1, 1, 1, 1, 1, 1, 1, 1, 3.7001664974916, 0.18421052720465, 0.6553),
+(23, '201', 'Rully', 'Teknik Informatika', 'Bekasi', 'S2', 'Pengajar', 11.25, 4.2, 3.8, 3, 2, 2, 2, 2, 3, 1, 1, 1, 1, 1, 1, 1, 1, 3.1316055416581, 0.15590506757383, 0.7942),
+(26, '206', 'Popy', 'Teknik Informatika', 'Jakarta', 'S2', 'Pengajar', 13.1333, 4.8, 4.5, 3, 5, 3, 5, 5, 5, 1, 1, 1, 1, 1, 1, 1, 1, 4.5475448885818, 0.22639674241155, 0.6406),
+(27, '210', 'Retnani', 'Teknik Informatika', 'Jakarta', 'S2', 'Pengajar', 18.8, 4.4, 4.6, 3, 5, 5, 4, 3, 5, 1, 1, 1, 1, 1, 1, 1, 1, 4.7465234647677, 0.23630276919345, 0.6778),
+(29, '601', 'Deni Almanda', 'Teknik Elektro', 'Bogor', 'S2', 'Pengajar', 4.1, 4.4, 4.8, 3, 5, 3, 4, 4, 3, 1, 3, 1, 3, 2, 2, 3, 5, 3.5349665831739, 0.074845337587598, 0.6664),
+(31, '602', 'Idhar Mahasen', 'Teknik Elektro', 'Jakarta', 'S2', 'Pengajar', 4.65, 4.8, 4.8, 3, 5, 5, 3, 4, 4, 1, 3, 1, 1, 3, 2, 2, 5, 3.8342732965537, 0.081182515458465, 0.76),
+(33, '603', 'Sultan', 'Teknik Elektro', 'Bekasi', 'S2', 'Pengajar', 4.8, 4.4, 4.4, 3, 5, 3, 5, 5, 5, 1, 3, 1, 3, 1, 1, 1, 5, 3.8550126612887, 0.081621627036586, 0.8049),
+(34, '604', 'Dewi', 'Teknik Elektro', 'Bekasi', 'S3', 'Lektor Kepala', 5, 5, 4.8, 5, 5, 3, 5, 5, 5, 4, 1, 1, 3, 1, 1, 1, 4, 4.6422399920912, 0.098289477763253, 0.8533),
+(35, '300', 'Syamsudin AB', 'Teknik Kimia', 'Bogor', 'S2', 'Pengajar', 1, 1, 1, 3, 1, 1, 1, 1, 1, 1, 3, 1, 1, 1, 1, 1, 5, 0, 0, 0),
+(36, '301', 'Sri Yuni', 'Teknik Kimia', 'Jakarta', 'S3', 'Lektor Kepala', 1, 1, 1, 5, 1, 1, 1, 1, 1, 4, 1, 1, 1, 1, 1, 1, 2, 0, 0, 0),
+(37, '500', 'Hikmatu Manzila', 'Teknik Industri', 'Jakarta', 'S2', 'Pengajar', 1, 1, 1, 3, 1, 1, 1, 1, 1, 1, 3, 1, 1, 1, 1, 1, 5, 0, 0, 0),
+(38, '605', 'Fahri', 'Teknik Elektro', 'Bekasi', 'S2', 'Asisten Ahli', 4.8, 4.8, 4.4, 3, 5, 3, 5, 5, 4, 2, 3, 1, 3, 1, 1, 2, 4, 4.0482555532626, 0.085713130915303, 0.7913),
+(39, '606', 'Jihan', 'Teknik Elektro', 'Jakarta', 'S2', 'Pengajar', 4.65, 4.8, 4.4, 3, 5, 5, 5, 4, 4, 2, 3, 1, 1, 1, 2, 2, 4, 4.1744652646506, 0.088385350930234, 0.8185),
+(40, '607', 'Aldi', 'Teknik Elektro', 'Bogor', 'S2', 'Pengajar', 4.1, 4.4, 4.8, 3, 5, 5, 5, 4, 4, 2, 3, 1, 1, 1, 2, 2, 4, 4.0963823596046, 0.086732112844248, 0.8024),
+(41, '609', 'Dinda', 'Teknik Elektro', 'Bekasi', 'S2', 'Pengajar', 4.8, 4.4, 4.4, 3, 5, 3, 5, 5, 4, 1, 3, 1, 3, 1, 1, 2, 5, 3.7868055742235, 0.080177488220236, 0.7649),
+(42, '611', 'Anggun', 'Teknik Elektro', 'Bogor', 'S2', 'Pengajar', 4.8, 4.4, 4.4, 3, 5, 3, 5, 5, 4, 1, 3, 1, 3, 1, 1, 2, 5, 3.7868055742235, 0.080177488220236, 0.7649),
+(43, '612', 'Wibi', 'Teknik Elektro', 'Jakarta', 'S2', 'Pengajar', 4.1, 4.4, 4.4, 3, 5, 3, 4, 4, 4, 1, 3, 1, 3, 2, 2, 2, 5, 3.5765796294836, 0.075726404614913, 0.6689),
+(44, '613', 'Firman', 'Teknik Elektro', 'Bekasi', 'S2', 'Pengajar', 4.65, 4.8, 4.8, 3, 5, 5, 4, 5, 4, 1, 3, 1, 1, 2, 1, 2, 5, 3.9853077598253, 0.084380346364344, 0.8083),
+(45, '614', 'Galih', 'Teknik Elektro', 'Bogor', 'S2', 'Asisten Ahli', 4.1, 4.4, 4.4, 3, 5, 3, 5, 5, 4, 2, 3, 1, 3, 1, 1, 2, 4, 3.9091901903341, 0.082768720044584, 0.7599);
 
 -- --------------------------------------------------------
 
@@ -154,7 +178,26 @@ INSERT INTO `nilai_dosen` (`id`, `nip`, `nama`, `jurusan`, `id_dosen`, `q1`, `q2
 (28, '101', 'Ayu', 'Teknik Informatika', 23, 5, 5, 3, 3, 3, 3.8),
 (29, '101', 'Ayu', 'Teknik Informatika', 13, 5, 4, 3, 3, 2, 3.4),
 (30, '201', 'Nani', 'Teknik Informatika', 27, 5, 4, 4, 5, 5, 4.6),
-(31, '201', 'Nani', 'Teknik Informatika', 26, 4, 4, 5, 4, 5, 4.4);
+(31, '201', 'Nani', 'Teknik Informatika', 26, 4, 4, 5, 4, 5, 4.4),
+(37, '300', 'Syamsudin AB', 'Teknik Kimia', 0, 0, 0, 0, 0, 0, 0),
+(38, '301', 'Sri Yuni', 'Teknik Kimia', 0, 0, 0, 0, 0, 0, 0),
+(39, '500', 'Hikmatu Manzila', 'Teknik Industri', 0, 0, 0, 0, 0, 0, 0),
+(40, '601', 'Deni Almanda', 'Teknik Elektro', 0, 0, 0, 0, 0, 0, 0),
+(41, '602', 'Idhar Mahasen', 'Teknik Elektro', 0, 0, 0, 0, 0, 0, 0),
+(42, '603', 'Sultan', 'Teknik Elektro', 0, 0, 0, 0, 0, 0, 0),
+(43, '604', 'Dewi', 'Teknik Elektro', 0, 0, 0, 0, 0, 0, 0),
+(44, '601', 'Deni Almanda', 'Teknik Elektro', 29, 5, 5, 5, 4, 5, 4.8),
+(45, '601', 'Deni Almanda', 'Teknik Elektro', 31, 4, 5, 5, 5, 5, 4.8),
+(46, '601', 'Deni Almanda', 'Teknik Elektro', 33, 5, 5, 5, 3, 4, 4.4),
+(47, '601', 'Deni Almanda', 'Teknik Elektro', 34, 5, 5, 5, 4, 5, 4.8),
+(48, '605', 'Fahri', 'Teknik Elektro', 0, 0, 0, 0, 0, 0, 0),
+(49, '606', 'Jihan', 'Teknik Elektro', 0, 0, 0, 0, 0, 0, 0),
+(50, '607', 'Aldi', 'Teknik Elektro', 0, 0, 0, 0, 0, 0, 0),
+(51, '609', 'Dinda', 'Teknik Elektro', 0, 0, 0, 0, 0, 0, 0),
+(52, '611', 'Anggun', 'Teknik Elektro', 0, 0, 0, 0, 0, 0, 0),
+(53, '612', 'Wibi', 'Teknik Elektro', 0, 0, 0, 0, 0, 0, 0),
+(54, '613', 'Firman', 'Teknik Elektro', 0, 0, 0, 0, 0, 0, 0),
+(55, '614', 'Galih', 'Teknik Elektro', 0, 0, 0, 0, 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -201,23 +244,30 @@ INSERT INTO `nilai_mhs` (`id_mhs`, `nim`, `nama`, `jurusan`, `id_dosen`, `q1`, `
 (26, '2016470002', 'Fendi', 'Teknik Informatika', 11, 4, 4, 5, 3, 5, 4, 5, 4, 4, 5, 5, 5, 5, 4, 5, 5, 5, 4, 5, 5, 18.2),
 (27, '2016470003', 'Hari', 'Teknik Informatika', 13, 4, 4, 3, 3, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3.4),
 (30, '2016410001', 'Alka', ' Teknik Sipil', 0, 1, 1, 1, 1, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1.4),
-(31, '2016470057', 'Syaifudin Alkatiri', 'Teknik Informatika', 10, 5, 5, 4, 4, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4.4),
-(32, '2016470057', 'Syaifudin Alkatiri', 'Teknik Informatika', 13, 4, 4, 4, 3, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3.8),
-(33, '2016470057', 'Syaifudin Alkatiri', 'Teknik Informatika', 26, 4, 4, 5, 3, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4.2),
+(31, '2016470057', 'Syaifudin Alkatiri', 'Teknik Informatika', 10, 5, 5, 4, 4, 4, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 19.4),
+(32, '2016470057', 'Syaifudin Alkatiri', 'Teknik Informatika', 13, 4, 4, 4, 3, 4, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 18.8),
+(33, '2016470057', 'Syaifudin Alkatiri', 'Teknik Informatika', 26, 4, 4, 5, 3, 5, 5, 5, 5, 5, 4, 4, 4, 4, 4, 4, 5, 5, 5, 5, 5, 18),
 (34, '2016470012', 'Adit', 'Teknik Informatika', 11, 4, 4, 4, 5, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4.4),
 (35, '2016470012', 'Adit', 'Teknik Informatika', 26, 3, 4, 4, 3, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3.8),
 (36, '2016470012', 'Adit', 'Teknik Informatika', 23, 5, 5, 4, 4, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4.4),
 (37, '2016470012', 'Adit', 'Teknik Informatika', 13, 4, 4, 4, 4, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4),
 (38, '2016470057', 'Syaifudin Alkatiri', 'Teknik Informatika', 11, 5, 5, 4, 4, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4),
-(39, '2016470057', 'Syaifudin Alkatiri', 'Teknik Informatika', 23, 4, 4, 3, 3, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3.4),
+(39, '2016470057', 'Syaifudin Alkatiri', 'Teknik Informatika', 23, 4, 4, 3, 3, 3, 5, 5, 0, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 17.4),
 (40, '2016470003', 'Hari', 'Teknik Informatika', 23, 5, 5, 5, 4, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4.6),
-(41, '2016430002', 'Tess', 'Teknik Kimia', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(42, '2016470057', 'Syaifudin Alkatiri', 'Teknik Informatika', 27, 5, 4, 4, 4, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4.4),
+(41, '2016430002', 'Safira', 'Teknik Kimia', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(42, '2016470057', 'Syaifudin Alkatiri', 'Teknik Informatika', 27, 5, 4, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 19.8),
 (43, '2016470002', 'Fendi', 'Teknik Informatika', 10, 5, 4, 5, 3, 5, 5, 5, 4, 4, 5, 4, 5, 4, 5, 4, 5, 5, 5, 4, 4, 18),
 (44, '2016470002', 'Fendi', 'Teknik Informatika', 13, 5, 5, 4, 3, 5, 5, 5, 5, 4, 4, 3, 3, 4, 4, 5, 5, 4, 5, 5, 5, 17.6),
 (45, '2016470002', 'Fendi', 'Teknik Informatika', 23, 5, 5, 5, 3, 4, 5, 5, 5, 5, 4, 4, 4, 5, 5, 5, 5, 5, 5, 4, 5, 18.6),
 (46, '2016470002', 'Fendi', 'Teknik Informatika', 26, 5, 5, 4, 4, 5, 4, 4, 5, 5, 4, 4, 5, 3, 3, 3, 5, 5, 5, 5, 5, 17.6),
-(47, '2016470002', 'Fendi', 'Teknik Informatika', 27, 5, 5, 5, 5, 5, 4, 4, 4, 4, 4, 4, 3, 4, 4, 4, 5, 5, 5, 5, 5, 17.8);
+(47, '2016470002', 'Fendi', 'Teknik Informatika', 27, 5, 5, 5, 5, 5, 4, 4, 4, 4, 4, 4, 3, 4, 4, 4, 5, 5, 5, 5, 5, 17.8),
+(48, '2018420001', 'Rafi', 'Teknik Elektro', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(54, '2016430047', 'Syilah', 'Teknik Kimia', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(55, '2016420002', 'Gilang', 'Teknik Elektro', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(56, '2016420002', 'Gilang', 'Teknik Elektro', 34, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5),
+(57, '2016420002', 'Gilang', 'Teknik Elektro', 29, 5, 5, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 3, 5, 4, 4, 4, 4, 4, 4.1),
+(58, '2016420002', 'Gilang', 'Teknik Elektro', 31, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 4, 4, 4, 4, 4, 4, 4, 5, 5, 4.65),
+(59, '2016420002', 'Gilang', 'Teknik Elektro', 33, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 4, 4, 4, 4, 5, 5, 5, 5, 5, 5, 4.8);
 
 -- --------------------------------------------------------
 
@@ -244,16 +294,13 @@ CREATE TABLE `nilai_pimpinan` (
 --
 
 INSERT INTO `nilai_pimpinan` (`id_pimpinan`, `nip`, `nama`, `jurusan`, `id_dosen`, `q1`, `q2`, `q3`, `q4`, `q5`, `avg`) VALUES
-(17, '106', 'Jumail', 'Teknik Sipil', 10, 3, 3, 4, 2, 3, 3),
-(18, '107', 'Yana', 'Teknik Elektro', 11, 3, 3, 2, 3, 2, 2.6),
-(19, '108', 'Rully', 'Teknik Kimia', 13, 4, 3, 5, 4, 3, 3.8),
-(23, '105', 'Rita', 'Teknik Informatika', 10, 5, 5, 5, 5, 5, 5),
-(24, '105', 'Rita', 'Teknik Informatika', 13, 4, 4, 4, 4, 4, 4),
-(25, '105', 'Rita', 'Teknik Informatika', 11, 5, 4, 4, 4, 5, 4.4),
-(26, '105', 'Rita', 'Teknik Informatika', 23, 5, 5, 3, 3, 5, 4.2),
-(27, '105', 'Rita', 'Teknik Informatika', 26, 5, 5, 5, 5, 4, 4.8),
-(28, '105', 'Rita', 'Teknik Informatika', 27, 4, 4, 4, 5, 5, 4.4),
-(29, '107', 'Yana', 'Teknik Elektro', 28, 5, 5, 5, 5, 5, 5);
+(37, '301', 'Rahmi Tiara', 'Teknik Industri', 0, 0, 0, 0, 0, 0, 0),
+(39, '200', 'Budi', 'Teknik Elektro', 0, 0, 0, 0, 0, 0, 0),
+(43, '101', 'Rita Rosanty', 'Teknik Informatika', 0, 0, 0, 0, 0, 0, 0),
+(44, '200', 'Budi', 'Teknik Elektro', 29, 4, 4, 4, 5, 5, 4.4),
+(45, '200', 'Budi', 'Teknik Elektro', 31, 5, 5, 5, 5, 4, 4.8),
+(46, '200', 'Budi', 'Teknik Elektro', 33, 5, 5, 4, 4, 4, 4.4),
+(47, '200', 'Budi', 'Teknik Elektro', 34, 5, 5, 5, 5, 5, 5);
 
 -- --------------------------------------------------------
 
@@ -311,17 +358,34 @@ CREATE TABLE `nilai_pimpinan_tendik` (
 --
 
 INSERT INTO `nilai_pimpinan_tendik` (`id_pimpinan`, `nip`, `nama`, `jabatan`, `tendik`, `jurusan`, `id_tendik`, `q1`, `q2`, `q3`, `q4`, `q5`, `q6`, `q7`, `q8`, `q9`, `q10`, `q11`, `q12`, `q13`, `q14`, `q15`, `q16`, `q17`, `q18`, `q19`, `q20`, `q21`, `q22`, `q23`, `q24`, `q25`, `q26`, `q27`, `q28`, `q29`, `rata_kehadiran`, `rata_tanggungjawab`, `rata_kerjasama`, `rata_loyalitas`, `rata_kearsipan`, `rata_pelayanan`) VALUES
-(7, '102', 'Retnani', 'Kepala Laboratorium', 'Laboratorium', 'Teknik Informatika', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(8, '101', 'Rita', 'Kepala Program Studi', 'Administrasi Prodi', 'Teknik Informatika', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(10, '901', 'Benyamin', 'Kepala Perpustakaan', 'Perpustakaan', 'Perpustakaan', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(11, '301', 'Rahmi', 'Kepala Program Studi', 'Administrasi Prodi', 'Teknik Industri', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(7, '102', 'Retnani Latifah', 'Kepala Laboratorium', 'Laboratorium', 'Teknik Informatika', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(8, '101', 'Rita Rosanty', 'Kepala Program Studi', 'Administrasi Prodi', 'Teknik Informatika', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(10, '900', 'Benyamin Suep', 'Kepala Perpustakaan', 'Perpustakaan', 'Perpustakaan', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(11, '301', 'Rahmi Tiara', 'Kepala Program Studi', 'Administrasi Prodi', 'Teknik Industri', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (12, '302', 'Nensi', 'Kepala Laboratorium', 'Laboratorium', 'Teknik Industri', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(13, '102', 'Retnani', '', '', 'Teknik Informatika', 0, 5, 5, 5, 3, 5, 5, 5, 5, 5, 4, 4, 5, 5, 4, 4, 5, 2, 5, 5, 5, 4, 4, 4, 4, 4, 4, 4, 5, 4, 4.6666666666667, 4.6, 4.6, 4.25, 4, 4.2),
-(14, '102', 'Retnani', 'Kepala Laboratorium', 'Laboratorium', 'Teknik Informatika', 10, 5, 5, 5, 4, 5, 5, 5, 4, 4, 4, 5, 4, 4, 4, 4, 4, 5, 5, 5, 5, 4, 3, 4, 4, 4, 4, 4, 4, 4, 4.8333333333333, 4.4, 4, 5, 3.75, 4),
-(15, '102', 'Retnani', 'Kepala Laboratorium', 'Laboratorium', 'Teknik Informatika', 11, 5, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 3, 4, 3, 3, 4.1666666666667, 4, 4, 4, 4, 3.4),
-(16, '102', 'Retnani', 'Kepala Laboratorium', 'Laboratorium', 'Teknik Informatika', 12, 4, 4, 5, 4, 5, 5, 5, 5, 5, 5, 5, 4, 4, 4, 4, 4, 4, 5, 5, 5, 4, 4, 4, 4, 4, 5, 4, 5, 5, 4.5, 5, 4, 4.75, 4, 4.6),
+(13, '102', 'Retnani Latifah', 'Kepala Laboratorium', '', 'Teknik Informatika', 0, 5, 5, 5, 3, 5, 5, 5, 5, 5, 4, 4, 5, 5, 4, 4, 5, 2, 5, 5, 5, 4, 4, 4, 4, 4, 4, 4, 5, 4, 4.6666666666667, 4.6, 4.6, 4.25, 4, 4.2),
+(14, '102', 'Retnani Latifah', 'Kepala Laboratorium', 'Laboratorium', 'Teknik Informatika', 10, 5, 5, 5, 4, 5, 5, 5, 4, 4, 4, 5, 4, 4, 4, 4, 4, 5, 5, 5, 5, 4, 3, 4, 4, 4, 4, 4, 4, 4, 4.8333333333333, 4.4, 4, 5, 3.75, 4),
+(15, '102', 'Retnani Latifah', 'Kepala Laboratorium', 'Laboratorium', 'Teknik Informatika', 11, 5, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 3, 4, 3, 3, 4.1666666666667, 4, 4, 4, 4, 3.4),
+(16, '102', 'Retnani Latifah', 'Kepala Laboratorium', 'Laboratorium', 'Teknik Informatika', 12, 4, 4, 5, 4, 5, 5, 5, 5, 5, 5, 5, 4, 4, 4, 4, 4, 4, 5, 5, 5, 4, 4, 4, 4, 4, 5, 4, 5, 5, 4.5, 5, 4, 4.75, 4, 4.6),
 (17, '100', 'Gericko', 'Kepala Laboratorium', 'Laboratorium', ' Teknik Sipil', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(18, '200', 'Fachri', 'Kepala Laboratorium', 'Laboratorium', 'Teknik Elektro', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+(18, '200', 'Fachri', 'Kepala Laboratorium', 'Laboratorium', 'Teknik Elektro', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(19, '900', 'Benyamin Suep', 'Kepala Perpustakaan', 'Perpustakaan', 'Perpustakaan', 36, 5, 4, 3, 5, 3, 5, 5, 4, 3, 3, 3, 4, 4, 4, 4, 4, 4, 5, 3, 4, 4, 4, 4, 4, 5, 4, 5, 4, 3, 4.1666666666667, 3.6, 4, 4, 4, 4.2),
+(20, '900', 'Benyamin Suep', 'Kepala Perpustakaan', 'Perpustakaan', 'Perpustakaan', 37, 4, 4, 4, 5, 4, 5, 3, 4, 3, 3, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 3, 3, 4, 3, 5, 4, 4, 4, 4, 4.3333333333333, 3.4, 4, 4, 3.25, 4.2),
+(21, '900', 'Benyamin Suep', 'Kepala Perpustakaan', 'Perpustakaan', 'Perpustakaan', 38, 5, 5, 4, 5, 5, 5, 5, 5, 4, 4, 4, 4, 3, 3, 4, 5, 4, 5, 4, 3, 5, 4, 4, 4, 3, 4, 4, 4, 4, 4.8333333333333, 4.4, 3.8, 4, 4.25, 3.8),
+(22, '900', 'Benyamin Suep', 'Kepala Perpustakaan', 'Perpustakaan', 'Perpustakaan', 39, 4, 4, 5, 5, 3, 5, 4, 4, 4, 4, 4, 4, 5, 5, 5, 5, 4, 5, 5, 5, 5, 4, 5, 5, 5, 4, 4, 4, 4, 4.3333333333333, 4, 4.8, 4.75, 4.75, 4.2),
+(23, '900', 'Benyamin Suep', 'Kepala Perpustakaan', '', 'Perpustakaan', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(24, '102', 'Retnani Latifah', 'Kepala Laboratorium', '', 'Teknik Informatika', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(25, '102', 'Retnani Latifah', 'Kepala Laboratorium', '', 'Teknik Informatika', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(26, '301', 'Rahmi Tiara', 'Kepala Program Studi', '', 'Teknik Industri', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(27, '102', 'Retnani Latifah', 'Kepala Laboratorium', '', 'Teknik Informatika', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(28, '102', 'Retnani Latifah', 'Kepala Laboratorium', '', 'Teknik Informatika', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(29, '900', 'Benyamin Suep', 'Kepala Perpustakaan', '', 'Perpustakaan', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(30, '200', 'Budi', 'Kepala Program Studi', '', 'Teknik Elektro', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(31, '610', 'Taslim', 'Kepala Laboratorium', '', 'Arsitektur', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(33, '900', 'Benyamin Suep', 'Kepala Perpustakaan', 'Perpustakaan', 'Perpustakaan', 40, 4, 4, 4, 5, 4, 5, 4, 4, 4, 3, 4, 4, 4, 4, 4, 3, 4, 4, 4, 4, 4, 3, 4, 4, 4, 4, 4, 4, 4, 4.3333333333333, 3.8, 3.8, 4, 3.75, 4),
+(34, '900', 'Benyamin Suep', 'Kepala Perpustakaan', 'Perpustakaan', 'Perpustakaan', 41, 5, 5, 4, 5, 4, 5, 5, 5, 4, 5, 5, 4, 4, 5, 5, 4, 5, 4, 4, 4, 5, 4, 5, 5, 4, 4, 4, 4, 4, 4.6666666666667, 4.8, 4.4, 4.25, 4.75, 4),
+(35, '900', 'Benyamin Suep', 'Kepala Perpustakaan', 'Perpustakaan', 'Perpustakaan', 42, 4, 4, 4, 5, 5, 5, 5, 5, 5, 4, 4, 4, 4, 4, 4, 4, 3, 4, 3, 3, 4, 4, 4, 4, 4, 4, 3, 4, 5, 4.5, 4.6, 4, 3.25, 4, 4),
+(36, '900', 'Benyamin Suep', 'Kepala Perpustakaan', 'Perpustakaan', 'Perpustakaan', 43, 4, 4, 5, 5, 3, 5, 5, 4, 5, 5, 5, 4, 4, 4, 4, 4, 4, 4, 4, 4, 3, 3, 3, 3, 4, 4, 4, 4, 3, 4.3333333333333, 4.8, 4, 4, 3, 3.8);
 
 -- --------------------------------------------------------
 
@@ -531,20 +595,21 @@ INSERT INTO `tb_kriteria` (`id_kriteria`, `nama_kriteria`, `bobot`) VALUES
 CREATE TABLE `tb_kriteria_tendik` (
   `id_kriteria` int(20) NOT NULL,
   `nama_kriteria` varchar(128) NOT NULL,
-  `bobot` int(10) NOT NULL
+  `bobot` int(10) NOT NULL,
+  `bobot_baru` double NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data untuk tabel `tb_kriteria_tendik`
 --
 
-INSERT INTO `tb_kriteria_tendik` (`id_kriteria`, `nama_kriteria`, `bobot`) VALUES
-(1, 'Kehadiran', 15),
-(2, 'Tanggung Jawab Pekerjaan', 20),
-(3, 'Kerjasama', 20),
-(4, 'Loyalitas', 15),
-(5, 'Kearsipan', 15),
-(6, 'Pelayanan', 15);
+INSERT INTO `tb_kriteria_tendik` (`id_kriteria`, `nama_kriteria`, `bobot`, `bobot_baru`) VALUES
+(1, 'Kehadiran', 15, 0.15),
+(2, 'Tanggung Jawab Pekerjaan', 20, 0.15),
+(3, 'Kerjasama', 20, 0.15),
+(4, 'Loyalitas', 15, 0.15),
+(5, 'Kearsipan', 15, 0.15),
+(6, 'Pelayanan', 15, 0.15);
 
 -- --------------------------------------------------------
 
@@ -564,6 +629,7 @@ CREATE TABLE `tendik_peserta` (
   `c4` double NOT NULL DEFAULT 1,
   `c5` double NOT NULL DEFAULT 1,
   `c6` double NOT NULL DEFAULT 1,
+  `c1_saw` double NOT NULL DEFAULT 1,
   `vektor_s` double NOT NULL,
   `vektor_v` double NOT NULL,
   `nilai_total_saw` double NOT NULL
@@ -573,12 +639,20 @@ CREATE TABLE `tendik_peserta` (
 -- Dumping data untuk tabel `tendik_peserta`
 --
 
-INSERT INTO `tendik_peserta` (`id_tendik`, `nip`, `nama`, `tendik`, `jurusan`, `c1`, `c2`, `c3`, `c4`, `c5`, `c6`, `vektor_s`, `vektor_v`, `nilai_total_saw`) VALUES
-(10, '401', 'Aryuni', 'Laboratorium', 'Teknik Informatika', 4.8333333333333, 4.4, 4, 5, 3.75, 4, 4.2953517582253, 0.29252287540368, 0.82105978260869),
-(11, '402', 'Iffah', 'Laboratorium', 'Teknik Informatika', 4.1666666666667, 4, 4, 4, 4, 3.4, 3.9276442586467, 0.26748118821747, 0.77086956521739),
-(12, '403', 'Zakiyah', 'Laboratorium', 'Teknik Informatika', 4.5, 5, 4, 4.75, 4, 4.6, 4.4608188892193, 0.30379154993086, 0.862),
-(34, '201', 'Gilang Hafid', 'Administrasi Prodi', 'Teknik Elektro', 1, 1, 1, 1, 1, 1, 1, 0.068102193223994, 0.85),
-(35, '202', 'Rafi', 'Administrasi Prodi', 'Teknik Elektro', 1, 1, 1, 1, 1, 1, 1, 0.068102193223994, 0);
+INSERT INTO `tendik_peserta` (`id_tendik`, `nip`, `nama`, `tendik`, `jurusan`, `c1`, `c2`, `c3`, `c4`, `c5`, `c6`, `c1_saw`, `vektor_s`, `vektor_v`, `nilai_total_saw`) VALUES
+(10, '401', 'Aryuni', 'Laboratorium', 'Teknik Informatika', 4.8333333333333, 4.4, 4, 5, 3.75, 4, 1, 4.2953517582253, 0.33864825291344, 0.82105978260869),
+(11, '402', 'Iffah', 'Laboratorium', 'Teknik Informatika', 4.1666666666667, 4, 4, 4, 4, 3.4, 1, 3.9276442586467, 0.30965796077334, 0.77086956521739),
+(12, '403', 'Zakiyah', 'Laboratorium', 'Teknik Informatika', 4.5, 5, 4, 4.75, 4, 4.6, 1, 4.4608188892193, 0.35169378631322, 0.862),
+(34, '201', 'Gilang Hafid', 'Administrasi Prodi', 'Teknik Elektro', 1, 1, 1, 1, 1, 1, 1, 1, 0.5, 0.85),
+(35, '202', 'Rafi', 'Administrasi Prodi', 'Teknik Elektro', 1, 1, 1, 1, 1, 1, 1, 1, 0.5, 0.85),
+(36, '901', 'Aul', 'Perpustakaan', 'Perpustakaan', 4.1666666666667, 3.6, 4, 4, 4, 4.2, 1.8333333333333, 3.9695950294144, 0.12078713019718, 0.688435),
+(37, '902', 'Amel', 'Perpustakaan', 'Perpustakaan', 4.3333333333333, 3.4, 4, 4, 3.25, 4.2, 1.6666666666667, 3.8265729108723, 0.11643524263046, 0.66595),
+(38, '903', 'Ucup', 'Perpustakaan', 'Perpustakaan', 4.8333333333333, 4.4, 3.8, 4, 4.25, 3.8, 1.1666666666667, 4.1573744669245, 0.126500896765, 0.761605),
+(39, '904', 'Novi', 'Perpustakaan', 'Perpustakaan', 4.3333333333333, 4, 4.8, 4.75, 4.75, 4.2, 1.6666666666667, 4.4532701004246, 0.13550443091484, 0.77166),
+(40, '905', 'Danis', 'Perpustakaan', 'Perpustakaan', 4.3333333333333, 3.8, 3.8, 4, 3.75, 4, 1.6666666666667, 3.9278911206998, 0.11951816058836, 0.682965),
+(41, '906', 'Vico', 'Perpustakaan', 'Perpustakaan', 4.6666666666667, 4.8, 4.4, 4.25, 4.75, 4, 1.3333333333333, 4.4808579833234, 0.13634387704949, 0.80745),
+(42, '907', 'Wawan', 'Perpustakaan', 'Perpustakaan', 4.5, 4.6, 4, 3.25, 4, 4, 1.5, 4.0583167750672, 0.12348676201455, 0.744165),
+(43, '908', 'Rehan', 'Perpustakaan', 'Perpustakaan', 4.3333333333333, 4.8, 4, 4, 3, 3.8, 1.6666666666667, 3.9905089278355, 0.12142349984013, 0.70212);
 
 --
 -- Indexes for dumped tables
@@ -682,37 +756,37 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT untuk tabel `data_lppm`
 --
 ALTER TABLE `data_lppm`
-  MODIFY `id_data` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id_data` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT untuk tabel `dosen_peserta`
 --
 ALTER TABLE `dosen_peserta`
-  MODIFY `id_dosen` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `id_dosen` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 
 --
 -- AUTO_INCREMENT untuk tabel `nilai_dosen`
 --
 ALTER TABLE `nilai_dosen`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
 
 --
 -- AUTO_INCREMENT untuk tabel `nilai_mhs`
 --
 ALTER TABLE `nilai_mhs`
-  MODIFY `id_mhs` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
+  MODIFY `id_mhs` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
 
 --
 -- AUTO_INCREMENT untuk tabel `nilai_pimpinan`
 --
 ALTER TABLE `nilai_pimpinan`
-  MODIFY `id_pimpinan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `id_pimpinan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
 
 --
 -- AUTO_INCREMENT untuk tabel `nilai_pimpinan_tendik`
 --
 ALTER TABLE `nilai_pimpinan_tendik`
-  MODIFY `id_pimpinan` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id_pimpinan` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- AUTO_INCREMENT untuk tabel `tb_bobot_baru_tendik`
@@ -748,7 +822,7 @@ ALTER TABLE `tb_kriteria_tendik`
 -- AUTO_INCREMENT untuk tabel `tendik_peserta`
 --
 ALTER TABLE `tendik_peserta`
-  MODIFY `id_tendik` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `id_tendik` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
