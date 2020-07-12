@@ -30,7 +30,7 @@ class Lppm extends CI_Controller
         $data['user'] = $this->db->get_where('data_lppm', ['nip' => $this->session->userdata('nip')])->row_array();
         //$jurusan = $data['user']['jurusan'];
         //$data['dosen'] = $this->db->get_where('dosen_peserta', ['jurusan' => $jurusan])->result_array();
-        $data['title'] = 'LPPM';
+        $data['title'] = 'Unit Kendali Mutu (UKM)';
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar_user');
         $this->load->view('templates/topbar_user');
@@ -43,7 +43,7 @@ class Lppm extends CI_Controller
     public function data_jurnal($id_dosen)
     {
         $data['user'] = $this->db->get_where('data_lppm', ['nip' => $this->session->userdata('nip')])->row_array();
-        $data['title'] = 'LPPM - Isi Kuesioner';
+        $data['title'] = 'UKM - Isi Kuesioner';
         $data['dosen'] = $this->db->get_where('dosen_peserta', ['id_dosen' => $id_dosen])->row_array();
         $where = [
             'nip' => $this->session->userdata('nip'),
@@ -62,7 +62,7 @@ class Lppm extends CI_Controller
     public function input_nilai()
     {
         $data['user'] = $this->db->get_where('data_lppm', ['nip' => $this->session->userdata('nip')])->row_array();
-        $data['title'] = 'LPPM - Isi Kuesioner';
+        $data['title'] = 'UKM - Isi Kuesioner';
         //$data['dosen'] = $this->db->get_where('dosen_peserta', ['id_dosen' => $id_dosen])->row_array();
         $id_dosen = $this->input->post('id_dosen');
         $nama = $data['user']['nama'];

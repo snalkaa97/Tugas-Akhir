@@ -36,6 +36,7 @@
                 <a class="collapse-item" href="<?= base_url('admin/mahasiswa') ?>">Mahasiswa</a>
                 <a class="collapse-item" href="<?= base_url('admin/dosen') ?>">Dosen</a>
                 <a class="collapse-item" href="<?= base_url('admin/pimpinan') ?>">Pimpinan</a>
+                <a class="collapse-item" href="<?= base_url('admin/ukm') ?>">UKM</a>
             </div>
         </div>
 

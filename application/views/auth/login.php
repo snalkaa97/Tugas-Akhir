@@ -26,7 +26,7 @@
                                             <option value="Pimpinan">Pimpinan</option>
                                             <option value="Dosen">Dosen</option>
                                             <option value="Mahasiswa">Mahasiswa</option>
-                                            <option value="LPPM">LPPM</option>
+                                            <option value="LPPM">UKM</option>
                                         </select> <?= form_error('role', '<small class="text-danger pl-3">', '</small>'); ?>
                                     </div>
                                     <button type="submit" class="btn btn-success btn-user btn-block">

@@ -953,4 +953,93 @@ class Admin extends CI_Controller
       </div>');
         redirect('admin/pimpinan');
     }
+
+    public function ukm()
+    {
+
+        $data['title'] = "User UKM";
+        $data['ukm'] = $this->db->get('data_lppm')->result_array();
+
+        // var_dump($data['data_ukm']);
+        //$data['ukm'] = $this->db->distinct()->select('nip')->get('data_lppm');
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar');
+        $this->load->view('templates/topbar');
+        $this->load->view('user/ukm');
+        $this->load->view('templates/footer');
+    }
+
+    public function tambahukm()
+    {
+
+        $this->form_validation->set_rules('nama', 'Nama', 'required');
+        $this->form_validation->set_rules('nip', 'NIP', 'required');
+        $data['ukm'] = $this->db->get('data_lppm')->result_array();
+        $nama = $this->input->get('nama');
+        $nip = $this->input->get('nip');
+
+
+
+        if ($this->form_validation->run() == FALSE) {
+            $this->load->view('templates/header', $data);
+            $this->load->view('templates/sidebar');
+            $this->load->view('templates/topbar');
+            $this->load->view('user/ukm');
+            $this->load->view('templates/footer');
+        } else {
+            # code...
+            $data = [
+                'nip' => $nip,
+                'nama' => $nama
+            ];
+            $this->db->insert('data_lppm', $data);
+            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
+            Congratulations! data berhasil ditambahkan.  
+          </div>');
+            redirect('admin/ukm');
+        }
+    }
+
+    public function editukm($nip)
+    {
+        $this->form_validation->set_rules('nama', 'Nama', 'required');
+        $this->form_validation->set_rules('nip', 'NIP', 'required');
+        $data['ukm'] = $this->db->get('data_lppm')->result_array();
+        $nama = $this->input->get('nama');
+        $nip_baru = $this->input->get('nip');
+
+
+
+        if ($this->form_validation->run() == FALSE) {
+            $this->load->view('templates/header', $data);
+            $this->load->view('templates/sidebar');
+            $this->load->view('templates/topbar');
+            $this->load->view('user/ukm');
+            $this->load->view('templates/footer');
+        } else {
+            # code...
+            $data = [
+                'nip' => $nip_baru,
+                'nama' => $nama
+            ];
+
+            $this->db->where('nip', $nip);
+            $this->db->update('data_lppm', $data);
+            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
+            Congratulations! data berhasil diedit.  
+          </div>');
+            redirect('admin/ukm');
+        }
+    }
+
+    public function hapusukm($nip)
+    {
+        $data['ukm'] = $this->db->get_where('data_lppm', ['nip' => $nip])->row_array();
+        $nip = $data['ukm']['nip'];
+        $this->db->delete('data_lppm', ['nip' => $nip]);
+        $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
+        data berhasil dihapus.  
+      </div>');
+        redirect('admin/ukm');
+    }
 }
