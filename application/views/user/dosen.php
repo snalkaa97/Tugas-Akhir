@@ -55,7 +55,7 @@
                 <thead>
                     <tr>
                         <th scope="col">No</th>
-                        <th scope="col">NIP</th>
+                        <th scope="col">NIDN</th>
                         <th scope="col">Nama</th>
                         <th scope="col">Jurusan</th>
                         <th scope="col">Pendidikan</th>
@@ -98,7 +98,7 @@
                 <form action="<?= base_url('admin/tambahDosen'); ?>" method="post">
                     <div class="modal-body">
                         <div class="form-group">
-                            <input type="text" class="form-control" id="nip" name="nip" placeholder="NIP">
+                            <input type="text" class="form-control" id="nip" name="nip" placeholder="NIDN">
                         </div>
                         <div class="form-group">
                             <input type="text" class="form-control" id="nama" name="nama" placeholder="Nama">
@@ -192,7 +192,7 @@
                         <div class="modal-body">
                             <input type="hidden" name="id_dosen" value="<?= $d['id_dosen']; ?>">
                             <div class="form-group">
-                                <input type="text" class="form-control" id="nip" name="nip" placeholder="NIP" value="<?= $d['nip']; ?>" readonly>
+                                <input type="text" class="form-control" id="nip" name="nip" placeholder="NIDN" value="<?= $d['nip']; ?>">
                             </div>
                             <div class="form-group">
                                 <input type="text" class="form-control" id="nama" name="nama" value="<?= $d['nama']; ?>" placeholder="Nama">

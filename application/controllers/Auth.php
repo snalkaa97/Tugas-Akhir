@@ -60,13 +60,13 @@ class Auth extends CI_Controller
           </div>');
                 if ($this->input->post('remember')) {
 
-                    $cookie = array(
+                    // $cookie = array(
 
-                        'name'   => 'username',
-                        'value'  => $username,
-                        'expire' => '30000',
-                        'secure' => TRUE
-                    );
+                    //     'name'   => 'username',
+                    //     'value'  => $username,
+                    //     'expire' => '3000',
+                    //     'secure' => TRUE
+                    // );
                     // $cookie2 = array(
 
                     //     'name'   => 'password',
@@ -74,11 +74,12 @@ class Auth extends CI_Controller
                     //     'expire' => '30000',
                     //     'secure' => TRUE
                     // );
-                    $this->input->set_cookie($cookie);
+                    set_cookie('username', $username, '360000');
+                    set_cookie('password', $password, '360000');
+                } else {
+                    $this->input->set_cookie('username', '');
+                    $this->input->set_cookie('password', '');
                 }
-                // else {
-                //     $this->input->set_cookie('username', '');
-                // }
                 redirect('admin');
             }
         }

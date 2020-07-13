@@ -22,7 +22,8 @@
                                         <?= form_error('username', '<small class="text-danger pl-3">', '</small>'); ?>
                                     </div>
                                     <div class="form-group">
-                                        <input type="password" class="form-control" id="password" name="password" placeholder="Password" value="">
+                                        <input type="password" class="form-control" id="password" name="password" placeholder="Password" value="<?php if (isset($_COOKIE["password"])) : echo $_COOKIE['password'];
+                                                                                                                                                endif; ?>">
                                     </div>
                                     <div class="form-group">
                                         <div class="checkbox">

@@ -17,7 +17,7 @@
                                 <?= $this->session->flashdata('message'); ?>
                                 <form class="user" action="<?= base_url('auth') ?>" method="post">
                                     <div class="form-group">
-                                        <input type="text" class="form-control" id="id" name="id" placeholder="NIP/NIM" value="<?= set_value('nip'); ?>">
+                                        <input type="text" class="form-control" id="id" name="id" placeholder="NIDN/NIM" value="<?= set_value('nip'); ?>">
                                         <?= form_error('id', '<small class="text-danger pl-3">', '</small>'); ?>
                                     </div>
                                     <div class="form-group">

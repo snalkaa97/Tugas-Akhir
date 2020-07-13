@@ -326,8 +326,10 @@ class Admin extends CI_Controller
 
     public function hapusDosen($id)
     {
-        $this->db->delete('dosen_peserta', ['id_dosen' => $id]);
-        $this->db->delete('nilai_dosen', ['id_dosen' => $id]);
+        $data['dosen'] = $this->db->get_where('dosen_peserta', ['id_dosen' => $id])->row_array();
+        $nip = $data['dosen']['nip'];
+        $this->db->delete('dosen_peserta', ['nip' => $nip]);
+        $this->db->delete('nilai_dosen', ['nip' => $nip]);
         $this->session->set_flashdata('message', '<div class="alert alert-warning" role="alert">
         Dosen berhasil dihapus!. 
       </div>');
@@ -693,9 +695,9 @@ class Admin extends CI_Controller
         //$jurusan = $this->input->get('jurusan');
 
         $data['title'] = 'Mahasiswa';
-        $this->db->distinct();
         $this->db->select('nim, nama, jurusan,id_mhs');
         $this->db->from('nilai_mhs');
+        $this->db->group_by('nama');
         $data['mahasiswa'] = $this->db->get()->result_array();
 
 
@@ -742,7 +744,7 @@ class Admin extends CI_Controller
         }
     }
 
-    public function editmahasiswa($id)
+    public function editmahasiswa($nim)
     {
         $this->form_validation->set_rules('jurusan', 'Jurusan', 'required');
         $this->form_validation->set_rules('nama', 'Nama', 'required');
@@ -751,7 +753,10 @@ class Admin extends CI_Controller
         if ($this->form_validation->run() == FALSE) {
             # code...
             $data['title'] = 'Mahasiswa';
-            $data['mahasiswa'] = $this->db->get('nilai_mhs')->result_array();
+            $this->db->select('nim, nama, jurusan,id_mhs');
+            $this->db->from('nilai_mhs');
+            $this->db->group_by('nama');
+            $data['mahasiswa'] = $this->db->get()->result_array();
             $this->load->view('templates/header', $data);
             $this->load->view('templates/sidebar');
             $this->load->view('templates/topbar');
@@ -770,7 +775,7 @@ class Admin extends CI_Controller
                 'jurusan' => $jurusan
             ];
 
-            $this->db->where('id_mhs', $id);
+            $this->db->where('nim', $nim);
             $this->db->update('nilai_mhs', $data);
             $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
             Congratulations! user mahasiswa berhasil diedit.  
@@ -779,10 +784,10 @@ class Admin extends CI_Controller
         }
     }
 
-    public function hapusmahasiswa($id)
+    public function hapusmahasiswa($nim)
     {
-        $data['mahasiswa'] = $this->db->get_where('nilai_mhs', ['id_mhs' => $id])->row_array();
-        $nim = $data['mahasiswa']['nim'];
+        $data['mahasiswa'] = $this->db->get_where('nilai_mhs', ['nim' => $nim])->row_array();
+        //$nim = $data['mahasiswa']['nim'];
         $this->db->delete('nilai_mhs', ['nim' => $nim]);
         $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
         data berhasil dihapus.  
@@ -814,12 +819,14 @@ class Admin extends CI_Controller
         $data['title'] = 'Pimpinan';
         $this->db->select('nilai_pimpinan_tendik.*');
         $this->db->from('nilai_pimpinan_tendik');
+        $this->db->group_by('nama');
         $data['pimpinan'] = $this->db->get()->result_array();
 
         $jurusan = $this->input->get('jurusan');
         $tendik = $this->input->get('tendik');
 
         if ($jurusan) {
+            $this->db->group_by('nama');
             $data['pimpinan'] = $this->db->get_where('nilai_pimpinan_tendik', ['jurusan' => $jurusan])->result_array();
         }
         $this->load->view('templates/header', $data);

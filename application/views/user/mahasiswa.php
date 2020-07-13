@@ -71,8 +71,8 @@
                             <td><?= $d['nim']; ?></td>
                             <td><?= $d['nama']; ?></td>
                             <td><?= $d['jurusan']; ?></td>
-                            <td><a class="badge badge-success" data-toggle="modal" data-target="#editmahasiswa<?= $d['id_mhs'] ?>" href="#">edit</a>
-                                <a class="badge badge-danger" data-toggle="modal" data-target="#hapusmahasiswa<?= $d['id_mhs']; ?>" href="#">delete</a>
+                            <td><a class="badge badge-success" data-toggle="modal" data-target="#editmahasiswa<?= $d['nim'] ?>" href="#">edit</a>
+                                <a class="badge badge-danger" data-toggle="modal" data-target="#hapusmahasiswa<?= $d['nim']; ?>" href="#">delete</a>
                             </td>
                         </tr>
                         <?php $i++; ?>
@@ -133,7 +133,7 @@
 <!-- Modal -->
 
 <?php foreach ($mahasiswa as $d) : ?>
-    <div class="modal fade" id="hapusmahasiswa<?= $d['id_mhs']; ?>" tabindex="-1" role="dialog" aria-labelledby="hapusmahasiswaLabel" aria-hidden="true">
+    <div class="modal fade" id="hapusmahasiswa<?= $d['nim']; ?>" tabindex="-1" role="dialog" aria-labelledby="hapusmahasiswaLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -142,7 +142,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="<?= base_url('admin/hapusmahasiswa/' . $d['id_mhs']); ?>" method="get">
+                <form action="<?= base_url('admin/hapusmahasiswa/' . $d['nim']); ?>" method="get">
                     <div class="modal-body">
                         Are You Sure?
                     </div>
@@ -157,7 +157,7 @@
 <?php endforeach; ?>
 
 <?php foreach ($mahasiswa as $d) : ?>
-    <div class="modal fade" id="editmahasiswa<?= $d['id_mhs']; ?>" tabindex="-1" role="dialog" aria-labelledby="editmahasiswaLabel" aria-hidden="true">
+    <div class="modal fade" id="editmahasiswa<?= $d['nim']; ?>" tabindex="-1" role="dialog" aria-labelledby="editmahasiswaLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -166,9 +166,9 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="<?= base_url('admin/editmahasiswa/' . $d['id_mhs']); ?>" method="post">
+                <form action="<?= base_url('admin/editmahasiswa/' . $d['nim']); ?>" method="post">
                     <div class="modal-body">
-                        <input type="hidden" name="id_mhs" value="<?= $d['id_mhs']; ?>">
+                        <input type="hidden" name="nim" value="<?= $d['nim']; ?>">
                         <div class="form-group">
                             <input type="text" class="form-control" id="nim" name="nim" placeholder="NIM" value="<?= $d['nim']; ?>">
                             <?= form_error('nim', '<small class="text-danger pl-3">', '</small>'); ?>
