@@ -10,6 +10,7 @@
                 <th>NIP</th>
                 <th>Nama</th>
                 <th>Tendik</th>
+                <th>Jurusan</th>
                 <th>Isi Kuesioner</th>
             </tr>
         </thead>
@@ -32,6 +33,7 @@
                     <td><?= $row['nip']; ?></td>
                     <td><?= $row['nama']; ?></td>
                     <td><?= $row['tendik']; ?></td>
+                    <td><?= $row['jurusan']; ?></td>
                     <td>
                         <?php if ($num > 0) { ?>
                             <a href="<?= base_url('tendik/kuesioner/') . $row['id_tendik']; ?>" class="btn btn-success">Valued</a>

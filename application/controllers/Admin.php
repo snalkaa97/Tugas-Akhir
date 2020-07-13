@@ -860,10 +860,19 @@ class Admin extends CI_Controller
             $jurusan = $this->input->post('jurusan');
             $jabatan = $this->input->post('jabatan');
 
+            if ($jabatan == "Kepala Laboratorium") {
+                $tendik = "Laboratorium";
+            } else if ($jabatan == "Kepala Program Studi") {
+                $tendik = "Administrasi Prodi";
+            } else if ($jabatan == "Kepala Perpustakaan") {
+                $tendik = "Perpustakaan";
+            }
+
             $data = [
                 'nip' => $nip,
                 'nama' => $nama,
                 'jurusan' => $jurusan,
+                'tendik' => $tendik,
                 'jabatan' => $jabatan
             ];
             $data2 = [
@@ -875,8 +884,10 @@ class Admin extends CI_Controller
             if ($jabatan == "Kepala Program Studi" && $jurusan != "Perpustakaan") {
                 $this->db->insert('nilai_pimpinan_tendik', $data);
                 $this->db->insert('nilai_pimpinan', $data2);
+            } else {
+                $this->db->insert('nilai_pimpinan_tendik', $data);
             }
-            $this->db->insert('nilai_pimpinan_tendik', $data);
+
             $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
             Congratulations! data berhasil ditambahkan  
           </div>');
@@ -908,10 +919,19 @@ class Admin extends CI_Controller
             $jurusan = $this->input->post('jurusan');
             $jabatan = $this->input->post('jabatan');
 
+            if ($jabatan == "Kepala Laboratorium") {
+                $tendik = "Laboratorium";
+            } else if ($jabatan == "Kepala Program Studi") {
+                $tendik = "Administrasi Prodi";
+            } else if ($jabatan == "Kepala Perpustakaan") {
+                $tendik = "Perpustakaan";
+            }
+
             $data = [
                 'nip' => $nip,
                 'nama' => $nama,
                 'jurusan' => $jurusan,
+                'tendik' => $tendik,
                 'jabatan' => $jabatan
             ];
             $data2 = [
