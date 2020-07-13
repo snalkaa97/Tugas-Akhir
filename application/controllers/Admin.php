@@ -974,9 +974,11 @@ class Admin extends CI_Controller
 
         $this->form_validation->set_rules('nama', 'Nama', 'required');
         $this->form_validation->set_rules('nip', 'NIP', 'required');
+
+
         $data['ukm'] = $this->db->get('data_lppm')->result_array();
-        $nama = $this->input->get('nama');
-        $nip = $this->input->get('nip');
+        $nama = $this->input->post('nama');
+        $nip = $this->input->post('nip');
 
 
 
@@ -1005,8 +1007,8 @@ class Admin extends CI_Controller
         $this->form_validation->set_rules('nama', 'Nama', 'required');
         $this->form_validation->set_rules('nip', 'NIP', 'required');
         $data['ukm'] = $this->db->get('data_lppm')->result_array();
-        $nama = $this->input->get('nama');
-        $nip_baru = $this->input->get('nip');
+        $nama = $this->input->post('nama');
+        $nip_baru = $this->input->post('nip');
 
 
 

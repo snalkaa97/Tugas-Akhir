@@ -7,6 +7,7 @@ class Auth extends CI_Controller
     {
         parent::__construct();
         $this->load->library('form_validation');
+        $this->load->helper('cookie');
     }
 
     public function index()
@@ -57,6 +58,27 @@ class Auth extends CI_Controller
                 $this->session->set_userdata($data);
                 $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert"> Login Berhasil  
           </div>');
+                if ($this->input->post('remember')) {
+
+                    $cookie = array(
+
+                        'name'   => 'username',
+                        'value'  => $username,
+                        'expire' => '30000',
+                        'secure' => TRUE
+                    );
+                    // $cookie2 = array(
+
+                    //     'name'   => 'password',
+                    //     'value'  => $password,
+                    //     'expire' => '30000',
+                    //     'secure' => TRUE
+                    // );
+                    $this->input->set_cookie($cookie);
+                }
+                // else {
+                //     $this->input->set_cookie('username', '');
+                // }
                 redirect('admin');
             }
         }
