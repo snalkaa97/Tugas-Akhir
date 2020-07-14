@@ -256,7 +256,7 @@
                                 $h9 = $r['b9'] * (round($minc9 / $r['c9_saw'], 4));
                                 $h10 = $r['b10'] * (round($minc10 / $r['c10_saw'], 4));
 
-                                $total = round($h1 + $h2 + $h3 + $h5 + $h6 + $h7 + $h8 + $h9 + $h10, 4);
+                                $total = round($h1 + $h2 + $h3 + $h4 +  $h5 + $h6 + $h7 + $h8 + $h9 + $h10, 4);
                                 $this->db->where('nip', $r['nip']);
                                 $this->db->update('dosen_peserta', ['total_nilai_saw' => $total]);
                                 ?>

@@ -246,7 +246,11 @@
                                 $h5 = $r['b5'] * (round($r['c5'] / $maxc5, 4));
                                 $h6 = $r['b6'] * (round($r['c6'] / $maxc6, 4));
 
-                                $total = $h1 + $h2 + $h3 + $h5 + $h6;
+
+
+                                $total = $h1 + $h2 + $h3 + $h4 + $h5 + $h6;
+                                //echo "total = " . $h1 . " + " . $h2 . " + " . $h3 . " + " . $h4 . " + " . $h5 . " + " . $h6 . " = " . $total;
+                                //echo $total;
                                 $this->db->where('nip', $r['nip']);
                                 $this->db->update('tendik_peserta', ['nilai_total_saw' => $total]);
                                 ?>
