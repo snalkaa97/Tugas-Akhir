@@ -125,10 +125,10 @@ class Dosen extends CI_Controller
             $sum_avg = $sum_avg + $c['avg'];
         }
 
-        $c3 = round($sum_avg / $num, 4);
+        $c2 = round($sum_avg / $num, 4);
 
         $dosen_peserta = [
-            'c3' => $c3
+            'c2' => $c2
         ];
         $this->db->where('id_dosen', $id_dosen);
         $this->db->update('dosen_peserta', $dosen_peserta);

@@ -127,10 +127,10 @@ class Pimpinan extends CI_Controller
         //die;
         // }
 
-        $c2 = $rata;
+        $c3 = $rata;
 
         $dosen_peserta = [
-            'c2' => $c2
+            'c3' => $c3
         ];
         $this->db->where('id_dosen', $id_dosen);
         $this->db->update('dosen_peserta', $dosen_peserta);
