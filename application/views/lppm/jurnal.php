@@ -37,16 +37,40 @@
                     <div class="form-group">
                         <input type="hidden" class="form-control" id="NameInputEmail1" placeholder="Username" name="id_dosen" value="<?php echo $dosen['id_dosen']; ?>" readonly="true">
                     </div>
-
+                    <div class="form-group">
+                        <div class="col-lb col-lg-offset-0">
+                            <label class="pull-left">Kualifikasi Pendidikan</label>
+                        </div>
+                        <select name="pendidikan" id="pendidikan" class="form-control" required>
+                            <option value="">* Pilih pendidikan</option>
+                            <option value="S1">S1</option>
+                            <option value="S2">S2</option>
+                            <option value="S3">S3</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-lb col-lg-offset-0">
+                            <label class="pull-left">Jabatan Akademik</label>
+                        </div>
+                        <select name="jabatan" id="jabatan" class="form-control" required>
+                            <option value="">* Pilih Jabatan</option>
+                            <option value="Guru Besar">Guru Besar</option>
+                            <option value="Lektor Kepala">Lektor Kepala</option>
+                            <option value="Asisten Ahli">Asisten Ahli</option>
+                            <option value="Pengajar">Tenaga Pengajar</option>
+                        </select>
+                    </div>
 
                     <div class="form-group">
                         <div class="col-lb col-lg-offset-0">
                             <label class="pull-left">Jumlah Penelitian</label>
                         </div>
                         <div class="col-fr col-lg-offset-6">
-                            <input class="form-control" type="text" name="jml_pn" placeholder="* Jumlah penelitan" <?php echo "value='$tmp_pn'"; ?>>
+                            <input class="form-control" type="text" name="jml_pn" placeholder="* Jumlah penelitan" <?php echo "value='$tmp_pn'"; ?> required>
                         </div>
                     </div>
+
+
 
                     <div class="form-group">
                         <div class="col-lb col-lg-offset-0">
@@ -90,7 +114,7 @@
                             <label class="pull-left">Jumlah Pelatihan</label>
                         </div>
                         <div class="col-fr col-lg-offset-6">
-                            <input class="form-control" type="text" name="jml_pl" placeholder="* Jumlah pelatihan" <?php echo "value='$tmp_pl'"; ?>>
+                            <input class="form-control" type="text" name="jml_pl" placeholder="* Jumlah pelatihan" <?php echo "value='$tmp_pl'"; ?> required>
                         </div>
                     </div>
 
@@ -99,7 +123,7 @@
                             <label class="pull-left">Jumlah Seminar</label>
                         </div>
                         <div class="col-fr col-lg-offset-6">
-                            <input class="form-control" type="text" name="jml_sm" placeholder="* Jumlah seminar" <?php echo "value='$tmp_sm'"; ?>>
+                            <input class="form-control" type="text" name="jml_sm" placeholder="* Jumlah seminar" <?php echo "value='$tmp_sm'"; ?>required>
                         </div>
                     </div>
 
@@ -108,7 +132,7 @@
                             <label class="pull-left">Jumlah Pengabdian Masyarakat</label>
                         </div>
                         <div class="col-fr col-lg-offset-6">
-                            <input class="form-control" type="text" name="jml_pg" placeholder="* Jumlah pengabdian masyarakat" <?php echo "value='$tmp_pg'"; ?>>
+                            <input class="form-control" type="text" name="jml_pg" placeholder="* Jumlah pengabdian masyarakat" <?php echo "value='$tmp_pg'"; ?>required>
                         </div>
                     </div>
                     <br>

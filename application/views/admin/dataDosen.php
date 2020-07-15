@@ -117,7 +117,7 @@
                                 <option value="D3OAB">D3OAB</option>
                             </select>
                         </div>
-                        <div class="form-group">
+                        <!-- <div class="form-group">
                             <select name="pendidikan" id="pendidikan" class="form-control">
                                 <option value="">Pilih pendidikan</option>
                                 <option value="S1">S1</option>
@@ -133,7 +133,7 @@
                                 <option value="Asisten Ahli">Asisten Ahli</option>
                                 <option value="Pengajar">Pengajar</option>
                             </select>
-                        </div>
+                        </div> -->
                         <div class="form-group">
                             <input type="text" class="form-control" id="alamat" name="alamat" placeholder="Alamat">
                         </div>
@@ -211,15 +211,15 @@
                                     <option value="D3OAB">D3OAB</option>
                                 </select>
                             </div>
-                            <div class="form-group">
+                            <!-- <div class="form-group">
                                 <select name="pendidikan" id="pendidikan" class="form-control">
                                     <option value="">Pilih pendidikan</option>
                                     <option value="S1">S1</option>
                                     <option value="S2">S2</option>
                                     <option value="S3">S3</option>
                                 </select>
-                            </div>
-                            <div class="form-group">
+                            </div> -->
+                            <!-- <div class="form-group">
                                 <select name="jabatan" id="jabatan" class="form-control">
                                     <option value="">Pilih Jabatan</option>
                                     <option value="Guru Besar">Guru Besar</option>
@@ -227,7 +227,7 @@
                                     <option value="Asisten Ahli">Asisten Ahli</option>
                                     <option value="Pengajar">Pengajar</option>
                                 </select>
-                            </div>
+                            </div> -->
                             <div class="form-group">
                                 <input type="text" class="form-control" id="alamat" name="alamat" value="<?= $d['alamat']; ?>" placeholder="Alamat">
                             </div>

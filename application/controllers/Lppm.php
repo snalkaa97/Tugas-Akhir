@@ -77,6 +77,50 @@ class Lppm extends CI_Controller
         $jml_pl = $this->input->post('jml_pl');
         $jml_sm = $this->input->post('jml_sm');
         $jml_pg = $this->input->post('jml_pg');
+        $jabatan = $this->input->post('jabatan');
+        $pendidikan = $this->input->post('pendidikan');
+
+        if ($pendidikan == "S1") {
+            $c4 = 1;
+            $c4_saw = 5;
+        } else if ($pendidikan == "S2") {
+            $c4 = 3;
+            $c4_saw = 3;
+        } else if ($pendidikan == "S3") {
+            $c4 = 5;
+            $c4_saw = 1;
+        } else {
+            $c4 = 1;
+            $c4_saw = 5;
+        }
+
+        if ($jabatan == "Guru Besar") {
+            $c10 = 5;
+            $c10_saw = 1;
+        } else if ($jabatan == "Lektor Kepala") {
+            $c10 = 4;
+            $c10_saw = 2;
+        } else if ($jabatan == "Lektor") {
+            $c10 = 3;
+            $c10_saw = 3;
+        } else if ($jabatan == "Asisten Ahli") {
+            $c10 = 2;
+            $c10_saw = 4;
+        } else if ($jabatan == "Pengajar") {
+            $c10 = 1;
+            $c10_saw = 5;
+        } else {
+            $c10 = 1;
+            $c10_saw = 5;
+        }
+
+        // $nilai = [
+        //     'c4' => $c4,
+        //     'c10' => $c10,
+        //     'c4_saw' => $c4_saw,
+        //     'c10_saw' => $c10_saw
+        // ];
+
 
         $where = [
             'nip' => $nip,
@@ -84,6 +128,8 @@ class Lppm extends CI_Controller
         ];
 
         $data = [
+            'pendidikan' => $pendidikan,
+            'jabatan' => $jabatan,
             'jml_pn' => $jml_pn,
             'jml_jia' => $jml_jia,
             'jml_ji' => $jml_ji,
@@ -99,6 +145,8 @@ class Lppm extends CI_Controller
             'nip' => $nip,
             'nama' => $nama,
             'id_dosen' => $id_dosen,
+            'pendidikan' => $pendidikan,
+            'jabatan' => $jabatan,
             'jml_pn' => $jml_pn,
             'jml_jia' => $jml_jia,
             'jml_ji' => $jml_ji,
@@ -110,7 +158,7 @@ class Lppm extends CI_Controller
             'jml_pg' => $jml_pg
         ];
 
-        if ($jml_pn != "" && $jml_pl != "" && $jml_sm != "" && $jml_pg != "") {
+        if ($pendidikan != "" && $jabatan != "" && $jml_pn != "" && $jml_pl != "" && $jml_sm != "" && $jml_pg != "") {
             if ($jml_jia != "" || $jml_ji != "" || $jml_jna != "" || $jml_jn != "" || $jml_jl != "") {
                 $cek = $this->db->get_where('data_lppm', $where)->row_array();
                 if ($cek) {
@@ -222,6 +270,10 @@ class Lppm extends CI_Controller
                 }
 
                 $nilai = [
+                    'c4' => $c4,
+                    'c10' => $c10,
+                    'c4_saw' => $c4_saw,
+                    'c10_saw' => $c10_saw,
                     'c5' => $c5,
                     'c6' => $c6,
                     'c7' => $c7,

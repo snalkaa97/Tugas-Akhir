@@ -9,7 +9,7 @@
             <div class="row">
                 <div class="col-sm-3">
                     <?php if (validation_errors()) : ?>
-                        <div class="alert alert-danger" role="alert">
+                        <div class="alert alert-danger">
                             <?= validation_errors(); ?>
                         </div>
                     <?php endif; ?>

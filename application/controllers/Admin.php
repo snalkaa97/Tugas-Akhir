@@ -124,8 +124,8 @@ class Admin extends CI_Controller
         $this->form_validation->set_rules('nip', 'NIP', 'required|trim|is_unique[dosen_peserta.nip]');
         $this->form_validation->set_rules('nama', 'nama', 'required|trim');
         $this->form_validation->set_rules('jurusan', 'jurusan', 'required|trim');
-        $this->form_validation->set_rules('pendidikan', 'pendidikan', 'required|trim');
-        $this->form_validation->set_rules('jabatan', 'jabatan', 'required|trim');
+        //$this->form_validation->set_rules('pendidikan', 'pendidikan', 'required|trim');
+        //$this->form_validation->set_rules('jabatan', 'jabatan', 'required|trim');
         $this->form_validation->set_rules('alamat', 'alamat', 'required|trim');
 
         if ($this->form_validation->run() == false) {
@@ -146,8 +146,6 @@ class Admin extends CI_Controller
                 'nip' => htmlspecialchars($this->input->post('nip'), true),
                 'nama' => htmlspecialchars($this->input->post('nama'), true),
                 'jurusan' => $this->input->post('jurusan'),
-                'pendidikan' => $this->input->post('pendidikan'),
-                'jabatan' => $this->input->post('jabatan'),
                 'alamat' => htmlspecialchars($this->input->post('alamat'), true)
             ];
 
@@ -160,51 +158,51 @@ class Admin extends CI_Controller
             $this->db->insert('dosen_peserta', $data);
 
 
-            $jabatan = $this->input->post('jabatan');
-            $pendidikan = $this->input->post('pendidikan');
+            //$jabatan = $this->input->post('jabatan');
+            //$pendidikan = $this->input->post('pendidikan');
 
-            if ($pendidikan == "S1") {
-                $c4 = 1;
-                $c4_saw = 5;
-            } else if ($pendidikan == "S2") {
-                $c4 = 3;
-                $c4_saw = 3;
-            } else if ($pendidikan == "S3") {
-                $c4 = 5;
-                $c4_saw = 1;
-            } else {
-                $c4 = 1;
-                $c4_saw = 5;
-            }
+            // if ($pendidikan == "S1") {
+            //     $c4 = 1;
+            //     $c4_saw = 5;
+            // } else if ($pendidikan == "S2") {
+            //     $c4 = 3;
+            //     $c4_saw = 3;
+            // } else if ($pendidikan == "S3") {
+            //     $c4 = 5;
+            //     $c4_saw = 1;
+            // } else {
+            //     $c4 = 1;
+            //     $c4_saw = 5;
+            // }
 
-            if ($jabatan == "Guru Besar") {
-                $c10 = 5;
-                $c10_saw = 1;
-            } else if ($jabatan == "Lektor Kepala") {
-                $c10 = 4;
-                $c10_saw = 2;
-            } else if ($jabatan == "Lektor") {
-                $c10 = 3;
-                $c10_saw = 3;
-            } else if ($jabatan == "Asisten Ahli") {
-                $c10 = 2;
-                $c10_saw = 4;
-            } else if ($jabatan == "Pengajar") {
-                $c10 = 1;
-                $c10_saw = 5;
-            } else {
-                $c10 = 1;
-                $c10_saw = 5;
-            }
+            // if ($jabatan == "Guru Besar") {
+            //     $c10 = 5;
+            //     $c10_saw = 1;
+            // } else if ($jabatan == "Lektor Kepala") {
+            //     $c10 = 4;
+            //     $c10_saw = 2;
+            // } else if ($jabatan == "Lektor") {
+            //     $c10 = 3;
+            //     $c10_saw = 3;
+            // } else if ($jabatan == "Asisten Ahli") {
+            //     $c10 = 2;
+            //     $c10_saw = 4;
+            // } else if ($jabatan == "Pengajar") {
+            //     $c10 = 1;
+            //     $c10_saw = 5;
+            // } else {
+            //     $c10 = 1;
+            //     $c10_saw = 5;
+            // }
 
-            $nilai = [
-                'c4' => $c4,
-                'c10' => $c10,
-                'c4_saw' => $c4_saw,
-                'c10_saw' => $c10_saw
-            ];
-            $this->db->where('nip', $nip);
-            $this->db->update('dosen_peserta', $nilai);
+            // $nilai = [
+            //     'c4' => $c4,
+            //     'c10' => $c10,
+            //     'c4_saw' => $c4_saw,
+            //     'c10_saw' => $c10_saw
+            // ];
+            // $this->db->where('nip', $nip);
+            // $this->db->update('dosen_peserta', $nilai);
             $this->session->set_flashdata('message', '<div class="alert alert-primary" role="alert">
                     Dosen berhasil ditambahkan!. 
                   </div>');
@@ -217,8 +215,8 @@ class Admin extends CI_Controller
         $this->form_validation->set_rules('nip', 'NIP', 'required|trim');
         $this->form_validation->set_rules('nama', 'nama', 'required|trim');
         $this->form_validation->set_rules('jurusan', 'jurusan', 'required|trim');
-        $this->form_validation->set_rules('pendidikan', 'pendidikan', 'required|trim');
-        $this->form_validation->set_rules('jabatan', 'jabatan', 'required|trim');
+        //$this->form_validation->set_rules('pendidikan', 'pendidikan', 'required|trim');
+        //$this->form_validation->set_rules('jabatan', 'jabatan', 'required|trim');
         $this->form_validation->set_rules('alamat', 'alamat', 'required|trim');
 
         if ($this->form_validation->run() == false) {
@@ -237,49 +235,49 @@ class Admin extends CI_Controller
             $nip = $this->input->post('nip');
 
 
-            $jabatan = $this->input->post('jabatan');
-            $pendidikan = $this->input->post('pendidikan');
+            // $jabatan = $this->input->post('jabatan');
+            // $pendidikan = $this->input->post('pendidikan');
 
-            if ($pendidikan == "S1") {
-                $c4 = 1;
-                $c4_saw = 5;
-            } else if ($pendidikan == "S2") {
-                $c4 = 3;
-                $c4_saw = 3;
-            } else if ($pendidikan == "S3") {
-                $c4 = 5;
-                $c4_saw = 1;
-            } else {
-                $c4 = 1;
-                $c4_saw = 5;
-            }
+            // if ($pendidikan == "S1") {
+            //     $c4 = 1;
+            //     $c4_saw = 5;
+            // } else if ($pendidikan == "S2") {
+            //     $c4 = 3;
+            //     $c4_saw = 3;
+            // } else if ($pendidikan == "S3") {
+            //     $c4 = 5;
+            //     $c4_saw = 1;
+            // } else {
+            //     $c4 = 1;
+            //     $c4_saw = 5;
+            // }
 
-            if ($jabatan == "Guru Besar") {
-                $c10 = 5;
-                $c10_saw = 1;
-            } else if ($jabatan == "Lektor Kepala") {
-                $c10 = 4;
-                $c10_saw = 2;
-            } else if ($jabatan == "Lektor") {
-                $c10 = 3;
-                $c10_saw = 3;
-            } else if ($jabatan == "Asisten Ahli") {
-                $c10 = 2;
-                $c10_saw = 4;
-            } else if ($jabatan == "Pengajar") {
-                $c10 = 1;
-                $c10_saw = 5;
-            } else {
-                $c10 = 1;
-                $c10_saw = 5;
-            }
+            // if ($jabatan == "Guru Besar") {
+            //     $c10 = 5;
+            //     $c10_saw = 1;
+            // } else if ($jabatan == "Lektor Kepala") {
+            //     $c10 = 4;
+            //     $c10_saw = 2;
+            // } else if ($jabatan == "Lektor") {
+            //     $c10 = 3;
+            //     $c10_saw = 3;
+            // } else if ($jabatan == "Asisten Ahli") {
+            //     $c10 = 2;
+            //     $c10_saw = 4;
+            // } else if ($jabatan == "Pengajar") {
+            //     $c10 = 1;
+            //     $c10_saw = 5;
+            // } else {
+            //     $c10 = 1;
+            //     $c10_saw = 5;
+            // }
 
-            $nilai = [
-                'c4' => $c4,
-                'c10' => $c10,
-                'c4_saw' => $c4_saw,
-                'c10_saw' => $c10_saw
-            ];
+            // $nilai = [
+            //     'c4' => $c4,
+            //     'c10' => $c10,
+            //     'c4_saw' => $c4_saw,
+            //     'c10_saw' => $c10_saw
+            // ];
 
             $user_dosen = [
                 'nip' => htmlspecialchars($this->input->post('nip'), true),
@@ -292,13 +290,7 @@ class Admin extends CI_Controller
                 'nip' => htmlspecialchars($this->input->post('nip'), true),
                 'nama' => htmlspecialchars($this->input->post('nama'), true),
                 'jurusan' => $this->input->post('jurusan'),
-                'pendidikan' => $this->input->post('pendidikan'),
-                'jabatan' => $this->input->post('jabatan'),
-                'alamat' => htmlspecialchars($this->input->post('alamat'), true),
-                'c4' => $c4,
-                'c10' => $c10,
-                'c4_saw' => $c4_saw,
-                'c10_saw' => $c10_saw
+                'alamat' => htmlspecialchars($this->input->post('alamat'), true)
             ];
 
             $data1 = $this->db->get_where('dosen_peserta', ['id_dosen' => $id])->row_array();
