@@ -270,6 +270,8 @@ class Lppm extends CI_Controller
                 }
 
                 $nilai = [
+                    'pendidikan' => $pendidikan,
+                    'jabatan' => $jabatan,
                     'c4' => $c4,
                     'c10' => $c10,
                     'c4_saw' => $c4_saw,
