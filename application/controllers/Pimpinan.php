@@ -14,10 +14,8 @@ class Pimpinan extends CI_Controller
         //is_logged_in();
         // var_dump($this->session->userdata('role'));
         // die;
-        if (!$this->session->userdata('nim') && !$this->session->userdata('nip')) {
+        if (!$this->session->userdata('role') == "Pimpinan") {
             redirect('auth');
-        } else if (!$this->session->userdata('role') == "Pimpinan") {
-            redirect('auth/goToDefaultPage');
         }
     }
 
@@ -32,7 +30,7 @@ class Pimpinan extends CI_Controller
         $data['user'] = $this->db->get_where('nilai_pimpinan', ['nip' => $this->session->userdata('nip')])->row_array();
         $jurusan = $data['user']['jurusan'];
         $data['dosen'] = $this->db->get_where('dosen_peserta', ['jurusan' => $jurusan])->result_array();
-        $data['title'] = 'Pimpinan atau Kajur';
+        $data['title'] = 'Pimpinan atau Kaprodi';
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar_user');
         $this->load->view('templates/topbar_user');

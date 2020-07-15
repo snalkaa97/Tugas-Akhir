@@ -14,11 +14,10 @@ class Mahasiswa extends CI_Controller
         //is_logged_in();
         // var_dump($this->session->userdata('role'));
         // die;
-        if (!$this->session->userdata('nim') && !$this->session->userdata('nip')) {
+        if (!$this->session->userdata('role') == "Mahasiswa") {
             redirect('auth');
-        } else if (!$this->session->userdata('role') == "Mahasiswa") {
-            redirect('auth/goToDefaultPage');
         }
+        //var_dump($this->session->userdata('role'));
     }
 
     public function index()

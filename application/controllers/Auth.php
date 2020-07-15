@@ -107,8 +107,14 @@ class Auth extends CI_Controller
                 $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert"> Login Berhasil  
           </div>');
                 redirect('pimpinan');
+            } else {
+                $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
+                         NIDN/NIM atau role Salah. 
+                     </div>');
+                redirect('auth');
             }
-        } else if ($role == "Mahasiswa") {
+        }
+        if ($role == "Mahasiswa") {
             $user = $this->db->get_where('nilai_mhs', ['nim' => $id])->row_array();
             //var_dump($user);
             //die;
@@ -122,6 +128,11 @@ class Auth extends CI_Controller
                 $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert"> Login Berhasil  
           </div>');
                 redirect('mahasiswa');
+            } else {
+                $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
+                         NIDN/NIM atau role Salah. 
+                     </div>');
+                redirect('auth');
             }
         }
         if ($role == "Dosen") {
@@ -138,6 +149,11 @@ class Auth extends CI_Controller
                 $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert"> Login Berhasil  
           </div>');
                 redirect('dosen');
+            } else {
+                $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
+                         NIDN/NIM atau role Salah. 
+                     </div>');
+                redirect('auth');
             }
         }
         if ($role == "LPPM") {
@@ -153,12 +169,12 @@ class Auth extends CI_Controller
                 $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert"> Login Berhasil  
           </div>');
                 redirect('lppm');
+            } else {
+                $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
+                         NIDN/NIM atau role Salah. 
+                     </div>');
+                redirect('auth');
             }
-        } else {
-            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
-                     NIP/NIM atau role Salah. 
-                 </div>');
-            redirect('auth');
         }
     }
     // public function _login()
@@ -284,21 +300,7 @@ class Auth extends CI_Controller
     }
 
 
-    public function logout()
-    {
-        $this->session->unset_userdata('nip'); //menghapus session
-        $this->session->unset_userdata('nim'); //menghapus session
-        $this->session->unset_userdata('id_dosen');
-        $this->session->unset_userdata('tendik');
-        $this->session->unset_userdata('jurusan');
-        $this->session->unset_userdata('role');
-        $this->session->unset_userdata('username');
 
-        $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
-       You have been logged out. 
-      </div>'); //membuat session
-        redirect('auth');
-    }
 
     // public function goToDefaultPage()
     // {
@@ -313,6 +315,7 @@ class Auth extends CI_Controller
 
     public function auth_tendik()
     {
+        $this->goToDefaultPage();
         $this->form_validation->set_rules('nip', 'NIP', 'required');
         //$this->form_validation->set_rules('tendik', 'Tendik', 'required');
 
@@ -352,6 +355,7 @@ class Auth extends CI_Controller
 
     public function registration_tendik()
     {
+        $this->goToDefaultPage();
         $this->form_validation->set_rules('nama', 'Nama', 'required|trim'); //set_rules('name/index','alias','required/wajib|trim untuk spasi ga masuk db)
         $this->form_validation->set_rules('jurusan', 'Jurusan', 'required');
         $this->form_validation->set_rules('jabatan', 'Jabatan', 'required');
@@ -389,6 +393,21 @@ class Auth extends CI_Controller
         }
     }
 
+    public function logout()
+    {
+        $this->session->unset_userdata('nip'); //menghapus session
+        $this->session->unset_userdata('nim'); //menghapus session
+        $this->session->unset_userdata('id_dosen');
+        $this->session->unset_userdata('tendik');
+        $this->session->unset_userdata('jurusan');
+        $this->session->unset_userdata('role');
+        $this->session->unset_userdata('username');
+
+        $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
+       You have been logged out. 
+      </div>'); //membuat session
+        redirect('auth');
+    }
 
     public function goToDefaultPage()
     {
@@ -396,15 +415,21 @@ class Auth extends CI_Controller
             redirect('admin');
         }
 
+        if ($this->session->userdata('tendik')) {
+            redirect('tendik');
+        }
+
         if ($this->session->userdata('role') == "Mahasiswa") {
             redirect('mahasiswa');
-        } else if ($this->session->userdata('role') == "Pimpinan") {
+        }
+        if ($this->session->userdata('role') == "Pimpinan") {
             redirect('pimpinan');
-        } else if ($this->session->userdata('role') == "Dosen") {
-            redirect('Dosen');
-        } else if ($this->session->userdata('role') == "LPPM") {
-            redirect('LPPM');
-        } else {
+        }
+        if ($this->session->userdata('role') == "Dosen") {
+            redirect('dosen');
+        }
+        if ($this->session->userdata('role') == "LPPM") {
+            redirect('lppm');
         }
     }
 }

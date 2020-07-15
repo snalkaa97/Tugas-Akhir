@@ -2,14 +2,17 @@
 
 <div class="container-fluid">
     <!-- Page Heading -->
-    <h1 class="h3 mb-4 text-gray-800"><?= $title ?></h1>
+    <h5 class="mb-4 text-gray-800"><?= $title ?></h5>
+    <hr>
+    <h1 class="h3 mb-4 text-gray-800"><?= "Dosen FTUMJ"; ?></h1>
 
     <?= $this->session->flashdata('message'); ?>
     <table class="table table-hover">
         <thead>
             <tr>
-                <th>NIP</th>
+                <th>NIDN</th>
                 <th>Nama Dosen</th>
+                <th>Jurusan</th>
                 <th>Isi Kuesioner</th>
             </tr>
         </thead>
@@ -30,6 +33,7 @@
                 <tr>
                     <td><?= $row['nip']; ?></td>
                     <td><?= $row['nama']; ?></td>
+                    <td><?= $row['jurusan']; ?></td>
                     <td>
                         <?php if ($num > 0) { ?>
                             <a href="<?= base_url('lppm/data_jurnal/') . $row['id_dosen']; ?>" class="btn btn-success">Valued</a>

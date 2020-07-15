@@ -2,12 +2,14 @@
 
 <div class="container-fluid">
     <!-- Page Heading -->
-    <h1 class="h3 mb-4 text-gray-800"><?= $title ?></h1>
+    <h5 class="mb-4 text-gray-800"><?= $title ?></h5>
+    <hr>
+    <h3 class="h3 mb-4 text-gray-800"><?= "Dosen - " . $user['jurusan']; ?></h3>
     <?= $this->session->flashdata('message'); ?>
     <table class="table table-hover">
         <thead>
             <tr>
-                <th>NIP</th>
+                <th>NIDN</th>
                 <th>Nama Dosen</th>
                 <th>Isi Kuesioner</th>
             </tr>

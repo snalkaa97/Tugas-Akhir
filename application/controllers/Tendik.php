@@ -7,7 +7,7 @@ class Tendik extends CI_Controller
     {
         parent::__construct();
         //is_logged_in();
-        if (!$this->session->userdata('nip')) {
+        if (!$this->session->userdata('tendik')) {
             redirect('auth');
         }
     }

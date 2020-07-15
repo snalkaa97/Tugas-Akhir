@@ -12,10 +12,10 @@ class Dosen extends CI_Controller
     {
         parent::__construct();
         //is_logged_in();
-        if (!$this->session->userdata('nim') && !$this->session->userdata('nip')) {
+
+
+        if (!$this->session->userdata('role') == "Dosen") {
             redirect('auth');
-        } else if (!$this->session->userdata('role') == "Dosen") {
-            redirect('auth/goToDefaultPage');
         }
     }
 
@@ -30,7 +30,7 @@ class Dosen extends CI_Controller
         $jurusan = $data['user']['jurusan'];
         $data['dosen'] = $this->db->get_where('dosen_peserta', ['jurusan' => $jurusan])->result_array();
 
-        $data['title'] = 'Dosen';
+        $data['title'] = 'Dosen Sejawat';
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar_user');
         $this->load->view('templates/topbar_user');

@@ -11,11 +11,9 @@ class Lppm extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        //is_logged_in();
-        if (!$this->session->userdata('nim') && !$this->session->userdata('nip')) {
+        //is_logged_in();\
+        if (!$this->session->userdata('role') == "LPPM") {
             redirect('auth');
-        } else if (!$this->session->userdata('role') == "LPPM") {
-            redirect('auth/goToDefaultPage');
         }
     }
 
