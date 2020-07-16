@@ -6,7 +6,7 @@
                 <div class="form-group">
                     <select class="form-control" name="jurusan" id="jurusan">
                         <option value="">Cari berdasarkan jurusan</option>
-                        <option value=" Teknik Sipil">Teknik Sipil</option>
+                        <option value="Teknik Sipil">Teknik Sipil</option>
                         <option value="Teknik Elektro">Teknik Elektro</option>
                         <option value="Teknik Kimia">Teknik Kimia</option>
                         <option value="Teknik Mesin">Teknik Mesin</option>
@@ -146,6 +146,8 @@
 
             foreach ($vektor as $v) {
                 $vkt_v = $v['vektor_s'] / $vks_s_sum;
+                //var_dump($vkt_v);
+                //die;
                 $this->db->where('nip', $v['nip']);
                 $this->db->update('dosen_peserta', ['vektor_v' => $vkt_v]);
             } ?>

@@ -56,6 +56,7 @@
                             <option value="">* Pilih Jabatan</option>
                             <option value="Guru Besar">Guru Besar</option>
                             <option value="Lektor Kepala">Lektor Kepala</option>
+                            <option value="Lektor">Lektor</option>
                             <option value="Asisten Ahli">Asisten Ahli</option>
                             <option value="Pengajar">Tenaga Pengajar</option>
                         </select>
