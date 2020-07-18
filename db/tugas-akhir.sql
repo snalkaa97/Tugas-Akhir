@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 16 Jul 2020 pada 19.45
+-- Waktu pembuatan: 18 Jul 2020 pada 12.34
 -- Versi server: 10.4.11-MariaDB
 -- Versi PHP: 7.4.3
 
@@ -122,12 +122,11 @@ CREATE TABLE `dosen_peserta` (
 --
 
 INSERT INTO `dosen_peserta` (`id_dosen`, `nip`, `nama`, `jurusan`, `alamat`, `pendidikan`, `jabatan`, `c1`, `c2`, `c3`, `c4`, `c5`, `c6`, `c7`, `c8`, `c9`, `c10`, `c4_saw`, `c5_saw`, `c6_saw`, `c7_saw`, `c8_saw`, `c9_saw`, `c10_saw`, `vektor_s`, `vektor_v`, `total_nilai_saw`) VALUES
-(48, '3', 'NVR', 'Teknik Informatika', 'Jakarta', 'S2', 'Lektor', 4.455, 3.9, 3.6, 3, 3, 3, 3, 3, 5, 3, 3, 3, 3, 3, 3, 1, 3, 3.5041174838772, 0.2047485204509, 0.9212),
-(52, '7', 'STO', 'Teknik Informatika', 'Bogor', 'S2', 'Asisten Ahli', 4.4666, 3.4, 3.4, 3, 3, 3, 4, 3, 3, 2, 3, 3, 3, 2, 3, 3, 4, 3.2413091355564, 0.18939240846881, 0.8529),
-(56, '11', 'YDN', 'Teknik Informatika', 'Jakarta', 'S2', 'Asisten Ahli', 4.49, 4.6, 4.6, 3, 3, 3, 4, 3, 4, 2, 3, 3, 3, 2, 3, 2, 4, 3.6121739361098, 0.2110623494882, 0.94),
-(57, '12', 'RNL', 'Teknik Informatika', 'Jakarta', 'S2', 'Asisten Ahli', 4.433, 4, 4.6, 3, 3, 3, 4, 3, 4, 2, 3, 3, 3, 2, 3, 2, 4, 3.5313654144951, 0.20634063986614, 0.9188),
-(58, '13', 'SSO', 'Teknik Informatika', 'Bekasi', 'S2', 'Lektor', 3.5357, 3.6, 3.6, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3.2252846050591, 0.18845608172596, 0.8315),
-(63, '0', 'test', 'Teknik Kimia', 'Jakarta', 'S2', 'Pengajar', 1, 1, 1, 3, 5, 5, 5, 5, 3, 1, 3, 1, 1, 1, 1, 3, 5, 2.094010727779, 1, 1);
+(48, '3', 'NVR', 'Teknik Informatika', 'Jakarta', 'S2', 'Lektor', 4.455, 3.9, 3.6, 3, 3, 3, 3, 3, 5, 3, 3, 3, 3, 3, 3, 1, 3, 3.5134543933847, 0.20491776301765, 0.9241),
+(52, '7', 'STO', 'Teknik Informatika', 'Bogor', 'S2', 'Asisten Ahli', 4.4666, 3.4, 3.4, 3, 3, 3, 4, 3, 3, 2, 3, 3, 3, 2, 3, 3, 4, 3.2590454429936, 0.19007968425847, 0.8581),
+(56, '11', 'YDN', 'Teknik Informatika', 'Jakarta', 'S2', 'Asisten Ahli', 4.49, 4.6, 4.6, 3, 3, 3, 4, 3, 4, 2, 3, 3, 3, 2, 3, 2, 4, 3.6104258068668, 0.21057349748935, 0.94),
+(57, '12', 'RNL', 'Teknik Informatika', 'Jakarta', 'S2', 'Asisten Ahli', 4.433, 4, 4.6, 3, 3, 3, 4, 3, 4, 2, 3, 3, 3, 2, 3, 2, 4, 3.5386321105537, 0.2063862213787, 0.9211),
+(58, '13', 'SSO', 'Teknik Informatika', 'Bekasi', 'S2', 'Lektor', 3.5357, 3.6, 3.6, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3.2241222577586, 0.18804283385584, 0.8316);
 
 -- --------------------------------------------------------
 
@@ -158,8 +157,7 @@ INSERT INTO `nilai_dosen` (`id`, `nip`, `nama`, `jurusan`, `id_dosen`, `q1`, `q2
 (62, '7', 'STO', 'Teknik Informatika', 0, 0, 0, 0, 0, 0, 0),
 (66, '11', 'YDN', 'Teknik Informatika', 0, 0, 0, 0, 0, 0, 0),
 (67, '12', 'RNL', 'Teknik Informatika', 0, 0, 0, 0, 0, 0, 0),
-(68, '13', 'SSO', 'Teknik Informatika', 0, 0, 0, 0, 0, 0, 0),
-(73, '0', 'test', 'Teknik Kimia', 0, 0, 0, 0, 0, 0, 0);
+(68, '13', 'SSO', 'Teknik Informatika', 0, 0, 0, 0, 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -249,7 +247,8 @@ INSERT INTO `nilai_pimpinan` (`id_pimpinan`, `nip`, `nama`, `jurusan`, `id_dosen
 (57, '101', 'Rita Dewi Risanty', 'Teknik Informatika', 52, 3, 2, 5, 4, 3, 3.4),
 (58, '101', 'Rita Dewi Risanty', 'Teknik Informatika', 56, 5, 5, 4, 4, 5, 4.6),
 (59, '101', 'Rita Dewi Risanty', 'Teknik Informatika', 57, 5, 5, 5, 4, 4, 4.6),
-(60, '101', 'Rita Dewi Risanty', 'Teknik Informatika', 58, 3, 3, 4, 5, 3, 3.6);
+(60, '101', 'Rita Dewi Risanty', 'Teknik Informatika', 58, 3, 3, 4, 5, 3, 3.6),
+(61, '01', 'test1', 'Teknik Mesin', 0, 0, 0, 0, 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -324,7 +323,8 @@ INSERT INTO `nilai_pimpinan_tendik` (`id_pimpinan`, `nip`, `nama`, `jabatan`, `t
 (62, '901', 'Zul Amri', 'Kepala Perpustakaan', 'Perpustakaan', 'Perpustakaan', 63, 4, 4, 4, 5, 4, 5, 3, 3, 4, 4, 3, 4, 3, 3, 3, 4, 3, 3, 4, 3, 4, 4, 3, 4, 4, 4, 3, 3, 4, 4.3333333333333, 3.4, 3.4, 3.25, 3.75, 3.6),
 (63, '901', 'Zul Amri', 'Kepala Perpustakaan', 'Perpustakaan', 'Perpustakaan', 64, 4, 4, 3, 5, 4, 5, 3, 3, 4, 4, 3, 4, 4, 4, 4, 3, 4, 4, 4, 4, 4, 4, 3, 4, 4, 4, 4, 4, 4, 4.1666666666667, 3.4, 3.8, 4, 3.75, 4),
 (64, '102', 'Retnani Latifah', 'Kepala Laboratorium', 'Laboratorium', 'Teknik Informatika', 48, 4, 4, 4, 5, 4, 5, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 3, 4, 4, 4, 4.3333333333333, 4, 4, 4, 4, 3.8),
-(65, '102', 'Retnani Latifah', 'Kepala Laboratorium', 'Laboratorium', 'Teknik Informatika', 49, 4, 4, 4, 5, 4, 5, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4.3333333333333, 4, 4, 4, 4, 4);
+(65, '102', 'Retnani Latifah', 'Kepala Laboratorium', 'Laboratorium', 'Teknik Informatika', 49, 4, 4, 4, 5, 4, 5, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4.3333333333333, 4, 4, 4, 4, 4),
+(66, '01', 'test1', 'Kepala Program Studi', 'Administrasi Prodi', 'Teknik Mesin', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -351,7 +351,7 @@ CREATE TABLE `tb_bobot_baru` (
 --
 
 INSERT INTO `tb_bobot_baru` (`id`, `b1`, `b2`, `b3`, `b4`, `b5`, `b6`, `b7`, `b8`, `b9`, `b10`) VALUES
-(1, 0.13, 0.15, 0.13, 0.08, 0.1, 0.1, 0.08, 0.07, 0.08, 0.08);
+(1, 0.15, 0.13, 0.13, 0.08, 0.1, 0.1, 0.08, 0.07, 0.08, 0.08);
 
 -- --------------------------------------------------------
 
@@ -514,8 +514,8 @@ CREATE TABLE `tb_kriteria` (
 --
 
 INSERT INTO `tb_kriteria` (`id_kriteria`, `nama_kriteria`, `bobot`) VALUES
-(1, 'Penilaian Dosen Sejawat ', 13),
-(2, 'Penilaian Mahasiswa ', 15),
+(1, 'Penilaian Mahasiswa', 15),
+(2, 'Penilaian Dosen Sejawat', 13),
 (3, 'Penilaian Pimpinan ', 13),
 (4, 'Kualifikasi Pendidikan ', 8),
 (5, 'Penelitian', 10),
@@ -705,31 +705,31 @@ ALTER TABLE `data_lppm`
 -- AUTO_INCREMENT untuk tabel `dosen_peserta`
 --
 ALTER TABLE `dosen_peserta`
-  MODIFY `id_dosen` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
+  MODIFY `id_dosen` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=72;
 
 --
 -- AUTO_INCREMENT untuk tabel `nilai_dosen`
 --
 ALTER TABLE `nilai_dosen`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=81;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=82;
 
 --
 -- AUTO_INCREMENT untuk tabel `nilai_mhs`
 --
 ALTER TABLE `nilai_mhs`
-  MODIFY `id_mhs` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
+  MODIFY `id_mhs` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
 
 --
 -- AUTO_INCREMENT untuk tabel `nilai_pimpinan`
 --
 ALTER TABLE `nilai_pimpinan`
-  MODIFY `id_pimpinan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
+  MODIFY `id_pimpinan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
 
 --
 -- AUTO_INCREMENT untuk tabel `nilai_pimpinan_tendik`
 --
 ALTER TABLE `nilai_pimpinan_tendik`
-  MODIFY `id_pimpinan` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
+  MODIFY `id_pimpinan` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
 
 --
 -- AUTO_INCREMENT untuk tabel `tb_bobot_baru_tendik`
