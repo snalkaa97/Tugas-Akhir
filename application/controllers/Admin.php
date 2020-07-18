@@ -977,6 +977,7 @@ class Admin extends CI_Controller
     {
 
         $data['title'] = "User UKM";
+        $this->db->group_by('nama');
         $data['ukm'] = $this->db->get('data_lppm')->result_array();
 
         // var_dump($data['data_ukm']);
