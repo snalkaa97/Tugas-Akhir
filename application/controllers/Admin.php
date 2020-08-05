@@ -370,6 +370,9 @@ class Admin extends CI_Controller
         $query2 = "SELECT *FROM dosen_peserta WHERE jurusan = '$jurusan'ORDER BY vektor_v DESC";
         //$this->db->order_by('vektor_v', 'desc');
         $data['vektor'] = $this->db->query($query2)->result_array();
+
+        $result = "SELECT nama FROM dosen_peserta WHERE jurusan = '$jurusan' ORDER BY vektor_v DESC";
+        $data['result'] = $this->db->query($result)->row_array();
         $akhir = microtime(true);
         $data['waktu'] = $akhir - $awal;
 
@@ -395,7 +398,7 @@ class Admin extends CI_Controller
 
         //$this->->('');
 
-        for ($c = 1; $c <= 3; $c++) {
+        for ($c = 1; $c <= 10; $c++) {
             $this->db->select_max('c' . $c);
         }
         $this->db->where('jurusan', $jurusan);
@@ -405,12 +408,12 @@ class Admin extends CI_Controller
         $data['max'] = $this->db->get()->result_array();
 
 
-        for ($c = 4; $c <= 10; $c++) {
-            $this->db->select_min('c' . $c . '_saw');
-        }
-        $this->db->where('jurusan', $jurusan);
-        $this->db->from('dosen_peserta');
-        $data['min'] = $this->db->get()->result_array();
+        // for ($c = 4; $c <= 10; $c++) {
+        //     $this->db->select_min('c' . $c . '_saw');
+        // }
+        // $this->db->where('jurusan', $jurusan);
+        // $this->db->from('dosen_peserta');
+        // $data['min'] = $this->db->get()->result_array();
 
         //$this->db->select('t1.c1');
         //$this->db->select('t1.*, t2.bobot_baru');
@@ -437,6 +440,11 @@ class Admin extends CI_Controller
         $this->db->from('dosen_peserta, tb_bobot_baru');
         $this->db->order_by('total_nilai_saw', 'desc');
         $data['rank'] = $this->db->get()->result_array();
+
+        $result = "SELECT nama FROM dosen_peserta WHERE jurusan = '$jurusan' ORDER BY total_nilai_saw DESC";
+        $data['result'] = $this->db->query($result)->row_array();
+
+
 
         $akhir = microtime(true);
         $data['waktu'] = $akhir - $awal;
@@ -597,6 +605,9 @@ class Admin extends CI_Controller
         $query2 = "SELECT *FROM tendik_peserta WHERE jurusan = '$jurusan' AND tendik = '$tendik' ORDER BY vektor_v DESC";
         //$this->db->order_by('vektor_v', 'desc');
         $data['vektor'] = $this->db->query($query2)->result_array();
+        $result = "SELECT nama FROM tendik_peserta WHERE jurusan = '$jurusan' AND tendik = '$tendik' ORDER BY vektor_v DESC";
+        $data['result'] = $this->db->query($result)->row_array();
+
         $akhir = microtime(true);
         $data['waktu'] = $akhir - $awal;
 
@@ -670,6 +681,9 @@ class Admin extends CI_Controller
         $this->db->from('tendik_peserta, tb_bobot_baru_tendik');
         $this->db->order_by('nilai_total_saw', 'desc');
         $data['rank'] = $this->db->get()->result_array();
+
+        $result = "SELECT nama FROM tendik_peserta WHERE jurusan = '$jurusan' AND tendik = '$tendik' ORDER BY nilai_total_saw DESC";
+        $data['result'] = $this->db->query($result)->row_array();
 
         $akhir = microtime(true);
         $data['waktu'] = $akhir - $awal;
