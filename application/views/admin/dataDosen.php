@@ -59,8 +59,7 @@
                         <th scope="col">NIDN</th>
                         <th scope="col">Nama</th>
                         <th scope="col">Jurusan</th>
-                        <th scope="col">Pendidikan</th>
-                        <th scope="col">Jabatan</th>
+                        <th scope="col">Email</th>
                         <th scope="col">Aksi</th>
                     </tr>
                 </thead>
@@ -72,10 +71,9 @@
                             <td><?= $d['nip']; ?></td>
                             <td><?= $d['nama']; ?></td>
                             <td><?= $d['jurusan']; ?></td>
-                            <td><?= $d['pendidikan']; ?></td>
-                            <td><?= $d['jabatan']; ?></td>
-                            <td><a class="badge badge-success" data-toggle="modal" data-target="#editdosen<?= $d['id_dosen'] ?>" href="#">edit</a>
-                                <a class="badge badge-danger" data-toggle="modal" data-target="#hapusdosen<?= $d['id_dosen']; ?>" href="#">delete</a>
+                            <td><?= $d['email']; ?></td>
+                            <td><a class="badge badge-success" data-toggle="modal" data-target="#editdosen<?= $d['nip'] ?>" href="#">edit</a>
+                                <a class="badge badge-danger" data-toggle="modal" data-target="#hapusdosen<?= $d['nip']; ?>" href="#">delete</a>
                             </td>
                         </tr>
                         <?php $i++; ?>
@@ -103,6 +101,9 @@
                         </div>
                         <div class="form-group">
                             <input type="text" class="form-control" id="nama" name="nama" placeholder="Nama">
+                        </div>
+                        <div class="form-group">
+                            <input type="email" class="form-control" id="email" name="email" placeholder="Email">
                         </div>
                         <div class="form-group">
                             <select name="jurusan" id="jurusan" class="form-control">
@@ -155,7 +156,7 @@
     <!-- Modal -->
 
     <?php foreach ($dosen as $d) : ?>
-        <div class="modal fade" id="hapusdosen<?= $d['id_dosen']; ?>" tabindex="-1" role="dialog" aria-labelledby="hapusDosenLabel" aria-hidden="true">
+        <div class="modal fade" id="hapusdosen<?= $d['nip']; ?>" tabindex="-1" role="dialog" aria-labelledby="hapusDosenLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -164,7 +165,7 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <form action="<?= base_url('admin/hapusDosen/' . $d['id_dosen']); ?>" method="get">
+                    <form action="<?= base_url('admin/hapusDosen/' . $d['nip']); ?>" method="get">
                         <div class="modal-body">
                             Are You Sure?
                         </div>
@@ -180,7 +181,7 @@
 
 
     <?php foreach ($dosen as $d) : ?>
-        <div class="modal fade" id="editdosen<?= $d['id_dosen']; ?>" tabindex="-1" role="dialog" aria-labelledby="editDosenLabel" aria-hidden="true">
+        <div class="modal fade" id="editdosen<?= $d['nip']; ?>" tabindex="-1" role="dialog" aria-labelledby="editDosenLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -189,15 +190,20 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <form action="<?= base_url('admin/editDosen/' . $d['id_dosen']); ?>" method="post">
+                    <form action="<?= base_url('admin/editDosen/' . $d['nip']); ?>" method="post">
                         <div class="modal-body">
-                            <input type="hidden" name="id_dosen" value="<?= $d['id_dosen']; ?>">
+                            <input type="hidden" name="nip" value="<?= $d['nip']; ?>">
                             <div class="form-group">
                                 <input type="text" class="form-control" id="nip" name="nip" placeholder="NIDN" value="<?= $d['nip']; ?>">
                             </div>
                             <div class="form-group">
                                 <input type="text" class="form-control" id="nama" name="nama" value="<?= $d['nama']; ?>" placeholder="Nama">
                             </div>
+
+                            <div class="form-group">
+                                <input type="email" class="form-control" id="email" name="email" value="<?= $d['email']; ?>" placeholder="Email">
+                            </div>
+
                             <div class="form-group">
                                 <select name="jurusan" id="jurusan" class="form-control">
                                     <option value="">Pilih Jurusan</option>

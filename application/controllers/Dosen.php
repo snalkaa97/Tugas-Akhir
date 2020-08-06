@@ -38,6 +38,51 @@ class Dosen extends CI_Controller
         $this->load->view('templates/footer');
         //$this->load->view(('templates/auth_footer'));
     }
+    public function changepassword()
+    {
+        $data['user'] = $this->db->get_where('nilai_dosen', ['nip' => $this->session->userdata('nip')])->row_array();
+        $data['title'] = 'Change Password';
+
+        $this->form_validation->set_rules('current_password', 'Current Password', 'required|trim');
+        $this->form_validation->set_rules('New_password1', 'New Password', 'required|trim|min_length[3]|matches[New_password2]');
+        $this->form_validation->set_rules('New_password2', 'Confirm New Password', 'required|trim|min_length[3]|matches[New_password1]');
+
+        if ($this->form_validation->run() == false) {
+            $this->load->view('templates/header', $data);
+            $this->load->view('templates/sidebar_user');
+            $this->load->view('templates/topbar');
+            $this->load->view('changepassword.php');
+            $this->load->view('templates/footer');
+            //$this->load->view(('templates/auth_footer'));
+        } else {
+            $current_password = $this->input->post('current_password');
+            $new_password = $this->input->post('New_password1');
+            if ($current_password != $data['user']['password']) {
+                $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
+                    Current Password wrong!. 
+                   </div>'); //membuat session
+                redirect('dosen/changepassword');
+            } else {
+                if ($current_password == $new_password) {
+                    $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
+                    New Password cannot be the same as current password!. 
+                   </div>'); //membuat session
+                    redirect('dosen/changepassword');
+                } else {
+                    //password ok
+                    $password = $new_password;
+                    $this->db->set('password', $password);
+                    $this->db->where('nip', $this->session->userdata('nip'));
+                    $this->db->update('nilai_dosen');
+
+                    $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
+                    Password Changed!. 
+                   </div>'); //membuat session
+                    redirect('dosen/changepassword');
+                }
+            }
+        }
+    }
 
     public function kuesioner($id_dosen)
     {

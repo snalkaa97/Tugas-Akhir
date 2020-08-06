@@ -10,7 +10,11 @@
 
     <!-- Divider -->
     <hr class="sidebar-divider my-0">
-
+    <li class="nav-item">
+        <a class="nav-link" href="<?= base_url($this->session->userdata('role')); ?>/changepassword">
+            <i class="fas fa-fw fa-key"></i>
+            <span>Change Password</span></a>
+    </li>
     <!-- Divider -->
     <hr class="sidebar-divider">
 

@@ -145,7 +145,14 @@ class Admin extends CI_Controller
 
     public function dataDosen()
     {
-        $data['dosen'] = $this->db->get('dosen_peserta')->result_array();
+        // $data['dosen'] = $this->db->get('dosen_peserta')->result_array();
+
+
+        $this->db->select('nilai_dosen.*');
+        $this->db->group_by('nip');
+        $this->db->from('nilai_dosen');
+        $data['dosen'] = $this->db->get()->result_array();
+
 
         $jurusan = $this->input->get('jurusan');
 
@@ -168,16 +175,25 @@ class Admin extends CI_Controller
         $this->form_validation->set_rules('nip', 'NIP', 'required|trim|is_unique[dosen_peserta.nip]');
         $this->form_validation->set_rules('nama', 'nama', 'required|trim');
         $this->form_validation->set_rules('jurusan', 'jurusan', 'required|trim');
+        $this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email|is_unique[nilai_dosen.email]', [
+            'is_unique' => 'This Email has already exist!'
+        ]);
         //$this->form_validation->set_rules('pendidikan', 'pendidikan', 'required|trim');
         //$this->form_validation->set_rules('jabatan', 'jabatan', 'required|trim');
         $this->form_validation->set_rules('alamat', 'alamat', 'required|trim');
 
         if ($this->form_validation->run() == false) {
             $data['title'] = 'Data Dosen';
-            $data['dosen'] = $this->db->get('dosen_peserta')->result_array();
+
+            $this->db->select('nilai_dosen.*');
+            $this->db->group_by('nip');
+            $this->db->from('nilai_dosen');
+            $data['dosen'] = $this->db->get()->result_array();
 
             $jurusan = $this->input->get('jurusan');
-            $data['cariDosen'] = $this->db->get_where('dosen_peserta', ['jurusan' => $jurusan])->result_array();
+
+            $this->db->group_by('nip');
+            $data['cariDosen'] = $this->db->get_where('nilai_dosen', ['jurusan' => $jurusan])->result_array();
             $data['form_dosen'] = $this->db->get('dosen_peserta')->result_array();
             $this->load->view('templates/header', $data);
             $this->load->view('templates/sidebar');
@@ -186,6 +202,8 @@ class Admin extends CI_Controller
             $this->load->view('templates/footer');
         } else {
             $nip = $this->input->post('nip');
+            $email = $this->input->post('email');
+            $password = $nip;
             $data = [
                 'nip' => htmlspecialchars($this->input->post('nip'), true),
                 'nama' => htmlspecialchars($this->input->post('nama'), true),
@@ -196,7 +214,10 @@ class Admin extends CI_Controller
             $user_dosen = [
                 'nip' => htmlspecialchars($this->input->post('nip'), true),
                 'nama' => htmlspecialchars($this->input->post('nama'), true),
-                'jurusan' => $this->input->post('jurusan')
+                'jurusan' => $this->input->post('jurusan'),
+                'email' => $email,
+                'password' => $password,
+                'alamat' => htmlspecialchars($this->input->post('alamat'), true)
             ];
             $this->db->insert('nilai_dosen', $user_dosen);
             $this->db->insert('dosen_peserta', $data);
@@ -254,20 +275,26 @@ class Admin extends CI_Controller
         }
     }
 
-    public function editDosen($id)
+    public function editDosen($nip)
     {
         $this->form_validation->set_rules('nip', 'NIP', 'required|trim');
         $this->form_validation->set_rules('nama', 'nama', 'required|trim');
         $this->form_validation->set_rules('jurusan', 'jurusan', 'required|trim');
+
         //$this->form_validation->set_rules('pendidikan', 'pendidikan', 'required|trim');
         //$this->form_validation->set_rules('jabatan', 'jabatan', 'required|trim');
         $this->form_validation->set_rules('alamat', 'alamat', 'required|trim');
 
         if ($this->form_validation->run() == false) {
             $data['title'] = 'Data Dosen';
-            $data['dosen'] = $this->db->get('dosen_peserta')->result_array();
+            $this->db->select('nilai_dosen.*');
+            $this->db->group_by('nip');
+            $this->db->from('nilai_dosen');
+            $data['dosen'] = $this->db->get()->result_array();
+
 
             $jurusan = $this->input->get('jurusan');
+            $this->db->group_by('nip');
             $data['cariDosen'] = $this->db->get_where('dosen_peserta', ['jurusan' => $jurusan])->result_array();
             $data['form_dosen'] = $this->db->get('dosen_peserta')->result_array();
             $this->load->view('templates/header', $data);
@@ -276,7 +303,9 @@ class Admin extends CI_Controller
             $this->load->view('admin/dataDosen');
             $this->load->view('templates/footer');
         } else {
-            $nip = $this->input->post('nip');
+            $nipbaru = $this->input->post('nip');
+            $email = $this->input->post('email');
+            $password = $nip;
 
 
             // $jabatan = $this->input->post('jabatan');
@@ -324,26 +353,29 @@ class Admin extends CI_Controller
             // ];
 
             $user_dosen = [
-                'nip' => htmlspecialchars($this->input->post('nip'), true),
+                'nip' => $nipbaru,
                 'nama' => htmlspecialchars($this->input->post('nama'), true),
-                'jurusan' => $this->input->post('jurusan')
+                'jurusan' => $this->input->post('jurusan'),
+                'email' => $email,
+                'password' => $password,
+                'alamat' => htmlspecialchars($this->input->post('alamat'), true)
             ];
 
             $data = [
                 'id_dosen' => htmlspecialchars($this->input->post('id_dosen'), true),
-                'nip' => htmlspecialchars($this->input->post('nip'), true),
+                'nip' => $nipbaru,
                 'nama' => htmlspecialchars($this->input->post('nama'), true),
                 'jurusan' => $this->input->post('jurusan'),
                 'alamat' => htmlspecialchars($this->input->post('alamat'), true)
             ];
 
-            $data1 = $this->db->get_where('dosen_peserta', ['id_dosen' => $id])->row_array();
+            $data1 = $this->db->get_where('nilai_dosen', ['nip' => $nip])->row_array();
             $nip = $data1['nip'];
-            $data2 = $this->db->get_where('nilai_dosen', ['nip' => $nip])->row_array();
+            $data2 = $this->db->get_where('dosen_peserta', ['nip' => $nip])->row_array();
 
             if ($data2 == NULL) {
                 $this->db->where('nip', $nip);
-                $this->db->insert('nilai_dosen', $user_dosen);
+                $this->db->insert('dosen_peserta', $user_dosen);
             }
 
             $this->db->where('nip', $nip);
@@ -360,9 +392,9 @@ class Admin extends CI_Controller
         }
     }
 
-    public function hapusDosen($id)
+    public function hapusDosen($nip)
     {
-        $data['dosen'] = $this->db->get_where('dosen_peserta', ['id_dosen' => $id])->row_array();
+        $data['dosen'] = $this->db->get_where('nilai_dosen', ['nip' => $nip])->row_array();
         $nip = $data['dosen']['nip'];
         $this->db->delete('dosen_peserta', ['nip' => $nip]);
         $this->db->delete('nilai_dosen', ['nip' => $nip]);
@@ -780,10 +812,16 @@ class Admin extends CI_Controller
             $this->load->view('templates/footer');
         } else {
 
+            $nim = $this->input->post('nim', true);
+            $domain = "@ftumj.ac.id";
+            $email = "$nim" . "$domain";
+            $password = $nim;
             $mahasiswa = [
-                'nim' => $this->input->post('nim', true),
+                'nim' => $nim,
                 'nama' => $this->input->post('nama', true),
-                'jurusan' => $this->input->post('jurusan', true)
+                'jurusan' => $this->input->post('jurusan', true),
+                'email' => $email,
+                'password' => $password
             ];
 
             $this->db->insert('nilai_mhs', $mahasiswa);
@@ -814,15 +852,18 @@ class Admin extends CI_Controller
             $this->load->view('templates/footer');
         } else {
             # code...
-            $nim = $this->input->post('nim');
-            $nama = $this->input->post('nama');
-            $jurusan = $this->input->post('jurusan');
+            $nim = $this->input->post('nim', true);
+            $domain = "@ftumj.ac.id";
+            $email = "$nim" . "$domain";
+            $password = $nim;
 
             $data = [
                 'id_mhs' => $this->input->post('id_mhs'),
                 'nim' => $nim,
-                'nama' => $nama,
-                'jurusan' => $jurusan
+                'nama' => $this->input->post('nama', true),
+                'jurusan' => $this->input->post('jurusan', true),
+                'email' => $email,
+                'password' => $password
             ];
 
             $this->db->where('nim', $nim);
@@ -892,6 +933,7 @@ class Admin extends CI_Controller
         $this->form_validation->set_rules('nama', 'Nama', 'required');
         $this->form_validation->set_rules('nip', 'NIP', 'required');
         $this->form_validation->set_rules('jabatan', 'Jabatan', 'required');
+        $this->form_validation->set_rules('email', 'Email', 'required');
 
 
         if ($this->form_validation->run() == FALSE) {
@@ -909,6 +951,8 @@ class Admin extends CI_Controller
             $nama = $this->input->post('nama');
             $jurusan = $this->input->post('jurusan');
             $jabatan = $this->input->post('jabatan');
+            $email = $this->input->post('email');
+            $password = $nip;
 
             if ($jabatan == "Kepala Laboratorium") {
                 $tendik = "Laboratorium";
@@ -923,12 +967,16 @@ class Admin extends CI_Controller
                 'nama' => $nama,
                 'jurusan' => $jurusan,
                 'tendik' => $tendik,
-                'jabatan' => $jabatan
+                'jabatan' => $jabatan,
+                'email' => $email,
+                'password' => $password
             ];
             $data2 = [
                 'nip' => $nip,
                 'nama' => $nama,
-                'jurusan' => $jurusan
+                'jurusan' => $jurusan,
+                'email' => $email,
+                'password' => $password
             ];
 
             if ($jabatan == "Kepala Program Studi" && $jurusan != "Perpustakaan") {
@@ -951,6 +999,7 @@ class Admin extends CI_Controller
         $this->form_validation->set_rules('nama', 'Nama', 'required');
         $this->form_validation->set_rules('nip', 'NIP', 'required');
         $this->form_validation->set_rules('jabatan', 'Jabatan', 'required');
+        $this->form_validation->set_rules('email', 'email', 'required');
 
 
         if ($this->form_validation->run() == FALSE) {
@@ -968,6 +1017,8 @@ class Admin extends CI_Controller
             $nama = $this->input->post('nama');
             $jurusan = $this->input->post('jurusan');
             $jabatan = $this->input->post('jabatan');
+            $email = $this->input->post('email');
+            $password = $nip;
 
             if ($jabatan == "Kepala Laboratorium") {
                 $tendik = "Laboratorium";
@@ -982,12 +1033,17 @@ class Admin extends CI_Controller
                 'nama' => $nama,
                 'jurusan' => $jurusan,
                 'tendik' => $tendik,
-                'jabatan' => $jabatan
+                'jabatan' => $jabatan,
+                'email' => $email,
+                'password' => $password
+
             ];
             $data2 = [
                 'nip' => $nip,
                 'nama' => $nama,
-                'jurusan' => $jurusan
+                'jurusan' => $jurusan,
+                'email' => $email,
+                'password' => $password
             ];
             $data3 = $this->db->get_where('nilai_pimpinan_tendik', ['id_pimpinan' => $id])->row_array();
             $nip = $data3['nip'];
@@ -1052,11 +1108,14 @@ class Admin extends CI_Controller
 
         $this->form_validation->set_rules('nama', 'Nama', 'required');
         $this->form_validation->set_rules('nip', 'NIP', 'required');
+        $this->form_validation->set_rules('email', 'email', 'required');
 
 
         $data['ukm'] = $this->db->get('data_lppm')->result_array();
         $nama = $this->input->post('nama');
         $nip = $this->input->post('nip');
+        $email = $this->input->post('email');
+        $password = $nip;
 
 
 
@@ -1070,7 +1129,9 @@ class Admin extends CI_Controller
             # code...
             $data = [
                 'nip' => $nip,
-                'nama' => $nama
+                'nama' => $nama,
+                'email' => $email,
+                'password' => $password
             ];
             $this->db->insert('data_lppm', $data);
             $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
@@ -1084,9 +1145,12 @@ class Admin extends CI_Controller
     {
         $this->form_validation->set_rules('nama', 'Nama', 'required');
         $this->form_validation->set_rules('nip', 'NIP', 'required');
+        $this->form_validation->set_rules('email', 'email', 'required');
         $data['ukm'] = $this->db->get('data_lppm')->result_array();
         $nama = $this->input->post('nama');
         $nip_baru = $this->input->post('nip');
+        $email = $this->input->post('email');
+        $password = $nip;
 
 
 
@@ -1100,7 +1164,9 @@ class Admin extends CI_Controller
             # code...
             $data = [
                 'nip' => $nip_baru,
-                'nama' => $nama
+                'nama' => $nama,
+                'email' => $email,
+                'password' => $password
             ];
 
             $this->db->where('nip', $nip);
