@@ -434,6 +434,188 @@ class Auth extends CI_Controller
             redirect('auth/auth_tendik');
         }
     }
+    private function _sendEmail($token, $type)
+    {
+        $config = [
+            'protocol' => 'smtp',
+            'smtp_host' => 'ssl://smtp.googlemail.com',
+            'smtp_user' => '2016470057@ftumj.ac.id',
+            'smtp_pass' => 'alkatheo',
+            'smtp_port' => 465,
+            'mailtype' => 'html',
+            'charset' => 'utf-8',
+            'newline' => "\r\n"
+        ];
+
+        $this->load->library('email', $config);
+        $this->email->initialize($config);
+        $this->email->from('2016470057@ftumj.ac.id', 'Syaifudin Alkatiri - Developer');
+        $this->email->to($this->input->post('email'));
+
+        if ($type == 'verify') {
+            $this->email->subject('Account Verification');
+            $this->email->message('Click this link you account: <a href="' . base_url() . 'auth/verify?email=' . $this->input->post('email') . '&token=' . urlencode($token) . '">Activate</a>');
+        } else if ($type == 'lupa') {
+            $this->email->subject('Reset Password');
+            $this->email->message('Klik ini untuk reset Password: <a href="' . base_url() . 'auth/resetpassword?email=' . $this->input->post('email') . '&token=' . urlencode($token) . '">Reset Password</a>');
+        }
+
+        if ($this->email->send()) {
+            return true;
+        } else {
+            echo $this->email->print_debugger();
+            die;
+        }
+    }
+
+    public function lupa_password()
+    {
+        $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
+
+        if ($this->form_validation->run() == FALSE) {
+            # code...
+            $data['title'] = 'Lupa Password';
+            $this->load->view('templates/auth_header', $data);
+            $this->load->view('auth/lupa_password.php');
+            $this->load->view('templates/auth_footer');
+        } else {
+            # code...
+            $email = $this->input->post('email');
+            $data_email = [
+                'mahasiswa' => $this->db->get_where('nilai_mhs', ['email' => $email])->row_array(),
+                'dosen' => $this->db->get_where('nilai_dosen', ['email' => $email])->row_array(),
+                'pimpinan' => $this->db->get_where('nilai_pimpinan', ['email' => $email])->row_array(),
+                'pimpinan_tendik' => $this->db->get_where('nilai_pimpinan_tendik', ['email' => $email])->row_array(),
+                'lppm' => $this->db->get_where('data_lppm', ['email' => $email])->row_array()
+            ];
+
+            //var_dump($data_email);
+
+            if ($data_email['mahasiswa'] || $data_email['dosen'] || $data_email['pimpinan'] || $data_email['pimpinan_tendik'] || $data_email['lppm']) {
+                //code ..
+                $token = base64_encode(random_bytes(32));
+                $user_token = [
+                    'email' => $email,
+                    'token' => $token,
+                    'date_created' => time()
+                ];
+                $this->db->insert('user_token', $user_token);
+                $this->_sendEmail($token, 'lupa');
+                $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
+            Silahkan cek email untuk reset Password.  
+          </div>');
+                redirect('auth/lupa_password');
+
+
+
+                // if ($data_email['mahasiswa']) {
+                //     $this->db->insert('nilai_mhs', $user_token);
+                // } else if ($data_email['dosen']) {
+                //     $this->db->insert('nilai_dosen', $user_token);
+                // } else if ($data_email['pimpinan']) {
+                //     $this->db->insert('nilai_pimpinan', $user_token);
+                // } else if ($data_email['pimpinan_tendik']) {
+                //     $this->db->insert('nilai_pimpinan_tendik', $user_token);
+                // } else if ($data_email['lppm']) {
+                //     $this->db->insert('data_lppm', $user_token);
+                // }
+            } else {
+                $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
+            Email tidak terdaftar!  
+          </div>');
+                redirect('auth/lupa_password');
+            }
+        }
+    }
+
+    public function resetpassword()
+    {
+        $token = $this->input->get('token');
+        $email = $this->input->get('email');
+
+        $users = [
+            'mahasiswa' => $this->db->get_where('nilai_mhs', ['email' => $email])->row_array(),
+            'dosen' => $this->db->get_where('nilai_dosen', ['email' => $email])->row_array(),
+            'pimpinan' => $this->db->get_where('nilai_pimpinan', ['email' => $email])->row_array(),
+            'pimpinan_tendik' => $this->db->get_where('nilai_pimpinan_tendik', ['email' => $email])->row_array(),
+            'lppm' => $this->db->get_where('data_lppm', ['email' => $email])->row_array()
+        ];
+
+
+        if ($users['mahasiswa'] || $users['dosen'] || $users['pimpinan'] || $users['pimpinan_tendik'] || $users['lppm']) {
+            $user_token = $this->db->get_where('user_token', ['token' => $token])->row_array();
+            if ($user_token) {
+                $this->session->set_userdata('reset_email', $email);
+                $this->changePassword();
+            } else {
+                $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
+                Reset Password gagal, Token Salah.  
+              </div>');
+                redirect('auth');
+            }
+        } else {
+            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
+            Reset Password gagal, Email Salah.  
+          </div>');
+            redirect('auth');
+        }
+    }
+
+    public function changePassword()
+    {
+        if (!$this->session->userdata('reset_email')) {
+            redirect('auth');
+        }
+
+        $this->form_validation->set_rules('password1', 'Password', 'required|trim|min_length[3]|matches[password2]', [
+            'matches' => 'Password dont match!',
+            'min_length' => 'Password too short!'
+        ]); //set_rules('name/index','alias','required/wajib|trim untuk spasi ga masuk db)
+        $this->form_validation->set_rules('password2', 'Password', 'required|trim|min_length[3]|matches[password1]');
+
+
+        if ($this->form_validation->run() == FALSE) {
+            # code...
+            $data['title'] = 'Ganti Password';
+            $this->load->view('templates/auth_header', $data);
+            $this->load->view('auth/change_password.php');
+            $this->load->view('templates/auth_footer');
+        } else {
+            # code...
+            $password = $this->input->post('password1');
+            $email = $this->session->userdata('reset_email');
+            $users = [
+                'mahasiswa' => $this->db->get_where('nilai_mhs', ['email' => $email])->row_array(),
+                'dosen' => $this->db->get_where('nilai_dosen', ['email' => $email])->row_array(),
+                'pimpinan' => $this->db->get_where('nilai_pimpinan', ['email' => $email])->row_array(),
+                'pimpinan_tendik' => $this->db->get_where('nilai_pimpinan_tendik', ['email' => $email])->row_array(),
+                'lppm' => $this->db->get_where('data_lppm', ['email' => $email])->row_array()
+            ];
+
+
+            if ($users['mahasiswa'] || $users['dosen'] || $users['pimpinan'] || $users['pimpinan_tendik'] || $users['lppm']) {
+                if ($users['mahasiswa']) {
+                    $this->db->update('nilai_mhs', ['password' => $password]);
+                } else if ($users['dosen']) {
+                    $this->db->update('nilai_dosen', ['password' => $password]);
+                } else if ($users['pimpinan']) {
+                    $this->db->update('nilai_pimpinan', ['password' => $password]);
+                } else if ($users['pimpinan_tendik']) {
+                    $this->db->update('nilai_pimpinan_tendik', ['password' => $password]);
+                } else if ($users['lppm']) {
+                    $this->db->update('data_lppm', ['password' => $password]);
+                }
+                $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
+                Password berhasil diganti.  
+              </div>');
+                $this->session->unset_userdata('reset_email');
+                redirect('auth');
+            }
+        }
+    }
+
+
+
 
     public function logout()
     {
