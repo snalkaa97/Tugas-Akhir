@@ -21,6 +21,12 @@
 
     <!-- Divider -->
     <hr class="sidebar-divider">
+    <li class="nav-item">
+        <a class="nav-link" href="<?= base_url('admin/changepassword'); ?>">
+            <i class="fas fa-fw fa-key"></i>
+            <span>Change Password</span></a>
+    </li>
+    <hr class="sidebar-divider">
 
     <div class="sidebar-heading">
         User
