@@ -114,6 +114,9 @@ class Dosen extends CI_Controller
         $id_dosen = $this->input->post('id_dosen');
         $nama = $data['user']['nama'];
         $jurusan = $data['user']['jurusan']; //var_dump($nama);
+        $email = $data['user']['email']; //var_dump($nama);
+        $password = $data['user']['password']; //var_dump($nama);
+        $alamat = $data['user']['alamat']; //var_dump($nama);
 
         $q1 = $this->input->post('q1');
         //var_dump($q1);
@@ -144,6 +147,9 @@ class Dosen extends CI_Controller
             'nip' => $nip,
             'nama' => $nama,
             'jurusan' => $jurusan,
+            'email' => $email,
+            'password' => $password,
+            'alamat' => $alamat,
             'id_dosen' => $id_dosen,
             'q1' => $q1,
             'q2' => $q2,

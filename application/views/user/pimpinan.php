@@ -105,6 +105,9 @@
                         <input type="text" class="form-control" id="nama" name="nama" placeholder="Nama">
                     </div>
                     <div class="form-group">
+                        <input type="email" class="form-control" id="email" name="email" placeholder="Email">
+                    </div>
+                    <div class="form-group">
                         <select name="jurusan" id="jurusan" class="form-control">
                             <option value="">Pilih Jurusan</option>
                             <option value="Teknik Sipil">Teknik Sipil</option>
@@ -188,6 +191,10 @@
                         <div class="form-group">
                             <input type="text" class="form-control" id="nama" name="nama" value="<?= $d['nama']; ?>" placeholder="Nama">
                             <?= form_error('nama', '<small class="text-danger pl-3">', '</small>'); ?>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" class="form-control" id="email" name="email" value="<?= $d['email']; ?>" placeholder="Email">
+                            <?= form_error('email', '<small class="text-danger pl-3">', '</small>'); ?>
                         </div>
                         <div class="form-group">
                             <select name="jurusan" id="jurusan" class="form-control">

@@ -50,12 +50,12 @@
 <script src="<?= base_url('assets/'); ?>js/sb-admin-2.min.js"></script>
 
 <script>
-    function navlink() {
-        $('.nav-link').on('click', function() {
-            $('.nav-link').removeClass('active');
-            $('.nav-item').addClass('active');
-        });
-    }
+    // function navlink() {
+    //     $('.nav-link').on('click', function() {
+    //         $('.nav-link').removeClass('active');
+    //         $('.nav-item').addClass('active');
+    //     });
+    // }
 </script>
 
 </body>

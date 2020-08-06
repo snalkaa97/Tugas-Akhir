@@ -20,6 +20,10 @@
                                         <input type="text" class="form-control" id="nip" name="nip" placeholder="NIP" value="<?= set_value('nip'); ?>">
                                         <?= form_error('nip', '<small class="text-danger pl-3">', '</small>'); ?>
                                     </div>
+                                    <div class="form-group">
+                                        <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+                                        <?= form_error('password', '<small class="text-danger pl-3">', '</small>'); ?>
+                                    </div>
                                     <button type="submit" class="btn btn-success btn-user btn-block">
                                         Login
                                     </button>
@@ -27,6 +31,7 @@
                                 </form>
 
                                 <div class="text-center">
+                                    <a class="small" href="<?= base_url(); ?>auth/lupa_password">Lupa Password</a><br>
                                     <a class="small" href="<?= base_url(); ?>auth">Login Sebagai Mahasiswa, Dosen dan Pimpinan</a>
                                 </div>
                             </div>

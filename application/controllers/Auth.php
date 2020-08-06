@@ -27,6 +27,127 @@ class Auth extends CI_Controller
             $this->_login();
         }
     }
+    public function _login()
+    {
+        $id = $this->input->post('id');
+        $role = $this->input->post('role');
+        $password = $this->input->post('password');
+
+        if ($role == "Pimpinan") {
+            $user = $this->db->get_where('nilai_pimpinan', ['nip' => $id])->row_array();
+            //var_dump($user);
+            //$user['password'];
+            //die;
+            if ($user) {
+                if ($password == $user['password']) {
+                    $data = [
+                        'nip' => $user['nip'],
+                        'id_dosen' => $user['id_dosen'],
+                        'role' => $role
+                    ];
+                    $this->session->set_userdata($data);
+                    $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert"> Login Berhasil  
+              </div>');
+                    redirect('pimpinan');
+                } else {
+                    $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
+                    Password Salah
+                </div>');
+                    redirect('auth');
+                }
+            } else {
+                $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
+                         NIDN/NIM atau role Salah. 
+                     </div>');
+                redirect('auth');
+            }
+        }
+        if ($role == "Mahasiswa") {
+            $user = $this->db->get_where('nilai_mhs', ['nim' => $id])->row_array();
+            //var_dump($user);
+            //die;
+            if ($user) {
+                if ($password == $user['password']) {
+                    $data = [
+                        'nim' => $user['nim'],
+                        'id_dosen' => $user['id_dosen'],
+                        'role' => $role
+                    ];
+                    $this->session->set_userdata($data);
+                    $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert"> Login Berhasil  
+              </div>');
+                    redirect('mahasiswa');
+                } else {
+                    $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
+                             Password Salah. 
+                         </div>');
+                    redirect('auth');
+                }
+            } else {
+                $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
+                         NIDN/NIM atau role Salah. 
+                     </div>');
+                redirect('auth');
+            }
+        }
+        if ($role == "Dosen") {
+            $user = $this->db->get_where('nilai_dosen', ['nip' => $id])->row_array();
+            //var_dump($user);
+            //die;
+            if ($user) {
+                if ($password == $user['password']) {
+                    $data = [
+                        'nip' => $user['nip'],
+                        'id_dosen' => $user['id_dosen'],
+                        'role' => $role
+                    ];
+                    $this->session->set_userdata($data);
+                    $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert"> Login Berhasil  
+              </div>');
+                    redirect('dosen');
+                } else {
+                    $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
+                    Password Salah
+                </div>');
+                    redirect('auth');
+                }
+            } else {
+                $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
+                         NIDN/NIM atau role Salah. 
+                     </div>');
+                redirect('auth');
+            }
+        }
+        if ($role == "LPPM") {
+            $user = $this->db->get_where('data_lppm', ['nip' => $id])->row_array();
+
+            if ($user) {
+                if ($password == $user['password']) {
+                    $data = [
+                        'nip' => $user['nip'],
+                        'id_dosen' => $user['id_dosen'],
+                        'role' => $role
+                    ];
+                    $this->session->set_userdata($data);
+                    $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert"> Login Berhasil  
+              </div>');
+                    redirect('lppm');
+                } else {
+                    $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
+                    Password Salah
+                </div>');
+                    redirect('auth');
+                }
+            } else {
+                $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
+                         NIDN/NIM atau role Salah. 
+                     </div>');
+                redirect('auth');
+            }
+        }
+    }
+
+
     public function auth_admin()
     {
         $this->goToDefaultPage();
@@ -88,95 +209,7 @@ class Auth extends CI_Controller
         redirect('auth/auth_admin');
     }
 
-    public function _login()
-    {
-        $id = $this->input->post('id');
-        $role = $this->input->post('role');
 
-        if ($role == "Pimpinan") {
-            $user = $this->db->get_where('nilai_pimpinan', ['nip' => $id])->row_array();
-            //var_dump($user);
-            //die;
-            if ($user) {
-                $data = [
-                    'nip' => $user['nip'],
-                    'id_dosen' => $user['id_dosen'],
-                    'role' => $role
-                ];
-                $this->session->set_userdata($data);
-                $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert"> Login Berhasil  
-          </div>');
-                redirect('pimpinan');
-            } else {
-                $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
-                         NIDN/NIM atau role Salah. 
-                     </div>');
-                redirect('auth');
-            }
-        }
-        if ($role == "Mahasiswa") {
-            $user = $this->db->get_where('nilai_mhs', ['nim' => $id])->row_array();
-            //var_dump($user);
-            //die;
-            if ($user) {
-                $data = [
-                    'nim' => $user['nim'],
-                    'id_dosen' => $user['id_dosen'],
-                    'role' => $role
-                ];
-                $this->session->set_userdata($data);
-                $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert"> Login Berhasil  
-          </div>');
-                redirect('mahasiswa');
-            } else {
-                $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
-                         NIDN/NIM atau role Salah. 
-                     </div>');
-                redirect('auth');
-            }
-        }
-        if ($role == "Dosen") {
-            $user = $this->db->get_where('nilai_dosen', ['nip' => $id])->row_array();
-            //var_dump($user);
-            //die;
-            if ($user) {
-                $data = [
-                    'nip' => $user['nip'],
-                    'id_dosen' => $user['id_dosen'],
-                    'role' => $role
-                ];
-                $this->session->set_userdata($data);
-                $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert"> Login Berhasil  
-          </div>');
-                redirect('dosen');
-            } else {
-                $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
-                         NIDN/NIM atau role Salah. 
-                     </div>');
-                redirect('auth');
-            }
-        }
-        if ($role == "LPPM") {
-            $user = $this->db->get_where('data_lppm', ['nip' => $id])->row_array();
-
-            if ($user) {
-                $data = [
-                    'nip' => $user['nip'],
-                    'id_dosen' => $user['id_dosen'],
-                    'role' => $role
-                ];
-                $this->session->set_userdata($data);
-                $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert"> Login Berhasil  
-          </div>');
-                redirect('lppm');
-            } else {
-                $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
-                         NIDN/NIM atau role Salah. 
-                     </div>');
-                redirect('auth');
-            }
-        }
-    }
     // public function _login()
     // {
     //     $email = $this->input->post('email');
@@ -333,18 +366,27 @@ class Auth extends CI_Controller
     public function _loginTendik()
     {
         $nip = $this->input->post('nip', true);
+        $password = $this->input->post('password');
+
 
         $user = $this->db->get_where('nilai_pimpinan_tendik', ['nip' => $nip])->row_array();
         if ($user) {
-            $data = [
-                'nip' => $user['nip'],
-                'tendik' => $user['tendik'],
-                'jurusan' => $user['jurusan']
-            ];
-            $this->session->set_userdata($data);
-            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert"> Login Berhasil  
-          </div>');
-            redirect('tendik');
+            if ($password == $user['password']) {
+                $data = [
+                    'nip' => $user['nip'],
+                    'tendik' => $user['tendik'],
+                    'jurusan' => $user['jurusan']
+                ];
+                $this->session->set_userdata($data);
+                $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert"> Login Berhasil  
+              </div>');
+                redirect('tendik');
+            } else {
+                $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
+                Password Salah
+              </div>');
+                redirect('auth/auth_tendik');
+            }
         } else {
             $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
             NIP Salah

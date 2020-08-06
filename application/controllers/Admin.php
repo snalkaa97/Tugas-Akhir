@@ -362,7 +362,6 @@ class Admin extends CI_Controller
             ];
 
             $data = [
-                'id_dosen' => htmlspecialchars($this->input->post('id_dosen'), true),
                 'nip' => $nipbaru,
                 'nama' => htmlspecialchars($this->input->post('nama'), true),
                 'jurusan' => $this->input->post('jurusan'),
@@ -858,7 +857,6 @@ class Admin extends CI_Controller
             $password = $nim;
 
             $data = [
-                'id_mhs' => $this->input->post('id_mhs'),
                 'nim' => $nim,
                 'nama' => $this->input->post('nama', true),
                 'jurusan' => $this->input->post('jurusan', true),
@@ -943,7 +941,7 @@ class Admin extends CI_Controller
             $this->load->view('templates/header', $data);
             $this->load->view('templates/sidebar');
             $this->load->view('templates/topbar');
-            $this->load->view('user/mahasiswa');
+            $this->load->view('user/pimpinan');
             $this->load->view('templates/footer');
         } else {
             # code...
@@ -1009,7 +1007,7 @@ class Admin extends CI_Controller
             $this->load->view('templates/header', $data);
             $this->load->view('templates/sidebar');
             $this->load->view('templates/topbar');
-            $this->load->view('user/mahasiswa');
+            $this->load->view('user/pimpinan');
             $this->load->view('templates/footer');
         } else {
             # code...

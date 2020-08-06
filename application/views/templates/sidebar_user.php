@@ -8,13 +8,31 @@
         <div class="sidebar-brand-text mx-3">Hi <?= $user['nama']; ?></div>
     </a>
 
-    <!-- Divider -->
     <hr class="sidebar-divider my-0">
     <li class="nav-item">
-        <a class="nav-link" href="<?= base_url($this->session->userdata('role')); ?>/changepassword">
-            <i class="fas fa-fw fa-key"></i>
-            <span>Change Password</span></a>
+        <a class="nav-link" href="<?= base_url(); ?>">
+            <i class="fa-fw fab fa-wpforms"></i>
+            <span>Isi Kuesioner</span></a>
     </li>
+
+    <?php if ($this->session->userdata('tendik')) : ?>
+        <hr class="sidebar-divider my-0">
+        <li class="nav-item">
+            <a class="nav-link" href="<?= base_url('tendik') ?>/changepassword">
+                <i class="fas fa-fw fa-key"></i>
+                <span>Change Password</span></a>
+        </li>
+    <?php else : ?>
+        <hr class="sidebar-divider my-0">
+        <li class="nav-item">
+            <a class="nav-link" href="<?= base_url($this->session->userdata('role')); ?>/changepassword">
+                <i class="fas fa-fw fa-key"></i>
+                <span>Change Password</span></a>
+        </li>
+    <?php endif; ?>
+
+    <!-- Divider -->
+
     <!-- Divider -->
     <hr class="sidebar-divider">
 

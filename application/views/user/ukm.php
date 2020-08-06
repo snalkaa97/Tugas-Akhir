@@ -29,6 +29,7 @@
                             <th scope="col">No</th>
                             <th scope="col">NIP</th>
                             <th scope="col">Nama</th>
+                            <th scope="col">Email</th>
                             <th scope="col">Aksi</th>
                         </tr>
                     </thead>
@@ -39,6 +40,7 @@
                                 <th scope="row"><?= $i ?></th>
                                 <td><?= $d['nip']; ?></td>
                                 <td><?= $d['nama']; ?></td>
+                                <td><?= $d['email']; ?></td>
                                 <td><a class="badge badge-success" data-toggle="modal" data-target="#editukm<?= $d['nip'] ?>" href="#">edit</a>
                                     <a class="badge badge-danger" data-toggle="modal" data-target="#hapusukm<?= $d['nip']; ?>" href="#">delete</a>
                                 </td>
@@ -66,6 +68,10 @@
                         <div class="form-group">
                             <input type="text" class="form-control" id="nip" name="nip" placeholder="nip">
                             <?= form_error('nip', '<small class="text-danger pl-3">', '</small>'); ?>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" class="form-control" id="email" name="Email" placeholder="email">
+                            <?= form_error('email', '<small class="text-danger pl-3">', '</small>'); ?>
                         </div>
                         <div class="form-group">
                             <input type="text" class="form-control" id="nama" name="nama" placeholder="Nama">
@@ -132,6 +138,10 @@
                             <div class="form-group">
                                 <input type="text" class="form-control" id="nama" name="nama" value="<?= $d['nama']; ?>" placeholder="Nama">
                                 <?= form_error('nama', '<small class="text-danger pl-3">', '</small>'); ?>
+                            </div>
+                            <div class="form-group">
+                                <input type="email" class="form-control" id="email" name="email" value="<?= $d['email']; ?>" placeholder="Email">
+                                <?= form_error('email', '<small class="text-danger pl-3">', '</small>'); ?>
                             </div>
 
 
