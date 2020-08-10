@@ -27,7 +27,7 @@ class Lppm extends CI_Controller
         //$this->load->view('templates/auth_header', $judul);
         $data['user'] = $this->db->get_where('data_lppm', ['nip' => $this->session->userdata('nip')])->row_array();
         //$jurusan = $data['user']['jurusan'];
-        //$data['dosen'] = $this->db->get_where('dosen_peserta', ['jurusan' => $jurusan])->result_array();
+        $data['dosen'] = $this->db->get('dosen_peserta')->result_array();
         $data['title'] = 'Unit Kendali Mutu (UKM)';
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar_user');

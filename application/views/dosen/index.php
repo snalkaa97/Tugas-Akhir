@@ -17,22 +17,25 @@
         <tbody>
 
             <?php
-            $db = "tugas-akhir";
-            $koneksi = mysqli_connect("localhost", "root", "", $db);
-            $sql = "SELECT * from dosen_peserta WHERE jurusan ='$user[jurusan]'";
-            $query = mysqli_query($koneksi, $sql);
-            $nip = $user['nip'];
-            $id_dosen = $user['id_dosen'];
-            //var_dump($id_dosen);
-            while ($row = mysqli_fetch_array($query)) {
-                $cek = mysqli_query($koneksi, "SELECT * from nilai_dosen where nip='$nip' and id_dosen='$row[id_dosen]'");
-                $num = mysqli_num_rows($cek);
+            // $db = "tugas-akhir";
+            // $koneksi = mysqli_connect("localhost", "root", "", $db);
+            // $sql = "SELECT * from dosen_peserta WHERE jurusan ='$user[jurusan]'";
+            // $query = mysqli_query($koneksi, $sql);
+            // $nip = $user['nip'];
+            // $id_dosen = $user['id_dosen'];
+            // //var_dump($id_dosen);
+            // while ($row = mysqli_fetch_array($query)) {
+            //     $cek = mysqli_query($koneksi, "SELECT * from nilai_dosen where nip='$nip' and id_dosen='$row[id_dosen]'");
+            //     $num = mysqli_num_rows($cek);
+            foreach ($dosen as $row) {
+                $num = $this->db->get_where('nilai_dosen', ['nip' => $this->session->userdata('nip'), 'id_dosen' => $row['id_dosen']])->row_array();
+                //var_dump($num);
             ?>
                 <tr>
                     <td><?= $row['nip']; ?></td>
                     <td><?= $row['nama']; ?></td>
                     <td>
-                        <?php if ($num > 0) { ?>
+                        <?php if ($num) { ?>
                             <a href="<?= base_url('dosen/kuesioner/') . $row['id_dosen']; ?>" class="btn btn-success">Valued</a>
                         <?php } else { ?>
                             <a href="<?= base_url('dosen/kuesioner/') . $row['id_dosen']; ?>" class="btn btn-warning">Isi</a>

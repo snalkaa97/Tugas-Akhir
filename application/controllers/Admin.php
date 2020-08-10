@@ -157,7 +157,7 @@ class Admin extends CI_Controller
         $jurusan = $this->input->get('jurusan');
 
         if ($jurusan) {
-            $data['dosen'] = $this->db->get_where('dosen_peserta', ['jurusan' => $jurusan])->result_array();
+            $data['dosen'] = $this->db->get_where('nilai_dosen', ['jurusan' => $jurusan])->result_array();
         }
 
         $data['title'] = 'Data Dosen';
@@ -295,7 +295,7 @@ class Admin extends CI_Controller
 
             $jurusan = $this->input->get('jurusan');
             $this->db->group_by('nip');
-            $data['cariDosen'] = $this->db->get_where('dosen_peserta', ['jurusan' => $jurusan])->result_array();
+            $data['cariDosen'] = $this->db->get_where('nilai_dosen', ['jurusan' => $jurusan])->result_array();
             $data['form_dosen'] = $this->db->get('dosen_peserta')->result_array();
             $this->load->view('templates/header', $data);
             $this->load->view('templates/sidebar');

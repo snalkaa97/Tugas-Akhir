@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 18 Jul 2020 pada 12.34
+-- Waktu pembuatan: 10 Agu 2020 pada 07.29
 -- Versi server: 10.4.11-MariaDB
 -- Versi PHP: 7.4.3
 
@@ -32,15 +32,16 @@ CREATE TABLE `admin` (
   `id` int(11) NOT NULL,
   `nama_admin` varchar(30) NOT NULL,
   `user_admin` varchar(30) NOT NULL,
-  `password_admin` varchar(30) NOT NULL
+  `password_admin` varchar(30) NOT NULL,
+  `token` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data untuk tabel `admin`
 --
 
-INSERT INTO `admin` (`id`, `nama_admin`, `user_admin`, `password_admin`) VALUES
-(1, 'Admin', 'admin', 'admin');
+INSERT INTO `admin` (`id`, `nama_admin`, `user_admin`, `password_admin`, `token`) VALUES
+(1, 'Admin', 'admin', 'admin123', '');
 
 -- --------------------------------------------------------
 
@@ -52,6 +53,8 @@ CREATE TABLE `data_lppm` (
   `id_data` int(11) NOT NULL,
   `nip` varchar(11) NOT NULL,
   `nama` varchar(60) NOT NULL,
+  `email` varchar(30) NOT NULL,
+  `password` varchar(16) NOT NULL,
   `id_dosen` int(11) NOT NULL,
   `pendidikan` varchar(20) DEFAULT NULL,
   `jabatan` varchar(20) DEFAULT NULL,
@@ -70,16 +73,16 @@ CREATE TABLE `data_lppm` (
 -- Dumping data untuk tabel `data_lppm`
 --
 
-INSERT INTO `data_lppm` (`id_data`, `nip`, `nama`, `id_dosen`, `pendidikan`, `jabatan`, `jml_pn`, `jml_jia`, `jml_ji`, `jml_jna`, `jml_jn`, `jml_jl`, `jml_pl`, `jml_sm`, `jml_pg`) VALUES
-(19, '302', 'UKM', 0, NULL, NULL, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(20, '302', 'UKM', 63, 'S2', 'Pengajar', 7, 1, 0, 0, 0, 0, 6, 7, 2),
-(21, '302', 'UKM', 56, 'S2', 'Asisten Ahli', 2, 0, 0, 2, 2, 0, 3, 2, 3),
-(22, '302', 'UKM', 57, 'S2', 'Asisten Ahli', 2, 0, 0, 2, 2, 0, 3, 2, 3),
-(23, '302', 'UKM', 48, 'S2', 'Lektor', 2, 0, 0, 2, 2, 2, 2, 2, 4),
-(24, '302', 'UKM', 52, 'S2', 'Asisten Ahli', 2, 0, 0, 2, 2, 2, 3, 2, 2),
-(25, '302', 'UKM', 58, 'S2', 'Lektor', 2, 0, 0, 2, 2, 0, 2, 2, 2),
-(26, '302', 'UKM', 69, 'S2', 'Lektor', 3, 1, 0, 0, 0, 2, 2, 2, 2),
-(27, '302', 'UKM', 70, 'S3', 'Lektor', 3, 1, 0, 0, 0, 0, 2, 2, 2);
+INSERT INTO `data_lppm` (`id_data`, `nip`, `nama`, `email`, `password`, `id_dosen`, `pendidikan`, `jabatan`, `jml_pn`, `jml_jia`, `jml_ji`, `jml_jna`, `jml_jn`, `jml_jl`, `jml_pl`, `jml_sm`, `jml_pg`) VALUES
+(19, '302', 'UKM', '302@ftumj.ac.id', '302', 0, NULL, NULL, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(20, '302', 'UKM', '302@ftumj.ac.id', '302', 63, 'S2', 'Pengajar', 7, 1, 0, 0, 0, 0, 6, 7, 2),
+(21, '302', 'UKM', '302@ftumj.ac.id', '302', 56, 'S2', 'Asisten Ahli', 2, 0, 0, 2, 2, 0, 3, 2, 3),
+(22, '302', 'UKM', '302@ftumj.ac.id', '302', 57, 'S2', 'Asisten Ahli', 2, 0, 0, 2, 2, 0, 3, 2, 3),
+(23, '302', 'UKM', '302@ftumj.ac.id', '302', 48, 'S2', 'Lektor', 2, 0, 0, 2, 2, 2, 2, 2, 4),
+(24, '302', 'UKM', '302@ftumj.ac.id', '302', 52, 'S2', 'Asisten Ahli', 2, 0, 0, 2, 2, 2, 3, 2, 2),
+(25, '302', 'UKM', '302@ftumj.ac.id', '302', 58, 'S2', 'Lektor', 2, 0, 0, 2, 2, 0, 2, 2, 2),
+(26, '302', 'UKM', '302@ftumj.ac.id', '302', 69, 'S2', 'Lektor', 3, 1, 0, 0, 0, 2, 2, 2, 2),
+(27, '302', 'UKM', '302@ftumj.ac.id', '302', 70, 'S3', 'Lektor', 3, 1, 0, 0, 0, 0, 2, 2, 2);
 
 -- --------------------------------------------------------
 
@@ -122,11 +125,12 @@ CREATE TABLE `dosen_peserta` (
 --
 
 INSERT INTO `dosen_peserta` (`id_dosen`, `nip`, `nama`, `jurusan`, `alamat`, `pendidikan`, `jabatan`, `c1`, `c2`, `c3`, `c4`, `c5`, `c6`, `c7`, `c8`, `c9`, `c10`, `c4_saw`, `c5_saw`, `c6_saw`, `c7_saw`, `c8_saw`, `c9_saw`, `c10_saw`, `vektor_s`, `vektor_v`, `total_nilai_saw`) VALUES
-(48, '3', 'NVR', 'Teknik Informatika', 'Jakarta', 'S2', 'Lektor', 4.455, 3.9, 3.6, 3, 3, 3, 3, 3, 5, 3, 3, 3, 3, 3, 3, 1, 3, 3.5134543933847, 0.20491776301765, 0.9241),
-(52, '7', 'STO', 'Teknik Informatika', 'Bogor', 'S2', 'Asisten Ahli', 4.4666, 3.4, 3.4, 3, 3, 3, 4, 3, 3, 2, 3, 3, 3, 2, 3, 3, 4, 3.2590454429936, 0.19007968425847, 0.8581),
-(56, '11', 'YDN', 'Teknik Informatika', 'Jakarta', 'S2', 'Asisten Ahli', 4.49, 4.6, 4.6, 3, 3, 3, 4, 3, 4, 2, 3, 3, 3, 2, 3, 2, 4, 3.6104258068668, 0.21057349748935, 0.94),
-(57, '12', 'RNL', 'Teknik Informatika', 'Jakarta', 'S2', 'Asisten Ahli', 4.433, 4, 4.6, 3, 3, 3, 4, 3, 4, 2, 3, 3, 3, 2, 3, 2, 4, 3.5386321105537, 0.2063862213787, 0.9211),
-(58, '13', 'SSO', 'Teknik Informatika', 'Bekasi', 'S2', 'Lektor', 3.5357, 3.6, 3.6, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3.2241222577586, 0.18804283385584, 0.8316);
+(0, '11', 'YDN', 'Teknik Informatika', 'Bogor', 'S2', 'Asisten Ahli', 4.49, 4.6, 4.6, 3, 3, 3, 4, 3, 4, 2, 3, 3, 3, 2, 3, 2, 4, 3.3750177427832, 0.20660355632038, 0.9453),
+(48, '3', 'NVR', 'Teknik Informatika', 'Jakarta', 'S2', 'Lektor', 4.455, 3.9, 3.6, 3, 3, 3, 3, 3, 5, 3, 3, 3, 3, 3, 3, 1, 3, 3.3951742044194, 0.20783744513942, 0.9478),
+(52, '7', 'STO', 'Teknik Informatika', 'Bogor', 'S2', 'Asisten Ahli', 4.4666, 3.4, 3.4, 3, 3, 3, 4, 3, 3, 2, 3, 3, 3, 2, 3, 3, 4, 3.1025900032631, 0.18992674330346, 0.8776),
+(57, '12', 'RNL', 'Teknik Informatika', 'Bogor', 'S2', 'Asisten Ahli', 4.433, 4, 4.6, 3, 3, 3, 4, 3, 4, 2, 3, 3, 3, 2, 3, 2, 4, 3.3237153640575, 0.20346305315855, 0.931),
+(58, '13', 'SSO', 'Teknik Informatika', 'Bekasi', 'S2', 'Lektor', 3.5357, 3.6, 3.6, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3.1392221807869, 0.19216920207819, 0.8844),
+(75, '222', 'test2', 'Teknik Sipil', 'Bogor', '', '', 1, 5, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -139,6 +143,9 @@ CREATE TABLE `nilai_dosen` (
   `nip` varchar(15) NOT NULL,
   `nama` varchar(60) NOT NULL,
   `jurusan` varchar(30) NOT NULL,
+  `email` varchar(30) NOT NULL,
+  `password` varchar(16) NOT NULL,
+  `alamat` varchar(50) NOT NULL,
   `id_dosen` int(11) NOT NULL,
   `q1` double NOT NULL,
   `q2` double NOT NULL,
@@ -152,12 +159,15 @@ CREATE TABLE `nilai_dosen` (
 -- Dumping data untuk tabel `nilai_dosen`
 --
 
-INSERT INTO `nilai_dosen` (`id`, `nip`, `nama`, `jurusan`, `id_dosen`, `q1`, `q2`, `q3`, `q4`, `q5`, `avg`) VALUES
-(58, '3', 'NVR', 'Teknik Informatika', 0, 0, 0, 0, 0, 0, 0),
-(62, '7', 'STO', 'Teknik Informatika', 0, 0, 0, 0, 0, 0, 0),
-(66, '11', 'YDN', 'Teknik Informatika', 0, 0, 0, 0, 0, 0, 0),
-(67, '12', 'RNL', 'Teknik Informatika', 0, 0, 0, 0, 0, 0, 0),
-(68, '13', 'SSO', 'Teknik Informatika', 0, 0, 0, 0, 0, 0, 0);
+INSERT INTO `nilai_dosen` (`id`, `nip`, `nama`, `jurusan`, `email`, `password`, `alamat`, `id_dosen`, `q1`, `q2`, `q3`, `q4`, `q5`, `avg`) VALUES
+(58, '3', 'NVR', 'Teknik Informatika', '', '', '', 0, 0, 0, 0, 0, 0, 0),
+(62, '7', 'STO', 'Teknik Informatika', '', '', '', 0, 0, 0, 0, 0, 0, 0),
+(66, '11', 'YDN', 'Teknik Informatika', 'ydn@ftumj.ac.id', '11', 'Bogor', 0, 0, 0, 0, 0, 0, 0),
+(67, '12', 'RNL', 'Teknik Informatika', 'rnl@ftumj.ac.id', '12', 'Bogor', 0, 0, 0, 0, 0, 0, 0),
+(68, '13', 'SSO', 'Teknik Informatika', '', '', '', 0, 0, 0, 0, 0, 0, 0),
+(84, '111', 'test', 'Teknik Elektro', '111@ftumj.ac.id', '111', 'Bogor', 0, 0, 0, 0, 0, 0, 0),
+(90, '222', 'test2', 'Teknik Sipil', '222@ftumj.ac.id', '123', 'Bogor', 0, 0, 0, 0, 0, 0, 0),
+(93, '222', 'test2', 'Teknik Sipil', '222@ftumj.ac.id', '123', 'Bogor', 75, 5, 5, 5, 5, 5, 5);
 
 -- --------------------------------------------------------
 
@@ -170,6 +180,8 @@ CREATE TABLE `nilai_mhs` (
   `nim` varchar(15) NOT NULL,
   `nama` varchar(60) NOT NULL,
   `jurusan` varchar(30) NOT NULL,
+  `email` varchar(30) NOT NULL,
+  `password` varchar(16) NOT NULL,
   `id_dosen` int(11) NOT NULL,
   `q1` double NOT NULL,
   `q2` double NOT NULL,
@@ -198,17 +210,20 @@ CREATE TABLE `nilai_mhs` (
 -- Dumping data untuk tabel `nilai_mhs`
 --
 
-INSERT INTO `nilai_mhs` (`id_mhs`, `nim`, `nama`, `jurusan`, `id_dosen`, `q1`, `q2`, `q3`, `q4`, `q5`, `q6`, `q7`, `q8`, `q9`, `q10`, `q11`, `q12`, `q13`, `q14`, `q15`, `q16`, `q17`, `q18`, `q19`, `q20`, `avg`) VALUES
-(60, '2016470001', 'Achmad Farhan', 'Teknik Informatika', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(61, '2019470005', 'Afrahani Luthfiyah', 'Teknik Informatika', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(62, '2019470009', 'Adriansyahdan Restuadi Putra', 'Teknik Informatika', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(63, '2019470014', 'Aulia Nur Ramadhan', 'Teknik Informatika', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(64, '2016470012', 'Bayu Arif Saputra', 'Teknik Informatika', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(65, '2019470021', 'Debby Arrizqi Kamila', 'Teknik Informatika', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(66, '2016470023', 'Ibnu Adam Syah', 'Teknik Informatika', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(67, '2016470029', 'Maulana Ary Purnomo', 'Teknik Informatika', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(68, '2016470047', 'Noviarum', 'Teknik Informatika', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(69, '2016470057', 'Syaifudin Alkatiri', 'Teknik Informatika', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+INSERT INTO `nilai_mhs` (`id_mhs`, `nim`, `nama`, `jurusan`, `email`, `password`, `id_dosen`, `q1`, `q2`, `q3`, `q4`, `q5`, `q6`, `q7`, `q8`, `q9`, `q10`, `q11`, `q12`, `q13`, `q14`, `q15`, `q16`, `q17`, `q18`, `q19`, `q20`, `avg`) VALUES
+(0, '2016470063', 'Wibi Sasongko', 'Teknik Informatika', '2016470063@ftumj.ac.id', '1911', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(60, '2016470001', 'Achmad Farhan', 'Teknik Informatika', '', '1911', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(61, '2019470005', 'Afrahani Luthfiyah', 'Teknik Informatika', '', '1911', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(62, '2019470009', 'Adriansyahdan Restuadi Putra', 'Teknik Informatika', '', '1911', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(63, '2019470014', 'Aulia Nur Ramadhan', 'Teknik Informatika', '', '1911', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(64, '2016470012', 'Bayu Arif Saputra', 'Teknik Informatika', '', '1911', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(65, '2019470021', 'Debby Arrizqi Kamila', 'Teknik Informatika', '', '1911', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(66, '2016470023', 'Ibnu Adam Syah', 'Teknik Informatika', '', '1911', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(67, '2016470029', 'Maulana Ary Purnomo', 'Teknik Informatika', '', '1911', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(68, '2016470047', 'Noviarum', 'Teknik Informatika', '', '1911', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(69, '2016470057', 'Syaifudin Alkatiri', 'Teknik Informatika', '2016470057@ftumj.ac.id', '1911', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(71, '1', 'tes', 'Teknik Mesin', '', '1911', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(74, '', '', '', '2016470057@ftumj.ac.id', '1911', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -221,6 +236,8 @@ CREATE TABLE `nilai_pimpinan` (
   `nip` varchar(15) NOT NULL,
   `nama` varchar(60) NOT NULL,
   `jurusan` varchar(30) NOT NULL,
+  `email` varchar(30) NOT NULL,
+  `password` varchar(16) NOT NULL,
   `id_dosen` int(11) NOT NULL,
   `q1` double NOT NULL,
   `q2` double NOT NULL,
@@ -234,21 +251,22 @@ CREATE TABLE `nilai_pimpinan` (
 -- Dumping data untuk tabel `nilai_pimpinan`
 --
 
-INSERT INTO `nilai_pimpinan` (`id_pimpinan`, `nip`, `nama`, `jurusan`, `id_dosen`, `q1`, `q2`, `q3`, `q4`, `q5`, `avg`) VALUES
-(48, '201', 'Renty', 'Teknik Industri', 0, 0, 0, 0, 0, 0, 0),
-(49, '301', 'Nurul Hidayati', 'Teknik Kimia', 0, 0, 0, 0, 0, 0, 0),
-(50, '401', 'Sulis Yulianto', 'Teknik Mesin', 0, 0, 0, 0, 0, 0, 0),
-(51, '501', 'Trijeti', 'Teknik Sipil', 0, 0, 0, 0, 0, 0, 0),
-(52, '601', 'Wafirul', 'Arsitektur', 0, 0, 0, 0, 0, 0, 0),
-(53, '701', 'Erwin Dermawan', 'Teknik Elektro', 0, 0, 0, 0, 0, 0, 0),
-(54, '801', 'Hasan Basri', 'D3OAB', 0, 0, 0, 0, 0, 0, 0),
-(55, '101', 'Rita Dewi Risanty', 'Teknik Informatika', 0, 0, 0, 0, 0, 0, 0),
-(56, '101', 'Rita Dewi Risanty', 'Teknik Informatika', 48, 4, 3, 3, 5, 3, 3.6),
-(57, '101', 'Rita Dewi Risanty', 'Teknik Informatika', 52, 3, 2, 5, 4, 3, 3.4),
-(58, '101', 'Rita Dewi Risanty', 'Teknik Informatika', 56, 5, 5, 4, 4, 5, 4.6),
-(59, '101', 'Rita Dewi Risanty', 'Teknik Informatika', 57, 5, 5, 5, 4, 4, 4.6),
-(60, '101', 'Rita Dewi Risanty', 'Teknik Informatika', 58, 3, 3, 4, 5, 3, 3.6),
-(61, '01', 'test1', 'Teknik Mesin', 0, 0, 0, 0, 0, 0, 0);
+INSERT INTO `nilai_pimpinan` (`id_pimpinan`, `nip`, `nama`, `jurusan`, `email`, `password`, `id_dosen`, `q1`, `q2`, `q3`, `q4`, `q5`, `avg`) VALUES
+(48, '201', 'Renty', 'Teknik Industri', '', '', 0, 0, 0, 0, 0, 0, 0),
+(49, '301', 'Nurul Hidayati', 'Teknik Kimia', '', '', 0, 0, 0, 0, 0, 0, 0),
+(50, '401', 'Sulis Yulianto', 'Teknik Mesin', '', '', 0, 0, 0, 0, 0, 0, 0),
+(51, '501', 'Trijeti', 'Teknik Sipil', '', '', 0, 0, 0, 0, 0, 0, 0),
+(52, '601', 'Wafirul', 'Arsitektur', '', '', 0, 0, 0, 0, 0, 0, 0),
+(53, '701', 'Erwin Dermawan', 'Teknik Elektro', '', '', 0, 0, 0, 0, 0, 0, 0),
+(54, '801', 'Hasan Basri', 'D3OAB', '', '', 0, 0, 0, 0, 0, 0, 0),
+(55, '101', 'Rita Dewi Risanty', 'Teknik Informatika', 'rita.dewi@ftumj.ac.id', '101', 0, 0, 0, 0, 0, 0, 0),
+(56, '101', 'Rita Dewi Risanty', 'Teknik Informatika', 'rita.dewi@ftumj.ac.id', '101', 48, 4, 3, 3, 5, 3, 3.6),
+(57, '101', 'Rita Dewi Risanty', 'Teknik Informatika', 'rita.dewi@ftumj.ac.id', '101', 52, 3, 2, 5, 4, 3, 3.4),
+(58, '101', 'Rita Dewi Risanty', 'Teknik Informatika', 'rita.dewi@ftumj.ac.id', '101', 56, 5, 5, 4, 4, 5, 4.6),
+(59, '101', 'Rita Dewi Risanty', 'Teknik Informatika', 'rita.dewi@ftumj.ac.id', '101', 57, 5, 5, 5, 4, 4, 4.6),
+(60, '101', 'Rita Dewi Risanty', 'Teknik Informatika', 'rita.dewi@ftumj.ac.id', '101', 58, 3, 3, 4, 5, 3, 3.6),
+(61, '01', 'test1', 'Teknik Mesin', '01@ftumj.ac.id', '01', 0, 0, 0, 0, 0, 0, 0),
+(62, '333', 'test', 'Teknik Sipil', 'test@ftumj.ac.id', '333', 0, 0, 0, 0, 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -263,6 +281,8 @@ CREATE TABLE `nilai_pimpinan_tendik` (
   `jabatan` varchar(20) NOT NULL,
   `tendik` varchar(60) NOT NULL,
   `jurusan` varchar(30) NOT NULL,
+  `email` varchar(30) NOT NULL,
+  `password` varchar(16) NOT NULL,
   `id_tendik` int(20) NOT NULL,
   `q1` double NOT NULL,
   `q2` double NOT NULL,
@@ -305,26 +325,27 @@ CREATE TABLE `nilai_pimpinan_tendik` (
 -- Dumping data untuk tabel `nilai_pimpinan_tendik`
 --
 
-INSERT INTO `nilai_pimpinan_tendik` (`id_pimpinan`, `nip`, `nama`, `jabatan`, `tendik`, `jurusan`, `id_tendik`, `q1`, `q2`, `q3`, `q4`, `q5`, `q6`, `q7`, `q8`, `q9`, `q10`, `q11`, `q12`, `q13`, `q14`, `q15`, `q16`, `q17`, `q18`, `q19`, `q20`, `q21`, `q22`, `q23`, `q24`, `q25`, `q26`, `q27`, `q28`, `q29`, `rata_kehadiran`, `rata_tanggungjawab`, `rata_kerjasama`, `rata_loyalitas`, `rata_kearsipan`, `rata_pelayanan`) VALUES
-(41, '202', 'Nelfiyanti', 'Kepala Laboratorium', 'Laboratorium', 'Teknik Industri', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(43, '201', 'Renty', 'Kepala Program Studi', 'Administrasi Prodi', 'Teknik Industri', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(44, '302', 'Isimiyati', 'Kepala Laboratorium', 'Laboratorium', 'Teknik Kimia', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(45, '301', 'Nurul Hidayati', 'Kepala Program Studi', 'Administrasi Prodi', 'Teknik Kimia', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(47, '402', 'Ahmad Yunus Nasution', 'Kepala Laboratorium', 'Laboratorium', 'Teknik Mesin', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(48, '401', 'Sulis Yulianto', 'Kepala Program Studi', 'Administrasi Prodi', 'Teknik Mesin', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(51, '501', 'Trijeti', 'Kepala Program Studi', 'Administrasi Prodi', 'Teknik Sipil', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(52, '601', 'Wafirul', 'Kepala Program Studi', 'Administrasi Prodi', 'Arsitektur', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(54, '701', 'Erwin Dermawan', 'Kepala Program Studi', 'Administrasi Prodi', 'Teknik Elektro', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(56, '801', 'Hasan Basri', 'Kepala Program Studi', 'Administrasi Prodi', 'D3OAB', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(58, '901', 'Zul Amri', 'Kepala Perpustakaan', 'Perpustakaan', 'Perpustakaan', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(59, '101', 'Rita Dewi Risanty', 'Kepala Program Studi', 'Administrasi Prodi', 'Teknik Informatika', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(60, '102', 'Retnani Latifah', 'Kepala Laboratorium', 'Laboratorium', 'Teknik Informatika', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(61, '901', 'Zul Amri', 'Kepala Perpustakaan', 'Perpustakaan', 'Perpustakaan', 62, 3, 3, 4, 5, 4, 5, 3, 3, 3, 2, 2, 3, 3, 4, 3, 3, 3, 3, 3, 3, 5, 4, 5, 5, 4, 4, 4, 3, 3, 4, 2.6, 3.2, 3, 4.75, 3.6),
-(62, '901', 'Zul Amri', 'Kepala Perpustakaan', 'Perpustakaan', 'Perpustakaan', 63, 4, 4, 4, 5, 4, 5, 3, 3, 4, 4, 3, 4, 3, 3, 3, 4, 3, 3, 4, 3, 4, 4, 3, 4, 4, 4, 3, 3, 4, 4.3333333333333, 3.4, 3.4, 3.25, 3.75, 3.6),
-(63, '901', 'Zul Amri', 'Kepala Perpustakaan', 'Perpustakaan', 'Perpustakaan', 64, 4, 4, 3, 5, 4, 5, 3, 3, 4, 4, 3, 4, 4, 4, 4, 3, 4, 4, 4, 4, 4, 4, 3, 4, 4, 4, 4, 4, 4, 4.1666666666667, 3.4, 3.8, 4, 3.75, 4),
-(64, '102', 'Retnani Latifah', 'Kepala Laboratorium', 'Laboratorium', 'Teknik Informatika', 48, 4, 4, 4, 5, 4, 5, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 3, 4, 4, 4, 4.3333333333333, 4, 4, 4, 4, 3.8),
-(65, '102', 'Retnani Latifah', 'Kepala Laboratorium', 'Laboratorium', 'Teknik Informatika', 49, 4, 4, 4, 5, 4, 5, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4.3333333333333, 4, 4, 4, 4, 4),
-(66, '01', 'test1', 'Kepala Program Studi', 'Administrasi Prodi', 'Teknik Mesin', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+INSERT INTO `nilai_pimpinan_tendik` (`id_pimpinan`, `nip`, `nama`, `jabatan`, `tendik`, `jurusan`, `email`, `password`, `id_tendik`, `q1`, `q2`, `q3`, `q4`, `q5`, `q6`, `q7`, `q8`, `q9`, `q10`, `q11`, `q12`, `q13`, `q14`, `q15`, `q16`, `q17`, `q18`, `q19`, `q20`, `q21`, `q22`, `q23`, `q24`, `q25`, `q26`, `q27`, `q28`, `q29`, `rata_kehadiran`, `rata_tanggungjawab`, `rata_kerjasama`, `rata_loyalitas`, `rata_kearsipan`, `rata_pelayanan`) VALUES
+(41, '202', 'Nelfiyanti', 'Kepala Laboratorium', 'Laboratorium', 'Teknik Industri', '', '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(43, '201', 'Renty', 'Kepala Program Studi', 'Administrasi Prodi', 'Teknik Industri', '', '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(44, '302', 'Isimiyati', 'Kepala Laboratorium', 'Laboratorium', 'Teknik Kimia', '', '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(45, '301', 'Nurul Hidayati', 'Kepala Program Studi', 'Administrasi Prodi', 'Teknik Kimia', '', '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(47, '402', 'Ahmad Yunus Nasution', 'Kepala Laboratorium', 'Laboratorium', 'Teknik Mesin', '', '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(48, '401', 'Sulis Yulianto', 'Kepala Program Studi', 'Administrasi Prodi', 'Teknik Mesin', '', '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(51, '501', 'Trijeti', 'Kepala Program Studi', 'Administrasi Prodi', 'Teknik Sipil', '', '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(52, '601', 'Wafirul', 'Kepala Program Studi', 'Administrasi Prodi', 'Arsitektur', '', '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(54, '701', 'Erwin Dermawan', 'Kepala Program Studi', 'Administrasi Prodi', 'Teknik Elektro', '', '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(56, '801', 'Hasan Basri', 'Kepala Program Studi', 'Administrasi Prodi', 'D3OAB', '', '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(58, '901', 'Zul Amri', 'Kepala Perpustakaan', 'Perpustakaan', 'Perpustakaan', 'zul.amri@ftumj.ac.id', '901', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(59, '101', 'Rita Dewi Risanty', 'Kepala Program Studi', 'Administrasi Prodi', 'Teknik Informatika', 'rita.dewi@ftumj.ac.id', '101', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(60, '102', 'Retnani Latifah', 'Kepala Laboratorium', 'Laboratorium', 'Teknik Informatika', 'retnani.latifah@ftumj.ac.id', '102', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(61, '901', 'Zul Amri', 'Kepala Perpustakaan', 'Perpustakaan', 'Perpustakaan', 'zul.amri@ftumj.ac.id', '901', 62, 3, 3, 4, 5, 4, 5, 3, 3, 3, 2, 2, 3, 3, 4, 3, 3, 3, 3, 3, 3, 5, 4, 5, 5, 4, 4, 4, 3, 3, 4, 2.6, 3.2, 3, 4.75, 3.6),
+(62, '901', 'Zul Amri', 'Kepala Perpustakaan', 'Perpustakaan', 'Perpustakaan', 'zul.amri@ftumj.ac.id', '901', 63, 4, 4, 4, 5, 4, 5, 3, 3, 4, 4, 3, 4, 3, 3, 3, 4, 3, 3, 4, 3, 4, 4, 3, 4, 4, 4, 3, 3, 4, 4.3333333333333, 3.4, 3.4, 3.25, 3.75, 3.6),
+(63, '901', 'Zul Amri', 'Kepala Perpustakaan', 'Perpustakaan', 'Perpustakaan', 'zul.amri@ftumj.ac.id', '901', 64, 4, 4, 3, 5, 4, 5, 3, 3, 4, 4, 3, 4, 4, 4, 4, 3, 4, 4, 4, 4, 4, 4, 3, 4, 4, 4, 4, 4, 4, 4.1666666666667, 3.4, 3.8, 4, 3.75, 4),
+(64, '102', 'Retnani Latifah', 'Kepala Laboratorium', 'Laboratorium', 'Teknik Informatika', 'retnani.latifah@ftumj.ac.id', '102', 48, 4, 4, 4, 5, 4, 5, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 3, 4, 4, 4, 4.3333333333333, 4, 4, 4, 4, 3.8),
+(65, '102', 'Retnani Latifah', 'Kepala Laboratorium', 'Laboratorium', 'Teknik Informatika', 'retnani.latifah@ftumj.ac.id', '102', 49, 4, 4, 4, 5, 4, 5, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4.3333333333333, 4, 4, 4, 4, 4),
+(66, '01', 'test1', 'Kepala Program Studi', 'Administrasi Prodi', 'Teknik Mesin', '01@ftumj.ac.id', '111', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(67, '333', 'test', 'Kepala Program Studi', 'Administrasi Prodi', 'Teknik Sipil', 'test@ftumj.ac.id', '333', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -351,7 +372,7 @@ CREATE TABLE `tb_bobot_baru` (
 --
 
 INSERT INTO `tb_bobot_baru` (`id`, `b1`, `b2`, `b3`, `b4`, `b5`, `b6`, `b7`, `b8`, `b9`, `b10`) VALUES
-(1, 0.15, 0.13, 0.13, 0.08, 0.1, 0.1, 0.08, 0.07, 0.08, 0.08);
+(1, 0.076923076923077, 0.1025641025641, 0.076923076923077, 0.12820512820513, 0.12820512820513, 0.12820512820513, 0.076923076923077, 0.076923076923077, 0.1025641025641, 0.1025641025641);
 
 -- --------------------------------------------------------
 
@@ -514,16 +535,16 @@ CREATE TABLE `tb_kriteria` (
 --
 
 INSERT INTO `tb_kriteria` (`id_kriteria`, `nama_kriteria`, `bobot`) VALUES
-(1, 'Penilaian Mahasiswa', 15),
-(2, 'Penilaian Dosen Sejawat', 13),
-(3, 'Penilaian Pimpinan ', 13),
-(4, 'Kualifikasi Pendidikan ', 8),
-(5, 'Penelitian', 10),
-(6, 'Jurnal ', 10),
-(7, 'Pelatihan ', 8),
-(8, 'Seminar ', 7),
-(9, 'Pengabdian Masyarakat ', 8),
-(10, 'Jabatan Akademik ', 8);
+(1, 'Penilaian Mahasiswa', 3),
+(2, 'Penilaian Dosen Sejawat', 4),
+(3, 'Penilaian Pimpinan ', 3),
+(4, 'Kualifikasi Pendidikan ', 5),
+(5, 'Penelitian', 5),
+(6, 'Jurnal ', 5),
+(7, 'Pelatihan ', 3),
+(8, 'Seminar ', 3),
+(9, 'Pengabdian Masyarakat ', 4),
+(10, 'Jabatan Akademik ', 4);
 
 -- --------------------------------------------------------
 
@@ -596,6 +617,34 @@ INSERT INTO `tendik_peserta` (`id_tendik`, `nip`, `nama`, `tendik`, `jurusan`, `
 (62, '15', 'EEA', 'Perpustakaan', 'Perpustakaan', 4, 2.6, 3.2, 3, 4.75, 3.6, 2, 3.395089822535, 0.31439826271233, 0.843855),
 (63, '16', 'MKM', 'Perpustakaan', 'Perpustakaan', 4.3333333333333, 3.4, 3.4, 3.25, 3.75, 3.6, 1.6666666666667, 3.5846557173778, 0.331952787371, 0.90424),
 (64, '17', 'SUN', 'Perpustakaan', 'Perpustakaan', 4.1666666666667, 3.4, 3.8, 4, 3.75, 4, 1.8333333333333, 3.8189458817425, 0.35364894991667, 0.95479);
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `user_token`
+--
+
+CREATE TABLE `user_token` (
+  `id` int(11) NOT NULL,
+  `email` varchar(50) NOT NULL,
+  `token` varchar(50) NOT NULL,
+  `date_created` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `user_token`
+--
+
+INSERT INTO `user_token` (`id`, `email`, `token`, `date_created`) VALUES
+(1, '2016470057@ftumj.ac.id', '4GBY2jhz2N48Av4B3FdKdFQveoaQMagdim21UUYSYnc=', 1596705660),
+(2, '2016470057@ftumj.ac.id', 'KPQHqlhP3sHCQZJ94BCBIYjGdB0ZZAEoK5521NcK0dk=', 1596706216),
+(3, '2016470057@ftumj.ac.id', 'DrTQOrP5FqdCRMNYrHYyEwZ6VzPtoarm93TSyhinAf0=', 1596706304),
+(4, '2016470057@ftumj.ac.id', 'aHi/gVvmUq5ht36PYSUPe3QM+cs0NuTHx/wjA28xN+E=', 1596706391),
+(5, '2016470057@ftumj.ac.id', 'rNyzh1TWcB5Xrr4bstU4kiqjfPdud8ChgmS78F9TrnE=', 1596706934),
+(6, '2016470057@ftumj.ac.id', 'oB+EY0+tPUeUpkoCylfiQxssj9U65VpLRikz/Rw8Ifc=', 1596706949),
+(7, '2016470057@ftumj.ac.id', '45+e5xyvK8eS00NuTHxfpA8J3VhHVIAuhX7r9mg6FFI=', 1596707034),
+(8, '2016470057@ftumj.ac.id', 'tiGX5vClXvws/ni5PNgmHFLvB9ANWlxvFYfsZrT1NbE=', 1596707041),
+(9, '2016470057@ftumj.ac.id', 'WPRcAiz6CPezWRPRMWeOHTbWnnBiruYGFZD1rXdFLDU=', 1596709827);
 
 --
 -- Indexes for dumped tables
@@ -686,6 +735,12 @@ ALTER TABLE `tendik_peserta`
   ADD PRIMARY KEY (`id_tendik`);
 
 --
+-- Indeks untuk tabel `user_token`
+--
+ALTER TABLE `user_token`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT untuk tabel yang dibuang
 --
 
@@ -705,31 +760,31 @@ ALTER TABLE `data_lppm`
 -- AUTO_INCREMENT untuk tabel `dosen_peserta`
 --
 ALTER TABLE `dosen_peserta`
-  MODIFY `id_dosen` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=72;
+  MODIFY `id_dosen` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=76;
 
 --
 -- AUTO_INCREMENT untuk tabel `nilai_dosen`
 --
 ALTER TABLE `nilai_dosen`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=82;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=94;
 
 --
 -- AUTO_INCREMENT untuk tabel `nilai_mhs`
 --
 ALTER TABLE `nilai_mhs`
-  MODIFY `id_mhs` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
+  MODIFY `id_mhs` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=75;
 
 --
 -- AUTO_INCREMENT untuk tabel `nilai_pimpinan`
 --
 ALTER TABLE `nilai_pimpinan`
-  MODIFY `id_pimpinan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
+  MODIFY `id_pimpinan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
 
 --
 -- AUTO_INCREMENT untuk tabel `nilai_pimpinan_tendik`
 --
 ALTER TABLE `nilai_pimpinan_tendik`
-  MODIFY `id_pimpinan` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
+  MODIFY `id_pimpinan` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=68;
 
 --
 -- AUTO_INCREMENT untuk tabel `tb_bobot_baru_tendik`
@@ -766,6 +821,12 @@ ALTER TABLE `tb_kriteria_tendik`
 --
 ALTER TABLE `tendik_peserta`
   MODIFY `id_tendik` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=65;
+
+--
+-- AUTO_INCREMENT untuk tabel `user_token`
+--
+ALTER TABLE `user_token`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -17,25 +17,30 @@
         <tbody>
 
             <?php
-            $db = "tugas-akhir";
-            $koneksi = mysqli_connect("localhost", "root", "", $db);
-            $sql = "SELECT * from dosen_peserta WHERE jurusan ='$user[jurusan]'";
-            $query = mysqli_query($koneksi, $sql);
-            $nim = $user['nim'];
-            $id_dosen = $user['id_dosen'];
+            // $db = "tugas-akhir";
+            // $koneksi = mysqli_connect("localhost", "root", "", $db);
+            // $sql = "SELECT * from dosen_peserta WHERE jurusan ='$user[jurusan]'";
+            // $query = mysqli_query($koneksi, $sql);
+            // $nim = $user['nim'];
+            // $id_dosen = $user['id_dosen'];
+
+
             //var_dump($id_dosen);
-            while ($row = mysqli_fetch_array($query)) {
-                $cek = mysqli_query($koneksi, "SELECT * from nilai_mhs where nim='$nim' and id_dosen='$row[id_dosen]'");
-                $num = mysqli_num_rows($cek);
+            // while ($row = mysqli_fetch_array($query)) {
+            //     $cek = mysqli_query($koneksi, "SELECT * from nilai_mhs where nim='$nim' and id_dosen='$row[id_dosen]'");
+            //     $num = mysqli_num_rows($cek);
+            foreach ($dosen as $d) {
+                $num = $this->db->get_where('nilai_mhs', ['nim' => $this->session->userdata('nim'), 'id_dosen' => $d['id_dosen']])->row_array();
+                //var_dump($num);
             ?>
                 <tr>
-                    <td><?= $row['nip']; ?></td>
-                    <td><?= $row['nama']; ?></td>
+                    <td><?= $d['nip']; ?></td>
+                    <td><?= $d['nama']; ?></td>
                     <td>
-                        <?php if ($num > 0) { ?>
-                            <a href="<?= base_url('mahasiswa/kuesioner/') . $row['id_dosen']; ?>" class="btn btn-success">Valued</a>
+                        <?php if ($num) { ?>
+                            <a href="<?= base_url('mahasiswa/kuesioner/') . $d['id_dosen']; ?>" class="btn btn-success">Valued</a>
                         <?php } else { ?>
-                            <a href="<?= base_url('mahasiswa/kuesioner/') . $row['id_dosen']; ?>" class="btn btn-warning">Isi</a>
+                            <a href="<?= base_url('mahasiswa/kuesioner/') . $d['id_dosen']; ?>" class="btn btn-warning">Isi</a>
                         <?php } ?>
                     </td>
                 <?php } ?>
