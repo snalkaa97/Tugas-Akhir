@@ -4,8 +4,8 @@
         <div class="row">
             <div class="col-lg-4">
                 <div class="form-group">
-                    <select class="form-control" name="jurusan" id="jurusan">
-                        <option value="">Cari berdasarkan jurusan</option>
+                    <select class="form-control" name="jurusan" id="jurusan" required>
+                        <option value="">Hitung berdasarkan jurusan</option>
                         <option value=" Teknik Sipil">Teknik Sipil</option>
                         <option value="Teknik Elektro">Teknik Elektro</option>
                         <option value="Teknik Kimia">Teknik Kimia</option>
@@ -20,8 +20,8 @@
             </div>
             <div class="col-lg-4">
                 <div class="form-group">
-                    <select class="form-control" name="tendik" id="tendik">
-                        <option value="">Cari berdasarkan Tendik</option>
+                    <select class="form-control" name="tendik" id="tendik" required>
+                        <option value="">Hitung berdasarkan Tendik</option>
                         <option value="Administrasi Prodi">Administrasi Prodi</option>
                         <option value="Laboratorium">Laboratorium</option>
                         <option value="Perpustakaan">Perpustakaan</option>
@@ -158,7 +158,7 @@
 
             <div class="rank">
                 <div class="alert alert-primary">
-                    <h5>Dosen yang menjadi sarana promosi adalah <b><?= $result['nama']; ?></b></h5>
+                    <h5>Tendik yang menjadi sarana promosi adalah <b><?= $result['nama']; ?></b></h5>
                 </div>
                 <div class="col-sm-12 alert alert-success">
                     <h3>Hasil Ranking</h3>

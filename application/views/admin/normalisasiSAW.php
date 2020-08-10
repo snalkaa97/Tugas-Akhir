@@ -4,8 +4,8 @@
         <div class="row">
             <div class="col-lg-4">
                 <div class="form-group">
-                    <select class="form-control" name="jurusan" id="jurusan">
-                        <option value="">Cari berdasarkan jurusan</option>
+                    <select class="form-control" name="jurusan" id="jurusan" required>
+                        <option value="">Hitung berdasarkan jurusan</option>
                         <option value=" Teknik Sipil">Teknik Sipil</option>
                         <option value="Teknik Elektro">Teknik Elektro</option>
                         <option value="Teknik Kimia">Teknik Kimia</option>
@@ -19,7 +19,7 @@
                 </div>
             </div>
             <div class="col-lg-4">
-                <input class="btn btn-outline-primary" type="submit" name="hitung" value="Hitung">
+                <input class="btn btn-outline-primary" type="submit" name="hitung" value="Hitung" required>
             </div>
         </div>
     </form>
