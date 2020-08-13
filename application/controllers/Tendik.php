@@ -378,7 +378,7 @@ class Tendik extends CI_Controller
 
 
         $data['peserta'] = $this->db->get_where('tendik_peserta', ['nip' => $id_tendik])->result_array();
-        $tendik = $data['peserta']['nama'];
+        //$tendik = $data['peserta']['nama'];
         $this->session->set_flashdata('message', '<div class="alert alert-primary" role="alert"> Penilaian berhasil ditambahkan!. 
       </div>');
         redirect('tendik');
