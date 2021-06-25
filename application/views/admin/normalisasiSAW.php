@@ -197,6 +197,7 @@
                 </div>
             </div>
             <div class="rank">
+            <?php if(!empty($result)): ?>
                 <div class="alert alert-primary">
                     <h5>Dosen yang menjadi sarana promosi adalah <b><?= $result['nama']; ?></b></h5>
                 </div>
@@ -278,6 +279,11 @@
                 <div class="alert alert-primary">
                     <h6>Waktu proses perhitungan <?= $waktu ?></h6>
                 </div>
+                <?php else: ?>
+                    <div class="alert alert-warning">
+                    <h5>Tidak ada data dosen</b></h5>
+                </div>
+                <?php endif; ?>
 
             <?php endif; ?>
             </div>
