@@ -714,8 +714,7 @@ class Admin extends CI_Controller
         //$this->->('');
         $normalisasi = $this->db->get_where('tendik_peserta', $where)->result_array();
         foreach ($normalisasi as $n) {
-            if ($n['c1'] == 0 && $n['c2'] == 0 && $n['c3'] == 0 && $n['c4'] == 0 && $n['c5'] == 0 && $n['c6'] == 0) {
-            }
+            if ($n['c1'] == 0 && $n['c2'] == 0 && $n['c3'] == 0 && $n['c4'] == 0 && $n['c5'] == 0 && $n['c6'] == 0) { }
         }
 
         $this->db->select_min('c1_saw');

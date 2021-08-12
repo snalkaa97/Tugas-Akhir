@@ -6,7 +6,7 @@
                 <div class="form-group">
                     <select class="form-control" name="jurusan" id="jurusan" required>
                         <option value="">Hitung berdasarkan jurusan</option>
-                        <option value=" Teknik Sipil">Teknik Sipil</option>
+                        <option value="Teknik Sipil">Teknik Sipil</option>
                         <option value="Teknik Elektro">Teknik Elektro</option>
                         <option value="Teknik Kimia">Teknik Kimia</option>
                         <option value="Teknik Mesin">Teknik Mesin</option>
@@ -71,7 +71,7 @@
                         <td><?= $d['c9']; ?></td>
                         <td><?= $d['c10']; ?></td>
                     <?php $i++;
-                endforeach; ?>
+                    endforeach; ?>
                     </tr>
             </tbody>
         </table>
@@ -99,28 +99,28 @@
                             <tr>
                                 <td>Bobot Baru</td>
                                 <?php $i = 0;
-                                $j = 1;
-                                $jml = 0; //penjumlahan bobot
-                                foreach ($bobot as $b) {
-                                    $jml = $jml + $b['bobot'];
-                                }
-                                ?>
+                                    $j = 1;
+                                    $jml = 0; //penjumlahan bobot
+                                    foreach ($bobot as $b) {
+                                        $jml = $jml + $b['bobot'];
+                                    }
+                                    ?>
                                 <?php foreach ($bobot as $b) :
-                                    $bobotbaru = $b['bobot'] / $jml;
-                                    //var_dump($bobotbaru);
-                                    $arrBobotbaru[$i] = $bobotbaru;
-                                    //var_dump($arrBobotbaru[$i]);
-                                ?>
+                                        $bobotbaru = $b['bobot'] / $jml;
+                                        //var_dump($bobotbaru);
+                                        $arrBobotbaru[$i] = $bobotbaru;
+                                        //var_dump($arrBobotbaru[$i]);
+                                        ?>
                                     <td align="center"><?= round($bobotbaru, 4) ?></td>
                                 <?php
-                                    $data = [
-                                        'b' . $j => $arrBobotbaru[$i]
-                                    ];
-                                    $this->db->where('id', 1);
-                                    $this->db->update('tb_bobot_baru', $data);
-                                    $i++;
-                                    $j++;
-                                endforeach; ?>
+                                        $data = [
+                                            'b' . $j => $arrBobotbaru[$i]
+                                        ];
+                                        $this->db->where('id', 1);
+                                        $this->db->update('tb_bobot_baru', $data);
+                                        $i++;
+                                        $j++;
+                                    endforeach; ?>
                             </tr>
 
                         </tbody>
@@ -190,99 +190,99 @@
                                     <td><?= $c10 = round($d['c10'] / $maxc10, 4); ?></td>
                                 </tr>
                             <?php $i++;
-                            endforeach; ?>
+                                endforeach; ?>
                         </tbody>
                         </thead>
                     </table>
                 </div>
             </div>
             <div class="rank">
-            <?php if(!empty($result)): ?>
-                <div class="alert alert-primary">
-                    <h5>Dosen yang menjadi sarana promosi adalah <b><?= $result['nama']; ?></b></h5>
-                </div>
-                <div class="col-sm-12 alert alert-success">
-                    <h3 class="mb-4 text-gray-800">Hasil Ranking</h3>
-                    <table class="table table-hover">
-                        <thead>
-                            <tr>
-                                <th>Ranking</th>
-                                <th>Nama</th>
-                                <?php for ($c = 1; $c <= 10; $c++) : ?>
-                                    <th>C<?= $c ?></th>
-                                <?php endfor; ?>
-                                <th>Vi (Total Nilai SAW)</th>
-
-                            </tr>
-                        </thead>
-                        <tbody>
-
-                            <?php $ranking = 1;
-                            // $bc1 = 0;
-                            // foreach ($rank as $r) :
-                            //     $ranking++;
-                            //     $c1 =  ($r['c1'] / $maxc1);
-                            //     $c2 =  ($r['c2'] / $maxc2);
-                            //     $c3 =  ($r['c3'] / $maxc3);
-                            //     $c4 =  ($r['c4'] / $maxc4);
-                            //     $c5 =  ($r['c5'] / $maxc5);
-                            //     $c6 =  ($r['c6'] / $maxc6);
-                            //     $c7 =  ($r['c7'] / $maxc7);
-                            //     $c8 =  ($r['c8'] / $maxc8);
-                            //     $c9 =  ($r['c9'] / $maxc9);
-                            //     $c10 =  ($r['c10'] / $maxc10);
-                            // 
-                            // <?php endforeach; 
-                            //  foreach ($bobot_baru as $bb) {
-                            //     $h1 = $bb['b1'] * $c1;
-                            // }
-                            // echo $h1;
-                            foreach ($rank as $r) : ?>
+                <?php if (!empty($result)) : ?>
+                    <div class="alert alert-primary">
+                        <h5>Dosen yang menjadi sarana promosi adalah <b><?= $result['nama']; ?></b></h5>
+                    </div>
+                    <div class="col-sm-12 alert alert-success">
+                        <h3 class="mb-4 text-gray-800">Hasil Ranking</h3>
+                        <table class="table table-hover">
+                            <thead>
                                 <tr>
-                                    <?php
-                                    $h1 = $r['b1'] * (round($r['c1'] / $maxc1, 4));
-                                    $h2 = $r['b2'] * (round($r['c2'] / $maxc2, 4));
-                                    $h3 = $r['b3'] * (round($r['c3'] / $maxc3, 4));
-                                    $h4 = $r['b4'] * (round($r['c4'] / $maxc4, 4));
-                                    $h5 = $r['b5'] * (round($r['c5'] / $maxc5, 4));
-                                    $h6 = $r['b6'] * (round($r['c6'] / $maxc6, 4));
-                                    $h7 = $r['b7'] * (round($r['c7'] / $maxc7, 4));
-                                    $h8 = $r['b8'] * (round($r['c8'] / $maxc8, 4));
-                                    $h9 = $r['b9'] * (round($r['c9'] / $maxc9, 4));
-                                    $h10 = $r['b10'] * (round($r['c10'] / $maxc10, 4));
+                                    <th>Ranking</th>
+                                    <th>Nama</th>
+                                    <?php for ($c = 1; $c <= 10; $c++) : ?>
+                                        <th>C<?= $c ?></th>
+                                    <?php endfor; ?>
+                                    <th>Vi (Total Nilai SAW)</th>
 
-                                    $total = round($h1 + $h2 + $h3 + $h4 +  $h5 + $h6 + $h7 + $h8 + $h9 + $h10, 4);
-                                    $this->db->where('nip', $r['nip']);
-                                    $this->db->update('dosen_peserta', ['total_nilai_saw' => $total]);
-                                    ?>
-                                    <td><?= $ranking; ?></td>
-                                    <td><?= $r['nama']; ?></td>
-                                    <td><?= round($h1, 4); ?></td>
-                                    <td><?= round($h2, 4); ?></td>
-                                    <td><?= round($h3, 4); ?></td>
-                                    <td><?= round($h4, 4); ?></td>
-                                    <td><?= round($h5, 4); ?></td>
-                                    <td><?= round($h6, 4); ?></td>
-                                    <td><?= round($h7, 4); ?></td>
-                                    <td><?= round($h8, 4); ?></td>
-                                    <td><?= round($h9, 4); ?></td>
-                                    <td><?= round($h10, 4); ?></td>
-                                    <td><?= round($total, 4); ?></td>
-
-                                <?php $ranking++;
-                            endforeach;
-                                ?>
                                 </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div class="alert alert-primary">
-                    <h6>Waktu proses perhitungan <?= $waktu ?></h6>
-                </div>
-                <?php else: ?>
+                            </thead>
+                            <tbody>
+
+                                <?php $ranking = 1;
+                                        // $bc1 = 0;
+                                        // foreach ($rank as $r) :
+                                        //     $ranking++;
+                                        //     $c1 =  ($r['c1'] / $maxc1);
+                                        //     $c2 =  ($r['c2'] / $maxc2);
+                                        //     $c3 =  ($r['c3'] / $maxc3);
+                                        //     $c4 =  ($r['c4'] / $maxc4);
+                                        //     $c5 =  ($r['c5'] / $maxc5);
+                                        //     $c6 =  ($r['c6'] / $maxc6);
+                                        //     $c7 =  ($r['c7'] / $maxc7);
+                                        //     $c8 =  ($r['c8'] / $maxc8);
+                                        //     $c9 =  ($r['c9'] / $maxc9);
+                                        //     $c10 =  ($r['c10'] / $maxc10);
+                                        // 
+                                        // <?php endforeach; 
+                                        //  foreach ($bobot_baru as $bb) {
+                                        //     $h1 = $bb['b1'] * $c1;
+                                        // }
+                                        // echo $h1;
+                                        foreach ($rank as $r) : ?>
+                                    <tr>
+                                        <?php
+                                                    $h1 = $r['b1'] * (round($r['c1'] / $maxc1, 4));
+                                                    $h2 = $r['b2'] * (round($r['c2'] / $maxc2, 4));
+                                                    $h3 = $r['b3'] * (round($r['c3'] / $maxc3, 4));
+                                                    $h4 = $r['b4'] * (round($r['c4'] / $maxc4, 4));
+                                                    $h5 = $r['b5'] * (round($r['c5'] / $maxc5, 4));
+                                                    $h6 = $r['b6'] * (round($r['c6'] / $maxc6, 4));
+                                                    $h7 = $r['b7'] * (round($r['c7'] / $maxc7, 4));
+                                                    $h8 = $r['b8'] * (round($r['c8'] / $maxc8, 4));
+                                                    $h9 = $r['b9'] * (round($r['c9'] / $maxc9, 4));
+                                                    $h10 = $r['b10'] * (round($r['c10'] / $maxc10, 4));
+
+                                                    $total = round($h1 + $h2 + $h3 + $h4 +  $h5 + $h6 + $h7 + $h8 + $h9 + $h10, 4);
+                                                    $this->db->where('nip', $r['nip']);
+                                                    $this->db->update('dosen_peserta', ['total_nilai_saw' => $total]);
+                                                    ?>
+                                        <td><?= $ranking; ?></td>
+                                        <td><?= $r['nama']; ?></td>
+                                        <td><?= round($h1, 4); ?></td>
+                                        <td><?= round($h2, 4); ?></td>
+                                        <td><?= round($h3, 4); ?></td>
+                                        <td><?= round($h4, 4); ?></td>
+                                        <td><?= round($h5, 4); ?></td>
+                                        <td><?= round($h6, 4); ?></td>
+                                        <td><?= round($h7, 4); ?></td>
+                                        <td><?= round($h8, 4); ?></td>
+                                        <td><?= round($h9, 4); ?></td>
+                                        <td><?= round($h10, 4); ?></td>
+                                        <td><?= round($total, 4); ?></td>
+
+                                    <?php $ranking++;
+                                            endforeach;
+                                            ?>
+                                    </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="alert alert-primary">
+                        <h6>Waktu proses perhitungan <?= $waktu ?></h6>
+                    </div>
+                <?php else : ?>
                     <div class="alert alert-warning">
-                    <h5>Tidak ada data dosen</b></h5>
-                </div>
+                        <h5>Tidak ada data dosen</b></h5>
+                    </div>
                 <?php endif; ?>
 
             <?php endif; ?>
