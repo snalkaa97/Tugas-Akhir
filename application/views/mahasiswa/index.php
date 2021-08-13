@@ -4,7 +4,7 @@
     <!-- Page Heading -->
     <h5 class="mb-4 text-gray-800"><?= $title; ?></h5>
     <hr>
-    <h3 class="h3 mb-4 text-gray-800"><?= "Dosen - " . $getdosen['jurusan']; ?></h3>
+    <h3 class="h3 mb-4 text-gray-800"><?= "Dosen - " . $jurusan; ?></h3>
     <?= $this->session->flashdata('message'); ?>
     <table class="table table-hover">
         <thead>
@@ -32,7 +32,7 @@
             foreach ($dosen as $d) {
                 $num = $this->db->get_where('nilai_mhs', ['nim' => $this->session->userdata('nim'), 'id_dosen' => $d['id_dosen']])->row_array();
                 //var_dump($num);
-            ?>
+                ?>
                 <tr>
                     <td><?= $d['nip']; ?></td>
                     <td><?= $d['nama']; ?></td>

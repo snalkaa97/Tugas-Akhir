@@ -28,15 +28,17 @@ class Mahasiswa extends CI_Controller
         //$judul['title'] = "Selamat Datang " . $data['users']['name'];
         //$this->load->view('templates/auth_header', $judul);
         $jurusan = $data['user']['jurusan'];
+        // var_dump($jurusan);
 
         //die;
         $data['dosen'] = $this->db->get_where('dosen_peserta', ['jurusan' => $jurusan])->result_array();
+        $data['jurusan'] = $jurusan;
 
 
 
 
         $data['getdosen'] = $this->db->get_where('nilai_mhs', ['id_dosen' => $this->session->userdata('id_dosen')])->row_array();
-        //var_dump($data['getdosen']);
+        // var_dump($data['getdosen']);
         $data['title'] = 'Mahasiswa';
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar_user');
