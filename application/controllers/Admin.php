@@ -423,9 +423,7 @@ class Admin extends CI_Controller
         $data['title'] = 'Tabel Keputusan WP Dosen';
         $jurusan = $this->input->get('jurusan');
         $data['nilaiDosen'] = $this->db->get('dosen_peserta')->result_array();
-
         if ($jurusan) {
-
             $data['nilaiDosen'] = $this->db->get_where('dosen_peserta', ['jurusan' => $jurusan])->result_array();
         }
         $data['bobot'] = $this->db->get('tb_kriteria')->result_array();
@@ -435,18 +433,23 @@ class Admin extends CI_Controller
         //$query = "SELECT SUM(bobot) AS sum FROM tb_kriteria";
         //$data['sumB'] = $this->db->query($query)->row_array();
 
-        $queryHitung = "SELECT *FROM dosen_peserta WHERE jurusan = '$jurusan'";
+        if ($jurusan) {
+            $queryHitung = "SELECT *FROM dosen_peserta WHERE jurusan = '$jurusan'";
+            $query = "SELECT *FROM dosen_peserta WHERE jurusan = '$jurusan'";
+            $query2 = "SELECT *FROM dosen_peserta WHERE jurusan = '$jurusan' ORDER BY vektor_v DESC";
+            $result = "SELECT nama FROM dosen_peserta WHERE jurusan = '$jurusan' ORDER BY vektor_v DESC";
+        } else {
+            $queryHitung = "SELECT *FROM dosen_peserta";
+            $query = "SELECT *FROM dosen_peserta";
+            $query2 = "SELECT *FROM dosen_peserta ORDER BY vektor_v DESC";
+            $result = "SELECT nama FROM dosen_peserta  ORDER BY vektor_v DESC";
+        }
         $data['hitung'] = $this->db->query($queryHitung)->result_array();
-
-
-        $query = "SELECT *FROM dosen_peserta WHERE jurusan = '$jurusan'";
         $data['vektor'] = $this->db->query($query)->result_array();
         //var_dump($query);
-        $query2 = "SELECT *FROM dosen_peserta WHERE jurusan = '$jurusan'ORDER BY vektor_v DESC";
         //$this->db->order_by('vektor_v', 'desc');
         $data['vektor'] = $this->db->query($query2)->result_array();
 
-        $result = "SELECT nama FROM dosen_peserta WHERE jurusan = '$jurusan' ORDER BY vektor_v DESC";
         $data['result'] = $this->db->query($result)->row_array();
         $akhir = microtime(true);
         $data['waktu'] = $akhir - $awal;
@@ -476,7 +479,9 @@ class Admin extends CI_Controller
         for ($c = 1; $c <= 10; $c++) {
             $this->db->select_max('c' . $c);
         }
-        $this->db->where('jurusan', $jurusan);
+        if ($jurusan) {
+            $this->db->where('jurusan', $jurusan);
+        }
         $this->db->from('dosen_peserta');
         //$query = "SELECT MAX(c1), MAX(c2), MAX(c3), MAX(c4), MAX(c5), MAX(c6), MAX(c7), MAX(c8), MAX(c9), MAX(c10) FROM dosen_peserta";
         //$data['max'] = $this->db->query($query);
@@ -502,7 +507,11 @@ class Admin extends CI_Controller
         //$this->db->select('dosen_peserta.*, tb_kriteria.*');
         //$this->db->from('dosen_peserta, tb_kriteria');
         //$query = "SELECT dosen_peserta"
-        $data['rank'] = $this->db->get_where('dosen_peserta', ['jurusan' => $jurusan])->result_array();
+        if ($jurusan) {
+            $data['rank'] = $this->db->get_where('dosen_peserta', ['jurusan' => $jurusan])->result_array();
+        } else {
+            $data['rank'] = $this->db->get_where('dosen_peserta')->result_array();
+        }
         //$this->->('');
         //$data['total'];
         // $this->db->select('bobot_baru');
@@ -511,12 +520,18 @@ class Admin extends CI_Controller
         //var_dump($data['bobot1'][0]);
         $data['bobot_baru'] = $this->db->get('tb_bobot_baru')->result_array();
         $this->db->select('dosen_peserta.*, tb_bobot_baru.*');
-        $this->db->where('jurusan', $jurusan);
+        if ($jurusan) {
+            $this->db->where('jurusan', $jurusan);
+        }
         $this->db->from('dosen_peserta, tb_bobot_baru');
         $this->db->order_by('total_nilai_saw', 'desc');
         $data['rank'] = $this->db->get()->result_array();
 
-        $result = "SELECT nama FROM dosen_peserta WHERE jurusan = '$jurusan' ORDER BY total_nilai_saw DESC";
+        if ($jurusan) {
+            $result = "SELECT nama FROM dosen_peserta WHERE jurusan = '$jurusan' ORDER BY total_nilai_saw DESC";
+        } else {
+            $result = "SELECT nama FROM dosen_peserta ORDER BY total_nilai_saw DESC";
+        }
         $data['result'] = $this->db->query($result)->row_array();
 
 

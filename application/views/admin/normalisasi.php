@@ -4,8 +4,8 @@
         <div class="row">
             <div class="col-lg-4">
                 <div class="form-group">
-                    <select class="form-control" name="jurusan" id="jurusan" required>
-                        <option value="">Hitung berdasarkan jurusan</option>
+                    <select class="form-control" name="jurusan" id="jurusan">
+                        <option value="">Hitung Semua Jurusan</option>
                         <option value="Teknik Sipil">Teknik Sipil</option>
                         <option value="Teknik Elektro">Teknik Elektro</option>
                         <option value="Teknik Kimia">Teknik Kimia</option>
@@ -72,7 +72,7 @@
                         <td><?= $nd['c9']; ?></td>
                         <td><?= $nd['c10']; ?></td>
                     <?php $i++;
-                endforeach; ?>
+                    endforeach; ?>
                     </tr>
             </tbody>
         </table>
@@ -101,103 +101,103 @@
                             <tr>
                                 <td>Bobot Baru</td>
                                 <?php $i = 0;
-                                $jml = 0; //penjumlahan bobot
-                                foreach ($bobot as $b) {
-                                    $jml = $jml + $b['bobot'];
-                                }
-                                ?>
+                                    $jml = 0; //penjumlahan bobot
+                                    foreach ($bobot as $b) {
+                                        $jml = $jml + $b['bobot'];
+                                    }
+                                    ?>
                                 <?php foreach ($bobot as $b) :
-                                    $bobotbaru = $b['bobot'] / $jml;
-                                    //var_dump($bobotbaru);
-                                    $arrBobotbaru[$i] = $bobotbaru;
-                                    //var_dump($arrBobotbaru[$i]);
+                                        $bobotbaru = $b['bobot'] / $jml;
+                                        //var_dump($bobotbaru);
+                                        $arrBobotbaru[$i] = $bobotbaru;
+                                        //var_dump($arrBobotbaru[$i]);
 
 
-                                ?>
+                                        ?>
                                     <td align="center"><?= round($bobotbaru, 4) ?></td>
 
                                 <?php
-                                    // $data = [
-                                    //     'bobot_baru' => $bobotbaru[$i]
-                                    // ];
+                                        // $data = [
+                                        //     'bobot_baru' => $bobotbaru[$i]
+                                        // ];
 
-                                    $i++;
-                                endforeach; ?>
+                                        $i++;
+                                    endforeach; ?>
                             </tr>
 
                         </tbody>
                     </table>
                 </div>
                 <?php
-                //$hitung = $this->db->get('dosen_peserta')->result_array();
-                foreach ($hitung as $h) {
-                    $vkt_s = 1;
-                    for ($c = 1; $c <= 10; $c++) {
-                        $tb = "c" . $c;
-                        $ab = $c - 1;
-                        $pgkt = pow($h[$tb], $arrBobotbaru[$ab]);
-                        //echo $h[$tb] . " dipangkat " . $arrBobotbaru[$ab] . " = " . $pgkt . "<br>";
-                        $vkt_s = $vkt_s * $pgkt;
+                    //$hitung = $this->db->get('dosen_peserta')->result_array();
+                    foreach ($hitung as $h) {
+                        $vkt_s = 1;
+                        for ($c = 1; $c <= 10; $c++) {
+                            $tb = "c" . $c;
+                            $ab = $c - 1;
+                            $pgkt = pow($h[$tb], $arrBobotbaru[$ab]);
+                            //echo $h[$tb] . " dipangkat " . $arrBobotbaru[$ab] . " = " . $pgkt . "<br>";
+                            $vkt_s = $vkt_s * $pgkt;
+                        }
+                        //echo $vkt_s . "<br>";
+                        $this->db->where('nip', $h['nip']);
+                        $this->db->update('dosen_peserta', ['vektor_s' => $vkt_s]);
                     }
-                    //echo $vkt_s . "<br>";
-                    $this->db->where('nip', $h['nip']);
-                    $this->db->update('dosen_peserta', ['vektor_s' => $vkt_s]);
-                }
 
-                $vks_s_sum = 0;
-                foreach ($hitung as $h) {
-                    $vks_s_sum = $vks_s_sum + $h['vektor_s']; //jumlah vektor_s
-                }
-                //echo $vks_s_sum;
+                    $vks_s_sum = 0;
+                    foreach ($hitung as $h) {
+                        $vks_s_sum = $vks_s_sum + $h['vektor_s']; //jumlah vektor_s
+                    }
+                    //echo $vks_s_sum;
 
-                foreach ($vektor as $v) {
-                    $vkt_v = $v['vektor_s'] / $vks_s_sum;
-                    //var_dump($vkt_v);
-                    //die;
-                    $this->db->where('nip', $v['nip']);
-                    $this->db->update('dosen_peserta', ['vektor_v' => $vkt_v]);
-                } ?>
+                    foreach ($vektor as $v) {
+                        $vkt_v = $v['vektor_s'] / $vks_s_sum;
+                        //var_dump($vkt_v);
+                        //die;
+                        $this->db->where('nip', $v['nip']);
+                        $this->db->update('dosen_peserta', ['vektor_v' => $vkt_v]);
+                    } ?>
             </div>
 
             <div class="rank">
-            <?php if(!empty($result)): ?>
-                <div class="alert alert-primary">
-                    <h5>Dosen yang menjadi sarana promosi adalah <b><?= $result['nama']; ?></b></h5>
-                </div>
-                <div class="col-sm-12 alert alert-success">
-                    <h3>Hasil Ranking</h3>
-                    <table class="table table-hover">
-                        <thead>
-                            <tr>
-                                <th>Ranking</th>
-                                <th>Nama</th>
-                                <th>Vektor_S</th>
-                                <th>Vektor_V (Total Nilai WP)</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php
-                            $rk = 1;
-                            foreach ($vektor as $v) : ?>
+                <?php if (!empty($result)) : ?>
+                    <div class="alert alert-primary">
+                        <h5>Dosen yang menjadi sarana promosi adalah <b><?= $result['nama']; ?></b></h5>
+                    </div>
+                    <div class="col-sm-12 alert alert-success">
+                        <h3>Hasil Ranking</h3>
+                        <table class="table table-hover">
+                            <thead>
                                 <tr>
-                                    <td><?= $rk ?></td>
-                                    <td><?= $v['nama']; ?></td>
-                                    <td><?= round($v['vektor_s'], 4); ?></td>
-                                    <td><?= round($v['vektor_v'], 4); ?></td>
+                                    <th>Ranking</th>
+                                    <th>Nama</th>
+                                    <th>Vektor_S</th>
+                                    <th>Vektor_V (Total Nilai WP)</th>
                                 </tr>
-                            <?php $rk++;
-                            endforeach; ?>
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody>
+                                <?php
+                                        $rk = 1;
+                                        foreach ($vektor as $v) : ?>
+                                    <tr>
+                                        <td><?= $rk ?></td>
+                                        <td><?= $v['nama']; ?></td>
+                                        <td><?= round($v['vektor_s'], 4); ?></td>
+                                        <td><?= round($v['vektor_v'], 4); ?></td>
+                                    </tr>
+                                <?php $rk++;
+                                        endforeach; ?>
+                            </tbody>
+                        </table>
 
-                </div>
-                <div class="alert alert-primary">
-                    <h6>Waktu proses perhitungan <?= $waktu ?></h6>
-                </div>
-                <?php else: ?>
+                    </div>
+                    <div class="alert alert-primary">
+                        <h6>Waktu proses perhitungan <?= $waktu ?></h6>
+                    </div>
+                <?php else : ?>
                     <div class="alert alert-warning">
-                    <h5>Tidak ada data dosen</b></h5>
-                </div>
+                        <h5>Tidak ada data dosen</b></h5>
+                    </div>
                 <?php endif; ?>
             </div>
 

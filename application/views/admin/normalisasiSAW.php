@@ -4,8 +4,8 @@
         <div class="row">
             <div class="col-lg-4">
                 <div class="form-group">
-                    <select class="form-control" name="jurusan" id="jurusan" required>
-                        <option value="">Hitung berdasarkan jurusan</option>
+                    <select class="form-control" name="jurusan" id="jurusan">
+                        <option value="">Hitung Semua Jurusan</option>
                         <option value="Teknik Sipil">Teknik Sipil</option>
                         <option value="Teknik Elektro">Teknik Elektro</option>
                         <option value="Teknik Kimia">Teknik Kimia</option>
